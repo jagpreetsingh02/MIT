@@ -1,0 +1,7 @@
+{
+  "verifiedAt": "2026-09-13T21:25:47.885Z",
+  "repository": "GoogleCloudPlatform/microservices-demo",
+  "journey": "GitHub URL → Repository Map → Analyze → source-backed finding → Trace Ripple",
+  "impact": "Ripple traced: affects 2 of 6 projects",
+  "browserErrors": []
+}

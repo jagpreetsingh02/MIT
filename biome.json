@@ -5,6 +5,8 @@
       "src/**/*.tsx",
       "tests/**/*.ts",
       "scripts/**/*.mjs",
+      "scripts/**/*.ts",
+      "playwright.config.ts",
       "!src/web/components/ui/hero-section-6.tsx",
       "!src/web/components/ui/animated-group.tsx"
     ]
