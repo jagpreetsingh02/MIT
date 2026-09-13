@@ -52,7 +52,8 @@ export class Jobs {
       progress: { stage: "discover", message: "Reading repository structure", completed: [] },
     };
     this.store.save(scan, input);
-    this.kick();
+    if (input.mode === "demo") void this.run(scan);
+    else this.kick();
     return scan;
   }
   analyze(id: string, selections: ProjectSelection[]) {
@@ -75,7 +76,8 @@ export class Jobs {
     scan.status = "queued";
     this.stage(scan, "extract", "Waiting to extract selected projects");
     this.store.save(scan);
-    this.kick();
+    if (scan.mode === "demo") void this.run(scan);
+    else this.kick();
     return scan;
   }
   kick() {
@@ -135,11 +137,13 @@ export class Jobs {
           this.store.saveFiles(scan.id, files);
         } else if (input.mode === "demo") {
           const graph = demoGraph();
+          scan.ref = "demo";
+          scan.commit = "offline-fixture";
           scan.repositoryMap = {
             repository: scan.name,
             ref: "demo",
             commit: "offline-fixture",
-            fileCount: 8,
+            fileCount: 7,
             warnings: ["Synthetic demo security data. No external APIs are used."],
             projects: graph.nodes
               .filter((n) => n.kind === "service")

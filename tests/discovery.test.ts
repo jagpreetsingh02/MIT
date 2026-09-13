@@ -125,6 +125,18 @@ test("separate installed instances do not invent cross-project paths", () => {
     2,
   );
 });
+test("duplicate project edge records do not multiply ripple paths or seed application roots", () => {
+  const graph = finalize(resolveProject(project("apps/a", "a"), [file("package-lock.json", lock)]));
+  const leaf = graph.nodes.find((n) => n.name === "leaf")!;
+  const root = graph.nodes.find((n) => n.kind === "service")!;
+  root.purl = leaf.purl;
+  graph.edges.push(...graph.edges.map((edge) => ({ ...edge, projectId: "another-context" })));
+  const result = simulate(graph, leaf.id);
+  assert.deepEqual(result.seedIds, [leaf.id]);
+  assert.equal(result.pathCount, 1);
+  assert.equal(result.services.length, 1);
+  assert.equal(result.hypothetical, true);
+});
 test("runtime and development usage propagates through dependencies", () => {
   const data = {
     lockfileVersion: 3,

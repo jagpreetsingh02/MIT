@@ -71,7 +71,11 @@ export async function createApp(store = new Store(), startJobs = true) {
       },
     },
   });
-  await app.register(rateLimit, { max: 120, timeWindow: "1 minute" });
+  await app.register(rateLimit, {
+    max: 300,
+    timeWindow: "1 minute",
+    allowList: (request) => !request.url.startsWith("/api/"),
+  });
   app.addHook("onRequest", async (req, reply) => {
     if (
       !req.url.startsWith("/api/v1/") ||
@@ -99,15 +103,13 @@ export async function createApp(store = new Store(), startJobs = true) {
     const validation = error instanceof z.ZodError;
     const status = validation ? 400 : err.statusCode || 500;
     if (status >= 500) req.log.error({ err }, "Request failed");
-    reply
-      .code(status)
-      .send({
-        error: validation
-          ? "Invalid request. Check the repository, ref or manifest fields."
-          : status >= 500
-            ? "Request failed. Check server logs and try again."
-            : err.message,
-      });
+    reply.code(status).send({
+      error: validation
+        ? "Invalid request. Check the repository, ref or manifest fields."
+        : status >= 500
+          ? "Request failed. Check server logs and try again."
+          : err.message,
+    });
   });
   app.get("/api/v1/health", async () => ({
     status: "ok",
@@ -116,12 +118,10 @@ export async function createApp(store = new Store(), startJobs = true) {
     authRequired: Boolean(process.env.API_TOKEN),
   }));
   app.get("/api/v1/scans", async () =>
-    store
-      .list()
-      .map(({ graph, risks, ...scan }) => ({
-        ...scan,
-        packages: graph?.nodes.filter((n) => n.kind === "package").length || 0,
-      })),
+    store.list().map(({ graph, risks, ...scan }) => ({
+      ...scan,
+      packages: graph?.nodes.filter((n) => n.kind === "package").length || 0,
+    })),
   );
   app.post(
     "/api/v1/scans",

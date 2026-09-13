@@ -107,8 +107,11 @@ export function finalize(graph: Graph): Graph {
 function indexGraph(graph: Graph) {
   const parents = new Map<string, typeof graph.edges>();
   const byPurl = new Map<string, string[]>();
-  graph.edges.forEach((e) => parents.set(e.to, [...(parents.get(e.to) || []), e]));
-  graph.nodes.forEach((n) => byPurl.set(n.purl, [...(byPurl.get(n.purl) || []), n.id]));
+  for (const e of new Map(graph.edges.map((e) => [e.from + ":" + e.to, e])).values())
+    parents.set(e.to, [...(parents.get(e.to) || []), e]);
+  graph.nodes
+    .filter((n) => n.kind === "package")
+    .forEach((n) => byPurl.set(n.purl, [...(byPurl.get(n.purl) || []), n.id]));
   return {
     parents,
     byPurl,

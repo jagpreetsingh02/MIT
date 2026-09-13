@@ -5,7 +5,7 @@ web
 ## Stack
 Delegated by the supplied specification. React/TypeScript, Fastify, Node 24 SQLite. A single container serves the API and built UI; replaceable connector/cache boundaries.
 ## Users
-Assumption pending optional clarification: engineers tracing vulnerable dependencies to affected application services.
+Developers tracing vulnerable dependencies to applications and services; hackathon viewers following a two-minute repository-to-ripple demonstration.
 ## Product Purpose
 Map dependency graphs, rank deterministic risk, simulate reverse dependency impact, and export SPDX 2.3 JSON.
 ## Capabilities and Constraints
