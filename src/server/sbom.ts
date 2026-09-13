@@ -1,6 +1,51 @@
-import type { Scan } from '../shared/types.js';
-export function sbom(scan:Scan) {
-  if(!scan.graph || scan.status!=='completed')throw new Error('Scan is not complete.');
-  const spdx=(id:string)=>'SPDXRef-'+id;
-  return {spdxVersion:'SPDX-2.3',dataLicense:'CC0-1.0',SPDXID:'SPDXRef-DOCUMENT',name:'RippleGuard-'+scan.name.replace(/[^A-Za-z0-9.-]/g,'-'),documentNamespace:`https://rippleguard.local/spdx/${scan.id}`,creationInfo:{creators:['Tool: RippleGuard-1.0.0'],created:scan.completedAt!.replace(/\.\d{3}Z$/,'Z'),comment:scan.mode==='demo'?'Illustrative demo fixture. Not a live assessment.':'Resolved snapshot; review scan warnings for coverage limits.'},documentDescribes:scan.graph.nodes.filter(n=>n.kind==='service').map(n=>spdx(n.id)),packages:scan.graph.nodes.map(n=>({SPDXID:spdx(n.id),name:n.name,versionInfo:n.version,downloadLocation:'NOASSERTION',filesAnalyzed:false,licenseConcluded:'NOASSERTION',licenseDeclared:n.license||'NOASSERTION',copyrightText:'NOASSERTION',externalRefs:[{referenceCategory:'PACKAGE-MANAGER',referenceType:'purl',referenceLocator:n.purl}],sourceInfo:n.provenance.map(p=>`${p.source}; ${p.url||'uploaded/fixture'}; retrieved ${p.retrievedAt}`).join('\n')})),relationships:[...scan.graph.nodes.filter(n=>n.kind==='service').map(n=>({spdxElementId:'SPDXRef-DOCUMENT',relationshipType:'DESCRIBES',relatedSpdxElement:spdx(n.id)})),...scan.graph.edges.map(e=>({spdxElementId:spdx(e.from),relationshipType:'DEPENDS_ON',relatedSpdxElement:spdx(e.to)}))]};
+import type { Scan } from "../shared/types.js";
+export function sbom(scan: Scan) {
+  if (!scan.graph || scan.status !== "completed") throw new Error("Scan is not complete.");
+  const spdx = (id: string) => "SPDXRef-" + id;
+  return {
+    spdxVersion: "SPDX-2.3",
+    dataLicense: "CC0-1.0",
+    SPDXID: "SPDXRef-DOCUMENT",
+    name: "RippleGuard-" + scan.name.replace(/[^A-Za-z0-9.-]/g, "-"),
+    documentNamespace: `https://rippleguard.local/spdx/${scan.id}`,
+    creationInfo: {
+      creators: ["Tool: RippleGuard-1.0.0"],
+      created: scan.completedAt!.replace(/\.\d{3}Z$/, "Z"),
+      comment:
+        scan.mode === "demo"
+          ? "Illustrative demo fixture. Not a live assessment."
+          : "Resolved snapshot; review scan warnings for coverage limits.",
+    },
+    documentDescribes: scan.graph.nodes.filter((n) => n.kind === "service").map((n) => spdx(n.id)),
+    packages: scan.graph.nodes.map((n) => ({
+      SPDXID: spdx(n.id),
+      name: n.name,
+      versionInfo: n.version,
+      downloadLocation: "NOASSERTION",
+      filesAnalyzed: false,
+      licenseConcluded: "NOASSERTION",
+      licenseDeclared: n.license || "NOASSERTION",
+      copyrightText: "NOASSERTION",
+      externalRefs: [
+        { referenceCategory: "PACKAGE-MANAGER", referenceType: "purl", referenceLocator: n.purl },
+      ],
+      sourceInfo: n.provenance
+        .map((p) => `${p.source}; ${p.url || "uploaded/fixture"}; retrieved ${p.retrievedAt}`)
+        .join("\n"),
+    })),
+    relationships: [
+      ...scan.graph.nodes
+        .filter((n) => n.kind === "service")
+        .map((n) => ({
+          spdxElementId: "SPDXRef-DOCUMENT",
+          relationshipType: "DESCRIBES",
+          relatedSpdxElement: spdx(n.id),
+        })),
+      ...scan.graph.edges.map((e) => ({
+        spdxElementId: spdx(e.from),
+        relationshipType: "DEPENDS_ON",
+        relatedSpdxElement: spdx(e.to),
+      })),
+    ],
+  };
 }

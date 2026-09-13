@@ -13,9 +13,10 @@
     "build": "tsc --noEmit && vite build",
     "typecheck": "tsc --noEmit",
     "test": "node --import tsx --test tests/*.test.ts",
-    "check": "npm run typecheck && npm test && npm run build",
+    "check": "npm run lint && npm run typecheck && npm test && npm run build",
     "local": "npm run build && npm start",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "lint": "biome lint src tests scripts"
   },
   "dependencies": {
     "@fastify/helmet": "^13.1.1",
@@ -29,6 +30,7 @@
     "@opentelemetry/exporter-trace-otlp-http": "^0.222.0",
     "@opentelemetry/sdk-metrics": "^2.11.0",
     "@opentelemetry/sdk-node": "^0.222.0",
+    "@pandatix/js-cvss": "^0.4.4",
     "@tailwindcss/vite": "^4.3.3",
     "clsx": "^2.1.1",
     "fast-xml-parser": "^5.11.1",
@@ -40,11 +42,14 @@
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "semver": "^7.8.5",
+    "smol-toml": "^1.8.0",
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.3",
+    "yaml": "^2.9.1",
     "zod": "^4.6.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.5.13",
     "@playwright/test": "^1.63.0",
     "@types/node": "^22.20.2",
     "@types/react": "^19.3.0",
