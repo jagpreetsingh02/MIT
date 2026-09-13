@@ -1,0 +1,11 @@
+# Replace @your-org/security-team with a real, write-authorized team before use.
+# This template does NOT enforce review until an owner and branch rule are configured.
+# /.github/ @your-org/security-team
+# /AGENTS.md @your-org/security-team
+# /.codex/ @your-org/security-team
+# /src/server/app.ts @your-org/security-team
+# /src/server/connectors.ts @your-org/security-team
+# /src/server/transport.ts @your-org/security-team
+# /src/server/store.ts @your-org/security-team
+# /.env.example @your-org/security-team
+# /Dockerfile @your-org/security-team

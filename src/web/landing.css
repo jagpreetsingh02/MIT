@@ -1,0 +1,59 @@
+/* Tailwind CSS v4 entrypoint for the marketing landing page.
+   Preflight is deliberately NOT imported: the dashboard in styles.css ships its own
+   hand-written reset, and Tailwind's would fight it. Utilities are imported unlayered
+   so they outrank the dashboard's unlayered element selectors (a, button, p) by
+   specificity; the landing-only reset below lives in @layer base so it never does. */
+@layer base;
+
+@import 'tailwindcss/theme.css';
+@import 'tailwindcss/utilities.css';
+
+@source './';
+
+@layer base {
+  .rg-landing {
+    font-size: 16px;
+    line-height: 1.5;
+    color-scheme: light dark;
+    /* Elements that inherit their colour (the wordmark, the secondary CTA) would
+       otherwise pick up the dashboard's :root colour and vanish against dark. */
+    color: #0a0a0a;
+  }
+  @media (prefers-color-scheme: dark) {
+    .rg-landing {
+      color: #fafafa;
+    }
+    /* The dashboard paints the body light; keep overscroll behind the hero dark. */
+    body:has(.rg-landing) {
+      background: #000;
+    }
+  }
+  .rg-landing,
+  .rg-landing *,
+  .rg-landing *::before,
+  .rg-landing *::after {
+    box-sizing: border-box;
+    /* Stands in for preflight: `border-b` sets width only, so a style and a
+       zero default are required for borders to behave as Tailwind expects. */
+    border-width: 0;
+    border-style: solid;
+    border-color: currentColor;
+  }
+  .rg-landing button {
+    background-color: transparent;
+    background-image: none;
+    padding: 0;
+    text-align: inherit;
+  }
+  .rg-landing a {
+    text-decoration: none;
+  }
+  .rg-landing img,
+  .rg-landing svg {
+    display: block;
+    vertical-align: middle;
+  }
+  .rg-landing p {
+    line-height: inherit;
+  }
+}

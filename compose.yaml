@@ -1,0 +1,21 @@
+services:
+  rippleguard:
+    build: .
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      API_TOKEN: ${API_TOKEN:?Set API_TOKEN to a random value of at least 32 characters}
+      NVD_API_KEY: ${NVD_API_KEY:-}
+      PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:-http://localhost:3000}
+    volumes:
+      - rippleguard-data:/app/data
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+volumes:
+  rippleguard-data:
