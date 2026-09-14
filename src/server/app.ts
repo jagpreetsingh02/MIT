@@ -1,5 +1,6 @@
 import Fastify from "fastify";
 import helmet from "@fastify/helmet";
+import cors from "@fastify/cors";
 import rateLimit from "@fastify/rate-limit";
 import staticPlugin from "@fastify/static";
 import { createHmac, timingSafeEqual } from "node:crypto";
@@ -33,6 +34,17 @@ const inputSchema = z.discriminatedUnion("mode", [
     content: z.string().min(1).max(2_000_000),
   }),
 ]);
+// The frontend is served separately (e.g. from Vercel) in a split deployment,
+// so cross-origin browser requests must be explicitly allowlisted. Comma-separated;
+// PUBLIC_ORIGIN (the app's own canonical origin) is always included.
+function allowedOrigins(): string[] {
+  const list = (process.env.ALLOWED_ORIGINS || "")
+    .split(",")
+    .map((o) => o.trim())
+    .filter(Boolean);
+  if (process.env.PUBLIC_ORIGIN) list.push(process.env.PUBLIC_ORIGIN);
+  return list;
+}
 export function verifySignature(body: Buffer, signature: string, secret: string) {
   if (!/^sha256=[a-f0-9]{64}$/.test(signature)) return false;
   const expected = createHmac("sha256", secret).update(body).digest();
@@ -77,6 +89,11 @@ export async function createApp(
       },
     },
   });
+  await app.register(cors, {
+    origin: (origin, cb) => cb(null, !origin || allowedOrigins().includes(origin)),
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  });
   await app.register(rateLimit, {
     max: 300,
     timeWindow: "1 minute",
@@ -93,7 +110,7 @@ export async function createApp(
     if (
       origin &&
       origin !== `${req.protocol}://${req.host}` &&
-      origin !== process.env.PUBLIC_ORIGIN
+      !allowedOrigins().includes(origin)
     )
       return reply.code(403).send({ error: "Cross-origin requests are not allowed." });
     const secret = process.env.API_TOKEN;

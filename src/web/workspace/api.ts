@@ -1,3 +1,8 @@
+// Empty in local dev: Vite's dev-server proxy forwards relative /api/v1 requests
+// to the local backend. In production this is set to the deployed Render URL,
+// so the Vercel-hosted frontend calls the backend cross-origin.
+const API_BASE = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/+$/, "");
+
 let accessToken = "";
 
 export function setAccessToken(token: string) {
@@ -9,7 +14,7 @@ export function hasAccessToken() {
 }
 
 export async function api<T>(path: string, body?: unknown): Promise<T> {
-  const response = await fetch("/api/v1" + path, {
+  const response = await fetch(API_BASE + "/api/v1" + path, {
     headers: {
       ...(body ? { "Content-Type": "application/json" } : {}),
       ...(accessToken ? { Authorization: "Bearer " + accessToken } : {}),
@@ -27,7 +32,7 @@ export async function transcribeAudio(audio: Blob): Promise<string> {
   const type = (audio.type || "audio/webm").split(";")[0];
   let response: Response;
   try {
-    response = await fetch("/api/v1/otter/transcribe", {
+    response = await fetch(API_BASE + "/api/v1/otter/transcribe", {
       method: "POST",
       headers: {
         "Content-Type": type,
