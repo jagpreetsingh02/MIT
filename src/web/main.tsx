@@ -224,12 +224,16 @@ function App() {
   const packages = useMemo(
     () => [
       ...new Map(
-        (graph?.nodes || []).filter((n) => n.kind === "package").map((n) => [n.purl, n]),
+        (graph?.nodes || [])
+          .filter((n) => n.kind === "package")
+          .map((n) => [n.versionStatus === "unresolved" ? n.id : n.purl, n]),
       ).values(),
     ],
     [graph],
   );
   const checked = packages.filter((n) => ["checked", "fixture"].includes(n.coverage)).length;
+  const unresolved = packages.filter((n) => n.versionStatus === "unresolved").length;
+  const exactCount = packages.length - unresolved;
   const findingCount = new Set(packages.flatMap((n) => n.advisories.map((a) => a.id))).size;
   const top = risks[0];
   const topNode = graph?.nodes.find((n) => n.id === top?.nodeId);
@@ -596,7 +600,7 @@ function App() {
               <>
                 <section className="result-summary" aria-label="Analysis summary">
                   <span>
-                    <strong>{checked}</strong> of {packages.length} package versions checked
+                    <strong>{checked}</strong> of {exactCount} exact package versions checked
                   </span>
                   <span>
                     <strong>{findingCount}</strong> known {scan.mode === "demo" ? "demo " : ""}
@@ -611,6 +615,15 @@ function App() {
                     projects mapped
                   </span>
                 </section>
+                {unresolved > 0 && (
+                  <p className="coverage-callout" role="status">
+                    {packages.length} dependencies were discovered, but {unresolved} could not be
+                    matched to exact installed versions.{" "}
+                    {exactCount
+                      ? "Vulnerability checks were performed only on exact versions."
+                      : "Dependencies were discovered, but no exact installed versions were available for vulnerability matching."}
+                  </p>
+                )}
                 {(checked < packages.length ||
                   graph?.warnings.length ||
                   scan.repositoryMap?.projects.some((p) => p.resolution !== "resolved")) && (
@@ -798,7 +811,9 @@ function App() {
                       .map((p) => (
                         <p key={p.id}>
                           <strong>{p.name}</strong> · {p.resolution} · {p.packageCount ?? "Demo"}{" "}
-                          packages{p.notes.length ? ` — ${p.notes.join(" ")}` : ""}
+                          dependencies · {p.exactCount ?? p.packageCount ?? 0} exact ·{" "}
+                          {p.unresolvedCount ?? 0} unresolved · {p.ingestionStatus || p.resolution}
+                          {p.notes.length ? ` — ${p.notes.join(" ")}` : ""}
                         </p>
                       ))}
                   </details>
@@ -840,7 +855,7 @@ function App() {
             <h2>{full ? "All package versions" : "Dependencies worth investigating"}</h2>
             <p>
               {full
-                ? "Every resolved package version, including unscored and unchecked packages."
+                ? "Exact package versions and unresolved declarations, including unscored and unchecked dependencies."
                 : "Known findings first, followed by deterministic Ripple Priority."}
             </p>
           </div>
@@ -896,17 +911,25 @@ function App() {
                         <span>
                           <strong>{n.name}</strong>
                           <small>
-                            {n.version} · {n.ecosystem}
+                            {n.versionStatus === "unresolved"
+                              ? (n.declaredSpecifier || "No version declared") +
+                                " · exact version unresolved"
+                              : n.version}{" "}
+                            · {n.ecosystem}
                           </small>
                         </span>
                       </button>
                     </td>
                     <td>
-                      <span className={`score-number ${r.level}`}>{r.score}</span>
-                      <span className={`risk-badge ${r.level}`}>{r.level}</span>
+                      <span className={`score-number ${r.level}`}>
+                        {n.versionStatus === "unresolved" ? "Not scored" : r.score}
+                      </span>
+                      {n.versionStatus !== "unresolved" && (
+                        <span className={`risk-badge ${r.level}`}>{r.level}</span>
+                      )}
                     </td>
                     <td>
-                      {n.advisories.length}
+                      {n.versionStatus === "unresolved" ? "Not checked" : n.advisories.length}
                       <small className="coverage-label">
                         {n.coverage === "checked"
                           ? "Checked"

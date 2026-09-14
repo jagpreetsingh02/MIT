@@ -5,6 +5,7 @@ import { parse as parseYaml } from "yaml";
 import semver from "semver";
 import { node, finalize } from "./graph.js";
 import { parseManifest } from "./parsers.js";
+import { declarations } from "./declarations.js";
 import type { Graph, PackageNode, Project, Provenance } from "../shared/types.js";
 import type { SourceFile } from "./discovery.js";
 const hash = (s: string) => createHash("sha256").update(s).digest("hex").slice(0, 20);
@@ -24,6 +25,105 @@ function rootFor(p: Project, version = "0.0.0") {
   return n;
 }
 export function resolveProject(project: Project, files: SourceFile[]): Graph {
+  const declared = declarations(
+    project,
+    files.filter(
+      (f) =>
+        project.files.includes(f.filename) ||
+        f.filename === project.manifest ||
+        f.filename === project.lockfile,
+    ),
+  );
+  let graph: Graph;
+  try {
+    graph = resolveExact(project, files);
+  } catch (error) {
+    graph = {
+      nodes: [rootFor(project)],
+      edges: [],
+      warnings: [`Exact resolution failed: ${(error as Error).message}`],
+    };
+    if (project.ecosystem === "npm") {
+      try {
+        const fallback = npmManifest(
+          project,
+          files.find((f) => f.filename === project.manifest),
+        );
+        graph.nodes.push(...fallback.nodes.filter((n) => n.kind === "package"));
+        graph.edges.push(...fallback.edges);
+      } catch {}
+    }
+  }
+  graph.warnings.push(...declared.warnings);
+  const normalize = (name: string) =>
+    project.ecosystem === "pypi" ? name.toLowerCase().replace(/[-_.]+/g, "-") : name;
+  for (const d of declared.declarations) {
+    if (
+      graph.nodes.some(
+        (n) =>
+          n.kind === "package" &&
+          normalize(n.name) === normalize(d.name) &&
+          (n.versionStatus === "unresolved"
+            ? !d.exactVersion && n.declaredSpecifier === d.specifier
+            : !d.exactVersion || n.version === d.exactVersion),
+      )
+    )
+      continue;
+    const n = node(project.ecosystem, d.name, d.exactVersion || "");
+    n.id = hash(project.id + ":" + normalize(d.name) + ":" + (d.exactVersion || d.specifier));
+    n.projectId = project.id;
+    n.versionStatus = d.exactVersion ? "exact" : "unresolved";
+    n.declaredSpecifier = d.specifier;
+    n.scope = d.scope;
+    n.relationship = "listed";
+    n.coverage = d.exactVersion ? "unchecked" : "partial";
+    n.provenance = files.filter((f) => f.filename === d.file).map((f) => f.provenance);
+    graph.nodes.push(n);
+    graph.edges.push({
+      from: "service-" + project.id,
+      to: n.id,
+      projectId: project.id,
+      relationship: "listed",
+      scope: d.scope,
+    });
+  }
+  graph = finalize(graph);
+  project.declarations = declared.declarations;
+  const packages = graph.nodes.filter((n) => n.kind === "package");
+  project.packageCount = packages.length;
+  project.exactCount = packages.filter((n) => n.versionStatus !== "unresolved").length;
+  project.unresolvedCount = packages.length - project.exactCount;
+  if (!packages.length)
+    graph.warnings.push(
+      files.length
+        ? "No package declarations or exact installed entries were extracted from the readable files. See format-specific notes; a workspace root may require selecting its child projects."
+        : "No dependency files could be read for this project.",
+    );
+  if (project.unresolvedCount)
+    graph.warnings.push(
+      `${project.unresolvedCount} dependency declarations have no exact installed version. They are retained but excluded from vulnerability matching.`,
+    );
+  project.ingestionStatus = !packages.length
+    ? "UNSUPPORTED"
+    : !project.exactCount
+      ? "DECLARED_ONLY"
+      : graph.warnings.length || project.unresolvedCount
+        ? "PARTIAL"
+        : "EXACT";
+  project.relationships = graph.edges.some((e) => e.relationship === "listed")
+    ? "partial"
+    : graph.edges.length
+      ? "recorded"
+      : "unavailable";
+  project.resolution =
+    project.ingestionStatus === "EXACT"
+      ? "resolved"
+      : project.ingestionStatus === "UNSUPPORTED"
+        ? "unsupported"
+        : "partial";
+  return graph;
+}
+function resolveExact(project: Project, files: SourceFile[]): Graph {
   const lock = files.find((f) => f.filename === project.lockfile);
   const manifest = files.find((f) => f.filename === project.manifest);
   if (lock && /(?:package-lock|npm-shrinkwrap)\.json$/.test(lock.filename))
@@ -68,8 +168,34 @@ export function resolveProject(project: Project, files: SourceFile[]): Graph {
   return finalize(graph);
 }
 function npmLock(p: Project, file: SourceFile, manifest?: SourceFile): Graph {
-  const data = JSON.parse(file.content);
-  const info = manifest ? JSON.parse(manifest.content) : {};
+  let data = JSON.parse(file.content);
+  let info: any = {};
+  let manifestError = "";
+  try {
+    info = manifest ? JSON.parse(manifest.content) : {};
+  } catch {
+    manifestError = "Manifest JSON could not be parsed; installed lockfile entries were retained.";
+  }
+  if (data.lockfileVersion === 1 && data.dependencies) {
+    const entries: Record<string, any> = {
+      "": {
+        name: data.name,
+        version: data.version,
+        dependencies: Object.fromEntries(
+          Object.entries(data.dependencies).map(([name, d]: [string, any]) => [name, d.version]),
+        ),
+      },
+    };
+    const walk = (deps: Record<string, any>, parent = "") => {
+      for (const [name, d] of Object.entries(deps)) {
+        const path = (parent ? parent + "/" : "") + "node_modules/" + name;
+        entries[path] = { ...d, dependencies: d.requires || {} };
+        if (d.dependencies) walk(d.dependencies, path);
+      }
+    };
+    walk(data.dependencies);
+    data = { ...data, lockfileVersion: 2, packages: entries };
+  }
   if (![2, 3].includes(data.lockfileVersion) || !data.packages)
     return {
       ...npmManifest(p, manifest),
@@ -78,6 +204,8 @@ function npmLock(p: Project, file: SourceFile, manifest?: SourceFile): Graph {
       ],
     };
   const entries = data.packages as Record<string, any>;
+  if (!entries[""] && p.path === posix.dirname(file.filename))
+    entries[""] = { name: data.name, version: data.version };
   const base = posix.dirname(file.filename);
   const entry = posix.relative(base, p.path === "." ? "." : p.path);
   if (!Object.hasOwn(entries, entry)) {
@@ -89,7 +217,7 @@ function npmLock(p: Project, file: SourceFile, manifest?: SourceFile): Graph {
   }
   const root = rootFor(p, info.version || entries[entry].version);
   root.provenance = [file.provenance];
-  const graph: Graph = { nodes: [root], edges: [], warnings: [] };
+  const graph: Graph = { nodes: [root], edges: [], warnings: manifestError ? [manifestError] : [] };
   const byPath = new Map<string, PackageNode>();
   const pending: string[] = [];
   const resolvePath = (from: string, name: string): string | undefined => {
@@ -162,13 +290,53 @@ function npmLock(p: Project, file: SourceFile, manifest?: SourceFile): Graph {
           graph.warnings.push(
             `Lockfile version for ${name} does not satisfy its declared range ${requested}; regenerate the lockfile.`,
           );
-      } else if (!record.optionalDependencies?.[name] && !record.peerDependencies?.[name])
+      } else {
+        const missing = node("npm", name, "");
+        missing.id = hash(file.filename + ":" + path + ":" + name + ":" + String(requested));
+        missing.versionStatus = "unresolved";
+        missing.declaredSpecifier = String(requested);
+        missing.coverage = "partial";
+        missing.scope = "unknown";
+        missing.projectId = p.id;
+        missing.relationship = "listed";
+        missing.provenance = [file.provenance];
+        graph.nodes.push(missing);
+        graph.edges.push({
+          from: parent.id,
+          to: missing.id,
+          projectId: p.id,
+          relationship: "listed",
+          scope: "unknown",
+        });
         graph.warnings.push(
           `Could not determine the installed dependency ${name} used by ${parent.name}.`,
         );
+      }
     }
   }
   connect(root, entry, { ...entries[entry], ...info }, true);
+  if (
+    !graph.nodes.some((n) => n.kind === "package") &&
+    entry === "" &&
+    !entries[entry].workspaces &&
+    !info.workspaces
+  ) {
+    for (const path of Object.keys(entries).filter((path) => path.startsWith("node_modules/"))) {
+      const child = add(path);
+      if (child)
+        graph.edges.push({
+          from: root.id,
+          to: child.id,
+          projectId: p.id,
+          relationship: "listed",
+          scope: "unknown",
+        });
+    }
+    if (graph.nodes.length > 1)
+      graph.warnings.push(
+        "Lockfile packages were retained, but root dependency declarations were unavailable. Listed links do not establish direct ancestry.",
+      );
+  }
   for (let i = 0; i < pending.length; i++) {
     if (i >= 10000) {
       graph.warnings.push(

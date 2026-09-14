@@ -215,7 +215,7 @@ export function DependencyGraph({
                     ? isAffected
                       ? "AFFECTED APPLICATION"
                       : "APPLICATION / PROJECT"
-                    : `${n.version}${n.advisories.length ? " · " + (risk?.level || "known") + " priority" : ""}`}
+                    : `${n.versionStatus === "unresolved" ? "Version unresolved" : n.version}${n.advisories.length ? " · " + (risk?.level || "known") + " priority" : ""}`}
                 </text>
               </g>
             );

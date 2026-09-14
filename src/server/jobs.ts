@@ -14,6 +14,7 @@ import type {
   ProjectSelection,
   ScanProgress,
   Graph,
+  Project,
 } from "../shared/types.js";
 export const connectors = (): ConnectorHealth[] => [
   ...["GitHub", "npm", "PyPI", "Maven Central", "OSV", "NVD", "CVE Program", "CISA KEV"].map(
@@ -116,6 +117,57 @@ export class Jobs {
     const http = this.httpFactory();
     const github = new GitHub(http);
     const input = this.store.input(scan.id);
+    const loaded = new Map<string, Promise<SourceFile>>();
+    const extract = async (project: Project): Promise<Graph> => {
+      const paths = [
+        ...new Set(
+          [...project.files, project.manifest, project.lockfile].filter((p): p is string => !!p),
+        ),
+      ];
+      const files: SourceFile[] = [];
+      const failures: string[] = [];
+      for (const path of paths) {
+        try {
+          if (!loaded.has(path))
+            loaded.set(
+              path,
+              input.mode === "manifest"
+                ? Promise.resolve({
+                    filename: path,
+                    content: input.content!,
+                    provenance: {
+                      source: "Uploaded manifest",
+                      url: "",
+                      retrievedAt: scan.createdAt,
+                    },
+                  })
+                : github.file(
+                    input.repository!,
+                    scan.commit!,
+                    this.store.files(scan.id).find((f) => f.path === path)!,
+                    input.installationId,
+                  ),
+            );
+          files.push(await loaded.get(path)!);
+        } catch (error) {
+          failures.push(path + ": " + (error as Error).message);
+        }
+      }
+      let g: Graph;
+      try {
+        g = resolveProject(project, files);
+      } catch (error) {
+        g = resolveProject(project, []);
+        failures.push("Project extraction failed: " + (error as Error).message);
+      }
+      g.warnings.push(...failures);
+      if (failures.length) {
+        project.resolution = "partial";
+        if (project.exactCount) project.ingestionStatus = "PARTIAL";
+      }
+      project.notes = [...new Set([...project.notes, ...g.warnings])];
+      return g;
+    };
     const persist = () => {
       scan.connectors = connectors().map((c) => http.health.get(c.name) || c);
       this.store.save(scan);
@@ -173,6 +225,28 @@ export class Jobs {
             "upload",
             "uploaded-file",
           );
+        if (input.mode !== "demo") {
+          let cursor = 0,
+            completed = 0;
+          const projects = scan.repositoryMap!.projects;
+          await Promise.all(
+            Array.from({ length: 6 }, async () => {
+              while (cursor < projects.length) {
+                const project = projects[cursor++];
+                await extract(project);
+                completed++;
+                if (completed % 10 === 0 || completed === projects.length)
+                  this.stage(
+                    scan,
+                    "discover",
+                    "Reading dependency declarations: " + completed + " of " + projects.length,
+                    completed,
+                    projects.length,
+                  );
+              }
+            }),
+          );
+        }
         scan.status = "mapped";
         this.stage(
           scan,
@@ -218,58 +292,14 @@ export class Jobs {
           p.analyzed = true;
         });
       } else {
-        const tree = this.store.files(scan.id);
-        const loaded = new Map<string, SourceFile>();
         for (let i = 0; i < chosen.length; i++) {
           const project = chosen[i];
-          this.stage(scan, "extract", `Reading ${project.name}`, i, chosen.length);
-          try {
-            const paths = [
-              ...new Set([project.manifest, project.lockfile].filter((p): p is string => !!p)),
-            ];
-            const files: SourceFile[] = [];
-            for (const path of paths) {
-              try {
-                if (!loaded.has(path))
-                  loaded.set(
-                    path,
-                    input.mode === "manifest"
-                      ? {
-                          filename: path,
-                          content: input.content!,
-                          provenance: {
-                            source: "Uploaded manifest",
-                            url: "",
-                            retrievedAt: scan.createdAt,
-                          },
-                        }
-                      : await github.file(
-                          input.repository!,
-                          scan.commit!,
-                          tree.find((f) => f.path === path)!,
-                          input.installationId,
-                        ),
-                  );
-                files.push(loaded.get(path)!);
-              } catch (error) {
-                project.notes.push((error as Error).message);
-              }
-            }
-            const g = resolveProject(project, files);
-            graph.nodes.push(...g.nodes);
-            graph.edges.push(...g.edges);
-            graph.warnings.push(...g.warnings.map((w) => `${project.name}: ${w}`));
-            project.notes = [...new Set([...project.notes, ...g.warnings])];
-            project.resolution = g.warnings.length ? "partial" : "resolved";
-            project.packageCount = g.nodes.filter((n) => n.kind === "package").length;
-            project.analyzed = true;
-          } catch (error) {
-            project.resolution = "failed";
-            project.notes.push((error as Error).message);
-            graph.warnings.push(
-              `${project.name}: ${(error as Error).message}. Other projects were retained.`,
-            );
-          }
+          this.stage(scan, "extract", "Reading " + project.name, i, chosen.length);
+          const g = await extract(project);
+          graph.nodes.push(...g.nodes);
+          graph.edges.push(...g.edges);
+          graph.warnings.push(...g.warnings.map((w) => project.name + ": " + w));
+          project.analyzed = true;
           this.stage(
             scan,
             "extract",
@@ -289,7 +319,8 @@ export class Jobs {
           "vulnerabilities",
           "Checking known vulnerabilities",
           0,
-          graph.nodes.filter((n) => n.kind === "package").length,
+          graph.nodes.filter((n) => n.kind === "package" && n.versionStatus !== "unresolved")
+            .length,
         );
         await enrichGraph(scan.graph, http, (current, total, message) => {
           this.stage(

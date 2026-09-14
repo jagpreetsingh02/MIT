@@ -25,11 +25,14 @@ export function PackageDetails({
         <div>
           <h2>{node.name}</h2>
           <span>
-            {node.version} · {node.ecosystem}
+            {node.versionStatus === "unresolved"
+              ? (node.declaredSpecifier || "No version declared") + " · exact version unresolved"
+              : node.version}{" "}
+            · {node.ecosystem}
           </span>
         </div>
       </div>
-      {risk && (
+      {risk && node.versionStatus !== "unresolved" && (
         <div className="package-risk">
           <span>Ripple Priority</span>
           <strong>
@@ -96,11 +99,13 @@ export function PackageDetails({
         <h3>{node.advisories.length ? "Known vulnerabilities" : "Vulnerability coverage"}</h3>
         {!node.advisories.length ? (
           <p>
-            {node.coverage === "checked"
-              ? "No known vulnerabilities were found in this package by the sources successfully checked."
-              : node.coverage === "fixture"
-                ? "No advisory in the synthetic demo fixture."
-                : "This package was not fully checked. No security conclusion can be drawn."}
+            {node.versionStatus === "unresolved"
+              ? "Discovered declaration; exact installed version is unresolved. Not sent to vulnerability matching."
+              : node.coverage === "checked"
+                ? "No known vulnerabilities were found in this package by the sources successfully checked."
+                : node.coverage === "fixture"
+                  ? "No advisory in the synthetic demo fixture."
+                  : "This package was not fully checked. No security conclusion can be drawn."}
           </p>
         ) : (
           node.advisories.map((a) => (

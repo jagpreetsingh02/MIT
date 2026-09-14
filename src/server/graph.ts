@@ -127,7 +127,10 @@ function trace(
 ): Simulation {
   const selected = index.nodes.get(nodeId);
   if (!selected) throw new Error("Package not found in this scan.");
-  const seeds = selected.kind === "service" ? [nodeId] : index.byPurl.get(selected.purl)!;
+  const seeds =
+    selected.kind === "service" || selected.versionStatus === "unresolved"
+      ? [nodeId]
+      : index.byPurl.get(selected.purl)!;
   const seedSet = new Set(seeds);
   const seen = new Set(seeds);
   const queue = [...seeds];
@@ -199,10 +202,28 @@ export function simulate(graph: Graph, nodeId: string): Simulation {
 export function risks(graph: Graph): Risk[] {
   const index = indexGraph(graph);
   const unique = [
-    ...new Map(graph.nodes.filter((n) => n.kind === "package").map((n) => [n.purl, n])).values(),
+    ...new Map(
+      graph.nodes
+        .filter((n) => n.kind === "package")
+        .map((n) => [n.versionStatus === "unresolved" ? n.id : n.purl, n]),
+    ).values(),
   ];
   return unique
     .map((n) => {
+      if (n.versionStatus === "unresolved")
+        return {
+          nodeId: n.id,
+          score: 0,
+          level: "low" as const,
+          factors: { severity: 0, exploit: 0, exposure: 0, blastRadius: 0 },
+          ancestors: 0,
+          services: [],
+          advisories: 0,
+          coverage: n.coverage,
+          reasons: [
+            "Exact installed version unresolved; vulnerability matching and priority scoring were skipped.",
+          ],
+        };
       const ripple = trace(graph, n.id, index, false);
       const instances = index.byPurl.get(n.purl)!.map((id) => index.nodes.get(id)!);
       const advisories = instances.flatMap((n) => n.advisories);

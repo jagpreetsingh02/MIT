@@ -207,7 +207,9 @@ export async function enrichGraph(
   const registries = new Registries(http);
   const vulnerabilities = new Vulnerabilities(http);
   const groups = new Map<string, PackageNode[]>();
-  for (const n of graph.nodes.filter((n) => n.kind === "package"))
+  for (const n of graph.nodes.filter(
+    (n) => n.kind === "package" && n.versionStatus !== "unresolved" && !!n.version,
+  ))
     groups.set(n.purl, [...(groups.get(n.purl) || []), n]);
   const packages = [...groups.values()].map((g) => g[0]);
   const configured = Number(process.env.MAX_ENRICH_PACKAGES || 2000);

@@ -21,6 +21,8 @@ export interface PackageNode {
   id: string;
   name: string;
   version: string;
+  versionStatus?: "exact" | "unresolved";
+  declaredSpecifier?: string;
   ecosystem: Ecosystem;
   purl: string;
   kind: "package" | "service";
@@ -121,6 +123,18 @@ export interface Project {
   notes: string[];
   packageCount?: number;
   analyzed?: boolean;
+  declarations?: DependencyDeclaration[];
+  exactCount?: number;
+  unresolvedCount?: number;
+  ingestionStatus?: "EXACT" | "PARTIAL" | "DECLARED_ONLY" | "UNSUPPORTED";
+  relationships?: "recorded" | "partial" | "unavailable";
+}
+export interface DependencyDeclaration {
+  name: string;
+  specifier: string;
+  file: string;
+  scope: PackageNode["scope"];
+  exactVersion?: string;
 }
 export interface RepositoryMap {
   repository: string;

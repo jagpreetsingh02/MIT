@@ -75,6 +75,13 @@ export function RepositoryMap({
                 <span>Manifest: {project.manifest || "not present"}</span>
                 {project.lockfile && <span>Lockfile: {project.lockfile}</span>}
               </div>
+              {project.packageCount !== undefined && (
+                <p className="project-note">
+                  Detected dependencies: {project.packageCount} · Exact versions:{" "}
+                  {project.exactCount ?? 0} · Unresolved: {project.unresolvedCount ?? 0} · Coverage:{" "}
+                  {project.ingestionStatus}
+                </p>
+              )}
               {project.notes.map((note, i) => (
                 <p className="project-note" key={i}>
                   {note}
