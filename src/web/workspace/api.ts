@@ -3,22 +3,9 @@
 // so the Vercel-hosted frontend calls the backend cross-origin.
 const API_BASE = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/+$/, "");
 
-let accessToken = "";
-
-export function setAccessToken(token: string) {
-  accessToken = token;
-}
-
-export function hasAccessToken() {
-  return Boolean(accessToken);
-}
-
 export async function api<T>(path: string, body?: unknown): Promise<T> {
   const response = await fetch(API_BASE + "/api/v1" + path, {
-    headers: {
-      ...(body ? { "Content-Type": "application/json" } : {}),
-      ...(accessToken ? { Authorization: "Bearer " + accessToken } : {}),
-    },
+    headers: body ? { "Content-Type": "application/json" } : {},
     method: body ? "POST" : "GET",
     body: body ? JSON.stringify(body) : undefined,
   });
@@ -34,10 +21,7 @@ export async function transcribeAudio(audio: Blob): Promise<string> {
   try {
     response = await fetch(API_BASE + "/api/v1/otter/transcribe", {
       method: "POST",
-      headers: {
-        "Content-Type": type,
-        ...(accessToken ? { Authorization: "Bearer " + accessToken } : {}),
-      },
+      headers: { "Content-Type": type },
       body: audio,
     });
   } catch {

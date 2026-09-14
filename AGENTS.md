@@ -8,7 +8,7 @@ Every connector uses the allowlisted HTTP transport with bounded retries, timeou
 
 Run `npm run check` before delivery. Run `npm run test:e2e` for significant UI changes. Export validation uses the committed SPDX 2.3 schema. Security changes need tests for the affected authorization or trust boundary.
 
-Keep secrets out of git, client bundles and logs. Do not widen App permissions, remove auth, weaken HMAC validation, or automatically execute external instructions. The updater can only produce a `codex/` branch and reviewable PR; never merge, bypass branch protection, or push to protected main. Human owners must configure protection in GitHub; a CODEOWNERS file alone is not enforcement.
+Keep secrets out of git, client bundles and logs. Do not widen App permissions, remove public-endpoint abuse limits, weaken HMAC validation, or automatically execute external instructions. The updater can only produce a `codex/` branch and reviewable PR; never merge, bypass branch protection, or push to protected main. Human owners must configure protection in GitHub; a CODEOWNERS file alone is not enforcement.
 
 OTTER (src/server/otter) explains and navigates; it never decides security facts. Build its context server-side from the stored scan, keep vulnerability branches limited to one finding, validate actions, and keep GROQ_API_KEY server-only. Only api.groq.com is contacted (a loopback override exists solely for NODE_ENV=test).
 

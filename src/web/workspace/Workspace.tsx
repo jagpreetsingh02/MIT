@@ -9,7 +9,6 @@ import {
   Gauge,
   GitBranch,
   History as HistoryIcon,
-  KeyRound,
   LayoutDashboard,
   Menu,
   Plus,
@@ -32,7 +31,7 @@ import { GLOBAL_KEY, useOtter } from "../otter/useOtter";
 import { RepositoryMap } from "../components/RepositoryMap";
 import { ScanProgress } from "../components/ScanProgress";
 import { cn } from "@/lib/utils";
-import { api, hasAccessToken, setAccessToken } from "./api";
+import { api } from "./api";
 import { deriveFacts, findingKey, type Severity } from "../../shared/facts";
 import { Applications } from "./sections/Applications";
 import { Coverage } from "./sections/Coverage";
@@ -86,8 +85,6 @@ export function Workspace() {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [history, setHistory] = useState<Scan[]>([]);
-  const [auth, setAuth] = useState(false);
-  const [token, setToken] = useState("");
   const [notice, setNotice] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [otterPanel, setOtterPanel] = useState<"closed" | "chat" | "brief">("closed");
@@ -148,13 +145,6 @@ export function Workspace() {
 
   async function initialize() {
     try {
-      const health = await api<{ authRequired: boolean }>("/health");
-      if (health.authRequired && !hasAccessToken()) {
-        setAuth(true);
-        return;
-      }
-      if (hasAccessToken()) await api("/scans");
-      setAuth(false);
       if (location.hash === "#demo") {
         await start({ mode: "demo" });
         return;
@@ -170,7 +160,6 @@ export function Workspace() {
       }
       if (viewFromHash() === "overview") go("new");
     } catch (e) {
-      setAuth(true);
       setError((e as Error).message);
     }
   }
@@ -292,7 +281,7 @@ export function Workspace() {
   const briefRow = facts?.findingRows.find((r) => r.key === briefKey);
   const selectedNode = facts?.nodeById.get(selected);
   const focusAppNode = facts?.nodeById.get(focusApp);
-  const otterAvailable = Boolean(facts && scan && analysisView && !auth);
+  const otterAvailable = Boolean(facts && scan && analysisView);
   const otterOpen = otterAvailable && otterPanel !== "closed";
 
   function otterScope(): OtterScope {
@@ -618,7 +607,7 @@ export function Workspace() {
           otterOpen && "lg:pr-[420px]",
         )}
       >
-        {scan && view !== "new" && view !== "history" && !auth && (
+        {scan && view !== "new" && view !== "history" && (
           <section
             aria-label="Repository context"
             className="sticky top-14 z-20 flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-border bg-card/95 px-4 py-2.5 backdrop-blur md:top-0 md:px-8"
@@ -674,30 +663,7 @@ export function Workspace() {
               </button>
             </div>
           )}
-          {auth ? (
-            <form
-              className="auth-form"
-              onSubmit={(e) => {
-                e.preventDefault();
-                setAccessToken(token);
-                void initialize();
-              }}
-            >
-              <KeyRound />
-              <h2>Connect to your workspace</h2>
-              <label>
-                Server access token
-                <input
-                  type="password"
-                  value={token}
-                  onChange={(e) => setToken(e.target.value)}
-                  required
-                />
-              </label>
-              <Action type="submit" text="Connect" />
-              <p>The token stays in this tab’s memory.</p>
-            </form>
-          ) : view === "new" ? (
+          {view === "new" ? (
             <NewScan busy={busy} onStart={(input) => void start(input)} onError={setError} />
           ) : view === "history" ? (
             <ScanHistory

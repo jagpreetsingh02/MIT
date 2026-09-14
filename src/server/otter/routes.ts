@@ -3,6 +3,7 @@ import { z } from "zod";
 import { OTTER_SECTIONS, type OtterStatus, type Scan } from "../../shared/types.js";
 import { GroqClient, OtterError } from "./groq.js";
 import { askOtter } from "./service.js";
+import { LIMITS, WindowLimiter, busy } from "../limits.js";
 
 const id = z.string().min(1).max(200);
 const chatSchema = z
@@ -52,6 +53,10 @@ export async function otterRoutes(
     throw error;
   }
 
+  const otterRequests = new WindowLimiter(LIMITS.otterRequestsPerHour, 3_600_000);
+  const transcriptions = new WindowLimiter(LIMITS.transcriptionsPerHour, 3_600_000);
+  const AUDIO_LIMIT = 8_000_000;
+
   app.get("/api/v1/otter/status", async (_req, reply): Promise<OtterStatus> => {
     const off = { auto: false, fast: false, deep: false };
     if (!client.configured)
@@ -72,10 +77,11 @@ export async function otterRoutes(
 
   app.post<{ Params: { scanId: string } }>(
     "/api/v1/scans/:scanId/otter",
-    { config: { rateLimit: { max: 30, timeWindow: "1 minute" } } },
+    { config: { rateLimit: { max: LIMITS.otterPerClientPerMinute(), timeWindow: "1 minute" } } },
     async (req, reply) => {
       try {
         const body = chatSchema.parse(req.body);
+        if (!otterRequests.take()) throw new OtterError(busy("OTTER questions").message, 429);
         return await askOtter(client, getScan(req.params.scanId, true), body);
       } catch (error) {
         return fail(reply, error);
@@ -86,12 +92,15 @@ export async function otterRoutes(
   await app.register(async (audio) => {
     audio.addContentTypeParser(
       AUDIO_HEADER,
-      { parseAs: "buffer", bodyLimit: 12_000_000 },
+      { parseAs: "buffer", bodyLimit: AUDIO_LIMIT },
       (_req, body, done) => done(null, body),
     );
     audio.post(
       "/api/v1/otter/transcribe",
-      { bodyLimit: 12_000_000, config: { rateLimit: { max: 12, timeWindow: "1 minute" } } },
+      {
+        bodyLimit: AUDIO_LIMIT,
+        config: { rateLimit: { max: LIMITS.transcriptionsPerClientPerMinute(), timeWindow: "1 minute" } },
+      },
       async (req, reply) => {
         const type = String(req.headers["content-type"] || "").split(";")[0].trim().toLowerCase();
         const body = req.body as Buffer | undefined;
@@ -99,6 +108,8 @@ export async function otterRoutes(
           return reply.code(415).send({ error: "Send the recording as an audio file." });
         if (body.length < 1000)
           return reply.code(422).send({ error: "The recording was too short to transcribe." });
+        if (!transcriptions.take())
+          return reply.code(429).send({ error: busy("voice transcriptions").message });
         try {
           const text = await client.transcribe(body, type);
           if (!text)

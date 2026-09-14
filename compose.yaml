@@ -4,7 +4,6 @@ services:
     ports:
       - "127.0.0.1:3000:3000"
     environment:
-      API_TOKEN: ${API_TOKEN:?Set API_TOKEN to a random value of at least 32 characters}
       NVD_API_KEY: ${NVD_API_KEY:-}
       PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:-http://localhost:3000}
     volumes:

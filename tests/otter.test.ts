@@ -247,6 +247,44 @@ test("transcription forwards audio to Groq and reports failures truthfully", asy
   }
 });
 
+test("OTTER and transcription have service-wide hourly ceilings and size limits", async () => {
+  process.env.GROQ_API_KEY = KEY;
+  process.env.OTTER_REQUESTS_PER_HOUR = "1";
+  process.env.TRANSCRIPTIONS_PER_HOUR = "1";
+  const { client } = mockGroq(() => ({ answer: "ok", actions: [], outOfScope: false, text: "hello" }));
+  const { app, url } = await demoApp(client);
+  try {
+    const ask = () =>
+      app.inject({
+        method: "POST",
+        url,
+        payload: {
+          scope: { kind: "global", view: "overview" },
+          messages: [{ role: "user", content: "Explain this scan" }],
+        },
+      });
+    assert.equal((await ask()).statusCode, 200);
+    const busy = await ask();
+    assert.equal(busy.statusCode, 429);
+    assert.match(busy.json().error, /OTTER questions/);
+
+    const audio = (size: number) =>
+      app.inject({
+        method: "POST",
+        url: "/api/v1/otter/transcribe",
+        headers: { "content-type": "audio/webm" },
+        payload: Buffer.alloc(size, 1),
+      });
+    assert.equal((await audio(4000)).statusCode, 200);
+    assert.equal((await audio(4000)).statusCode, 429);
+    assert.equal((await audio(9_000_000)).statusCode, 413);
+  } finally {
+    await app.close();
+    delete process.env.OTTER_REQUESTS_PER_HOUR;
+    delete process.env.TRANSCRIPTIONS_PER_HOUR;
+  }
+});
+
 test("auto mode routes navigation to the fast tier", () => {
   assert.equal(autoTier("Open the Ripple Graph"), "fast");
   assert.equal(autoTier("Where can I see unresolved dependencies?"), "fast");

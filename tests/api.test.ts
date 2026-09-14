@@ -116,29 +116,63 @@ test("webhook validates exact raw bytes and rejects malformed signatures", async
     delete process.env.GITHUB_WEBHOOK_SECRET;
   }
 });
-test("API bearer auth gates scans but health reveals no secrets", async () => {
-  process.env.API_TOKEN = "test-token-at-least-thirty-two-characters";
+test("API is public without a bearer token and health reveals no secrets", async () => {
+  process.env.API_TOKEN = "legacy-token-that-must-be-ignored-entirely";
   process.env.GITHUB_TOKEN = "ghp_health_must_not_reveal_this";
   const { app } = await createApp(new Store(":memory:"));
   try {
-    assert.equal((await app.inject("/api/v1/scans")).statusCode, 401);
-    assert.equal(
-      (
-        await app.inject({
-          url: "/api/v1/scans",
-          headers: { authorization: "Bearer " + process.env.API_TOKEN },
-        })
-      ).statusCode,
-      200,
-    );
+    assert.equal((await app.inject("/api/v1/scans")).statusCode, 200);
+    const created = await app.inject({
+      method: "POST",
+      url: "/api/v1/scans",
+      payload: { mode: "demo" },
+    });
+    assert.equal(created.statusCode, 202);
     const health = await app.inject("/api/v1/health");
-    assert.equal(health.json().authRequired, true);
+    assert.equal(health.statusCode, 200);
+    assert.equal(health.json().authRequired, undefined);
     assert(!health.body.includes(process.env.API_TOKEN));
     assert(!health.body.includes(process.env.GITHUB_TOKEN));
+    const preflight = await app.inject({
+      method: "OPTIONS",
+      url: "/api/v1/scans",
+      headers: {
+        origin: "https://rootline.example",
+        "access-control-request-method": "POST",
+        "access-control-request-headers": "authorization",
+      },
+    });
+    assert(!String(preflight.headers["access-control-allow-headers"] || "").includes("Authorization"));
   } finally {
     await app.close();
     delete process.env.API_TOKEN;
     delete process.env.GITHUB_TOKEN;
+  }
+});
+test("public endpoints enforce per-client and service-wide abuse limits", async () => {
+  process.env.SCAN_RATE_LIMIT_PER_MINUTE = "3";
+  process.env.GITHUB_SCANS_PER_HOUR = "1";
+  const { app } = await createApp(new Store(":memory:"), false);
+  try {
+    const scan = (payload: object) => app.inject({ method: "POST", url: "/api/v1/scans", payload });
+    const oversized = await app.inject({
+      method: "POST",
+      url: "/api/v1/scans/does-not-exist/analyze",
+      payload: { projects: [{ id: "x".repeat(2_200_000), name: "x" }] },
+    });
+    assert.equal(oversized.statusCode, 413);
+    // Service-wide GitHub ceiling (1/hour) applies before the per-client limit is reached.
+    assert.equal((await scan({ mode: "github", repository: "octocat/Hello-World" })).statusCode, 202);
+    const capped = await scan({ mode: "github", repository: "octocat/Spoon-Knife" });
+    assert.equal(capped.statusCode, 429);
+    assert.match(capped.json().error, /try again in a few minutes/);
+    // Per-client limit (3/minute) covers all scan modes, including demo.
+    assert.equal((await scan({ mode: "demo" })).statusCode, 202);
+    assert.equal((await scan({ mode: "demo" })).statusCode, 429);
+  } finally {
+    await app.close();
+    delete process.env.SCAN_RATE_LIMIT_PER_MINUTE;
+    delete process.env.GITHUB_SCANS_PER_HOUR;
   }
 });
 test("SQLite persists scans, caches and delivery deduplication across reopen", async () => {

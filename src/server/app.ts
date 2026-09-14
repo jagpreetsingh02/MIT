@@ -15,6 +15,7 @@ import { simulate } from "./graph.js";
 import { sbom } from "./sbom.js";
 import { GroqClient } from "./otter/groq.js";
 import { otterRoutes } from "./otter/routes.js";
+import { LIMITS, WindowLimiter, busy, trustProxySetting } from "./limits.js";
 const inputSchema = z.discriminatedUnion("mode", [
   z.object({ mode: z.literal("demo") }),
   z.object({
@@ -56,12 +57,8 @@ export async function createApp(
   startJobs = true,
   deps: { groq?: GroqClient } = {},
 ) {
-  if (
-    process.env.NODE_ENV === "production" &&
-    (!process.env.API_TOKEN || process.env.API_TOKEN.length < 32)
-  )
-    throw new Error("Production requires API_TOKEN of at least 32 characters.");
   const app = Fastify({
+    trustProxy: trustProxySetting(),
     logger:
       process.env.NODE_ENV !== "test"
         ? {
@@ -92,10 +89,10 @@ export async function createApp(
   await app.register(cors, {
     origin: (origin, cb) => cb(null, !origin || allowedOrigins().includes(origin)),
     methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: ["Content-Type"],
   });
   await app.register(rateLimit, {
-    max: 300,
+    max: LIMITS.apiPerClientPerMinute(),
     timeWindow: "1 minute",
     allowList: (request) => !request.url.startsWith("/api/"),
   });
@@ -113,13 +110,6 @@ export async function createApp(
       !allowedOrigins().includes(origin)
     )
       return reply.code(403).send({ error: "Cross-origin requests are not allowed." });
-    const secret = process.env.API_TOKEN;
-    if (secret) {
-      const supplied = Buffer.from(req.headers.authorization?.replace(/^Bearer /, "") || "");
-      const expected = Buffer.from(secret);
-      if (supplied.length !== expected.length || !timingSafeEqual(supplied, expected))
-        return reply.code(401).send({ error: "Enter the server access token to continue." });
-    }
   });
   app.setErrorHandler((error, req, reply) => {
     const err = error as Error & { statusCode?: number };
@@ -138,7 +128,6 @@ export async function createApp(
     status: "ok",
     database: store.db.prepare("SELECT 1 AS ok").get()?.ok === 1 ? "ready" : "failed",
     connectors: connectors(),
-    authRequired: Boolean(process.env.API_TOKEN),
   }));
   app.get("/api/v1/scans", async () =>
     store.list().map(({ graph, risks, ...scan }) => ({
@@ -146,17 +135,23 @@ export async function createApp(
       packages: graph?.nodes.filter((n) => n.kind === "package").length || 0,
     })),
   );
+  const githubScans = new WindowLimiter(LIMITS.githubScansPerHour, 3_600_000);
   app.post(
     "/api/v1/scans",
     {
       config: {
-        rateLimit: { max: Number(process.env.SCAN_RATE_LIMIT_PER_MINUTE) || 10, timeWindow: "1 minute" },
+        rateLimit: { max: LIMITS.scansPerClientPerMinute(), timeWindow: "1 minute" },
       },
     },
     async (req, reply) => {
       const input = inputSchema.parse(req.body);
       try {
         if (input.mode === "github") canonicalRepository(input.repository);
+      } catch (error) {
+        return reply.code(400).send({ error: (error as Error).message });
+      }
+      if (input.mode === "github" && !githubScans.take()) throw busy("repository scans");
+      try {
         return reply.code(202).send(jobs.create(input));
       } catch (error) {
         return reply.code(400).send({ error: (error as Error).message });
@@ -170,7 +165,10 @@ export async function createApp(
       throw Object.assign(new Error("Scan is not complete."), { statusCode: 409 });
     return scan;
   }
-  app.post<{ Params: { scanId: string } }>("/api/v1/scans/:scanId/analyze", async (req, reply) => {
+  app.post<{ Params: { scanId: string } }>(
+    "/api/v1/scans/:scanId/analyze",
+    { config: { rateLimit: { max: LIMITS.analysesPerClientPerMinute(), timeWindow: "1 minute" } } },
+    async (req, reply) => {
     const selection = z
       .object({
         projects: z
@@ -187,7 +185,8 @@ export async function createApp(
     } catch (error) {
       return reply.code(400).send({ error: (error as Error).message });
     }
-  });
+    },
+  );
   app.get<{ Params: { scanId: string } }>("/api/v1/scans/:scanId", async (req) =>
     getScan(req.params.scanId),
   );
@@ -199,15 +198,22 @@ export async function createApp(
     "/api/v1/scans/:scanId/risks",
     async (req) => getScan(req.params.scanId, true).risks,
   );
-  app.post<{ Params: { scanId: string } }>("/api/v1/scans/:scanId/simulate", async (req, reply) => {
+  app.post<{ Params: { scanId: string } }>(
+    "/api/v1/scans/:scanId/simulate",
+    { config: { rateLimit: { max: LIMITS.simulationsPerClientPerMinute(), timeWindow: "1 minute" } } },
+    async (req, reply) => {
     const { nodeId } = z.object({ nodeId: z.string().max(100) }).parse(req.body);
     try {
       return simulate(getScan(req.params.scanId, true).graph!, nodeId);
     } catch (error) {
       return reply.code((error as any).statusCode || 404).send({ error: (error as Error).message });
     }
-  });
-  app.get<{ Params: { scanId: string } }>("/api/v1/scans/:scanId/sbom", async (req, reply) =>
+    },
+  );
+  app.get<{ Params: { scanId: string } }>(
+    "/api/v1/scans/:scanId/sbom",
+    { config: { rateLimit: { max: LIMITS.sbomPerClientPerMinute(), timeWindow: "1 minute" } } },
+    async (req, reply) =>
     reply
       .header(
         "Content-Disposition",

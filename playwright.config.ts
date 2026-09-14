@@ -27,7 +27,6 @@ export default defineConfig({
         PORT: String(port),
         DB_PATH: "data/browser-tests.sqlite",
         NODE_ENV: "test",
-        API_TOKEN: "",
         SCAN_RATE_LIMIT_PER_MINUTE: "60",
         GROQ_API_KEY: "e2e-groq-key",
         GROQ_BASE_URL: `http://127.0.0.1:${groqPort}`,

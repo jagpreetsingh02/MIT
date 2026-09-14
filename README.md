@@ -11,13 +11,13 @@ npm ci
 npm run local
 ```
 
-Open http://127.0.0.1:3000/app#new. Public GitHub scans need internet access; **Explore demo** works offline. No API key is required for public scans. Optional configuration is documented in `.env.example`. SQLite snapshots and source caches persist under `data/`. Keep the default loopback binding for local use; production requires an API token.
+Open http://127.0.0.1:3000/app#new. Public GitHub scans need internet access; **Explore demo** works offline. No API key is required for public scans. Optional configuration is documented in `.env.example`. SQLite snapshots and source caches persist under `data/`. Keep the default loopback binding for local use.
 
 ## Production deployment
 
 The frontend is a static Vite build on Vercel; the API runs on Render. The frontend calls the API through `VITE_API_BASE_URL` (the only Vercel variable, and not a secret). The API allowlists the frontend origin with `ALLOWED_ORIGINS`.
 
-- **Access.** With `API_TOKEN` set, every API call except health requires `Authorization: Bearer <token>`. The token is not built into the frontend: users type it into the "Connect to your workspace" screen, it is kept in memory for that tab only, and it is sent only to the API over HTTPS.
+- **Access.** RootLine is publicly usable: no login or access token. Browser access is restricted by CORS to `ALLOWED_ORIGINS`, and abuse is bounded server-side by per-client rate limits (API, scans, analysis, simulation, SBOM, OTTER, transcription), service-wide hourly ceilings for GitHub scans, OTTER and transcription, request-size limits and schema validation. All limits have environment overrides (see `.env.example`). Behind a reverse proxy, set `TRUST_PROXY` to the proxy hop count so limits apply per real client IP. Server credentials (`GROQ_API_KEY`, `GITHUB_TOKEN`, GitHub App and vulnerability-source keys) stay on the API server only.
 - **GitHub.** Anonymous GitHub API calls from shared hosting IPs are quickly rate limited. Set `GITHUB_TOKEN` on the API server (a fine-grained token with public read-only access is enough) to authenticate public scans. GitHub App credentials continue to work for private repositories; without either, scans fall back to anonymous access and report rate limiting honestly.
 - **Persistence limitation.** Scans, scan history and source caches are stored in SQLite on the service's local disk. On hosts without a persistent disk (such as Render's free tier), scan history can disappear after a restart or redeploy. Durable storage is not implemented yet.
 
