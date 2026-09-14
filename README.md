@@ -1,4 +1,4 @@
-# RippleGuard
+# RootLine
 
 Understand a repository, check its dependencies, and trace how a package connects to applications. The existing React/Fastify app now follows **Scan → Repository Map → Analyze → Priority → Trace Ripple**.
 
@@ -22,6 +22,18 @@ Open http://127.0.0.1:3000/app#new. Public GitHub scans need internet access; **
 5. **1:35–2:00:** Open the package details and explain how it entered the applications. Clarify that dependency paths describe possible impact, not proof that vulnerable code executes.
 
 For a recording using real source-backed findings, publish the prepared [controlled repository](demo-repository/README.md), paste its GitHub URL, and select the three `apps/` projects. Live verification found axios connected to all three through the shared package. Advisory counts and rankings can change as security sources update. The offline demo remains the reliable backup.
+
+## OTTER
+
+OTTER is RootLine's built-in explanation and navigation assistant. It is available from every analysis section once a scan completes, and opens as a side panel (a bottom sheet on phones) without leaving the current screen.
+
+- **Groq, server-side only.** Set `GROQ_API_KEY` in `.env`. The browser only talks to RootLine; the key is never sent to the client. Without a key OTTER shows that it is not configured and the rest of RootLine is unaffected.
+- **Grounded in RootLine facts.** The server builds a small context from the stored scan for the current page (or for one finding) and instructs the model to use only those facts. Replies that name an advisory ID absent from that context are withheld, and navigation actions are validated against real sections and entities.
+- **Focused vulnerability conversations.** Vulnerabilities → **View brief** → **Ask OTTER about this vulnerability** opens a separate conversation that only receives that finding's facts. Questions about other findings are declined in that branch; the global conversation is kept.
+- **Answer modes.** Auto (default), Fast and Deep map to Groq models currently available to the key (`openai/gpt-oss-120b` / `openai/gpt-oss-20b`, with fallbacks).
+- **Voice input.** The microphone records a short clip, the server transcribes it with Groq Whisper, and the text lands in the input for editing. Permission, recording and transcription failures are reported as errors; nothing is invented. There is no image or camera input.
+
+Conversations live in the browser tab's session storage per scan. OTTER cannot change code, findings or dependencies.
 
 ## Accuracy and limits
 
@@ -58,10 +70,10 @@ node --import tsx scripts/verify-live-browser.ts
 VERIFY_BROWSER=1 node --import tsx scripts/verify-ingestion.ts
 ```
 
-Browser tests require Playwright Chromium (`npx playwright install chromium`), or set `PW_CHROME=1` to use installed Chrome. Tests use a separate local server and database on port 3100.
+Browser tests require Playwright Chromium (`npx playwright install chromium`), or set `PW_CHROME=1` to use installed Chrome. Tests use a separate local server and database on port 3100, plus a local mock Groq server on port 3101 so OTTER tests never call the real API.
 
 Recorded results: [public repository matrix](docs/verification/live-repositories.json), [controlled demo evidence](docs/verification/controlled-demo.json). These are dated observations, not assertions about future repository contents or vulnerability-source responses.
 
 The matrix covers expressjs/express (small npm), this repository (lockfile), npm/cli (478 projects / 575 files), pallets/flask (Python), spring-projects/spring-petclinic (Maven), GoogleCloudPlatform/microservices-demo (mixed language), and octocat/Hello-World (empty supported-manifest state). Coverage warnings are preserved in the report.
 
-Main implementation: `src/server/discovery.ts`, `resolve-project.ts`, `advisories.ts`, `connectors.ts`, `jobs.ts`, and `graph.ts`; shared types in `src/shared/types.ts`; journey and focused graph in `src/web/main.tsx` and `src/web/components/`. Existing authenticated APIs, export, and webhook boundaries remain in place without expanding enterprise features.
+Main implementation: `src/server/discovery.ts`, `resolve-project.ts`, `advisories.ts`, `connectors.ts`, `jobs.ts`, and `graph.ts`; OTTER in `src/server/otter/` and `src/web/otter/`; shared types and scan facts in `src/shared/`; workspace sections in `src/web/workspace/`. Existing authenticated APIs, export, and webhook boundaries remain in place without expanding enterprise features.

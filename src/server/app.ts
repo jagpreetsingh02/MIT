@@ -12,6 +12,8 @@ import { Jobs, connectors } from "./jobs.js";
 import { canonicalRepository } from "./connectors.js";
 import { simulate } from "./graph.js";
 import { sbom } from "./sbom.js";
+import { GroqClient } from "./otter/groq.js";
+import { otterRoutes } from "./otter/routes.js";
 const inputSchema = z.discriminatedUnion("mode", [
   z.object({ mode: z.literal("demo") }),
   z.object({
@@ -37,7 +39,11 @@ export function verifySignature(body: Buffer, signature: string, secret: string)
   const actual = Buffer.from(signature.slice(7), "hex");
   return actual.length === expected.length && timingSafeEqual(expected, actual);
 }
-export async function createApp(store = new Store(), startJobs = true) {
+export async function createApp(
+  store = new Store(),
+  startJobs = true,
+  deps: { groq?: GroqClient } = {},
+) {
   if (
     process.env.NODE_ENV === "production" &&
     (!process.env.API_TOKEN || process.env.API_TOKEN.length < 32)
@@ -125,7 +131,11 @@ export async function createApp(store = new Store(), startJobs = true) {
   );
   app.post(
     "/api/v1/scans",
-    { config: { rateLimit: { max: 10, timeWindow: "1 minute" } } },
+    {
+      config: {
+        rateLimit: { max: Number(process.env.SCAN_RATE_LIMIT_PER_MINUTE) || 10, timeWindow: "1 minute" },
+      },
+    },
     async (req, reply) => {
       const input = inputSchema.parse(req.body);
       try {
@@ -184,10 +194,11 @@ export async function createApp(store = new Store(), startJobs = true) {
     reply
       .header(
         "Content-Disposition",
-        `attachment; filename="rippleguard-${req.params.scanId.replace(/[^a-zA-Z0-9-]/g, "")}.spdx.json"`,
+        `attachment; filename="rootline-${req.params.scanId.replace(/[^a-zA-Z0-9-]/g, "")}.spdx.json"`,
       )
       .send(sbom(getScan(req.params.scanId, true))),
   );
+  await otterRoutes(app, getScan, deps.groq);
   await app.register(async (webhook) => {
     webhook.removeAllContentTypeParsers();
     webhook.addContentTypeParser("application/json", { parseAs: "buffer" }, (_req, body, done) =>

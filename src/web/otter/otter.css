@@ -1,0 +1,41 @@
+@keyframes otter-ripple {
+  from { transform: translate(-50%, -50%) scale(0); opacity: 0.9; }
+  to { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+.otter-ripple {
+  position: absolute;
+  z-index: 60;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: radial-gradient(circle, color-mix(in oklab, var(--rust) 22%, transparent) 0%, color-mix(in oklab, var(--rust) 10%, transparent) 42%, transparent 70%);
+  animation: otter-ripple 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+@keyframes otter-ring {
+  0% { transform: scale(0.7); opacity: 0.6; }
+  100% { transform: scale(1.75); opacity: 0; }
+}
+.otter-rings > span { animation: otter-ring 1.9s ease-out infinite; }
+.otter-rings > span + span { animation-delay: 0.95s; }
+@keyframes otter-wave {
+  0%, 100% { transform: translateY(0); opacity: 0.35; }
+  50% { transform: translateY(-3px); opacity: 1; }
+}
+.otter-thinking > i { animation: otter-wave 1.2s ease-in-out infinite; }
+.otter-thinking > i:nth-child(2) { animation-delay: 0.15s; }
+.otter-thinking > i:nth-child(3) { animation-delay: 0.3s; }
+.otter-launcher:hover .otter-rings > span { animation-duration: 1.4s; }
+@media (prefers-reduced-motion: reduce) {
+  .otter-ripple, .otter-rings { display: none; }
+}
+@keyframes otter-panel-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+@keyframes otter-panel-left {
+  from { transform: translateX(24px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.otter-panel { animation: otter-panel-up 0.34s cubic-bezier(0.2, 0.8, 0.2, 1); }
+@media (min-width: 768px) {
+  .otter-panel { animation: otter-panel-left 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
+}

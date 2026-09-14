@@ -1,7 +1,10 @@
 import { useState } from "react";
-import { FolderGit2, FileCode2, ArrowRight, AlertTriangle } from "lucide-react";
+import { FolderGit2, FileCode2, AlertTriangle } from "lucide-react";
 import type { RepositoryMap as Map, ProjectSelection } from "../../shared/types";
-import { Button } from "./ui/Button";
+import { InteractiveHoverButton } from "./ui/interactive-hover-button";
+const actionClass =
+  "w-auto min-w-28 shrink-0 whitespace-nowrap border-border py-2 pl-8 pr-5 text-xs text-foreground [&_svg]:size-4 [&>div:last-child]:left-3.5 group-hover:[&>div:last-child]:left-0";
+
 export function RepositoryMap({
   map,
   busy,
@@ -32,13 +35,13 @@ export function RepositoryMap({
         <span>
           {selected.length} of {projects.length} selected · {map.fileCount} dependency files grouped
         </span>
-        <Button
+        <InteractiveHoverButton
+          className={actionClass}
           onClick={() =>
             setProjects((ps) => ps.map((p) => ({ ...p, selected: !ps.every((p) => p.selected) })))
           }
-        >
-          {projects.every((p) => p.selected) ? "Deselect all" : "Select all"}
-        </Button>
+          text={projects.every((p) => p.selected) ? "Deselect all" : "Select all"}
+        />
       </div>
       <div className="project-list">
         {projects.map((project) => (
@@ -127,13 +130,12 @@ export function RepositoryMap({
             {selected.length} selected {selected.length === 1 ? "project" : "projects"} will be
             checked at the pinned commit.
           </p>
-          <Button
-            className="primary"
+          <InteractiveHoverButton
+            className={actionClass}
             disabled={busy || !selected.length || selected.some((p) => !p.name.trim())}
             onClick={() => onAnalyze(selected.map(({ id, name }) => ({ id, name })))}
-          >
-            Analyze repository <ArrowRight size={16} />
-          </Button>
+            text="Analyze repository"
+          />
         </div>
       )}
     </section>
