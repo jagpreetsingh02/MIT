@@ -2,5 +2,10 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist/web",
   "installCommand": "npm ci",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "build": {
+    "env": {
+      "VITE_API_BASE_URL": "https://rootline-api-gfal.onrender.com"
+    }
+  }
 }
