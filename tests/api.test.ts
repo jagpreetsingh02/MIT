@@ -118,6 +118,7 @@ test("webhook validates exact raw bytes and rejects malformed signatures", async
 });
 test("API bearer auth gates scans but health reveals no secrets", async () => {
   process.env.API_TOKEN = "test-token-at-least-thirty-two-characters";
+  process.env.GITHUB_TOKEN = "ghp_health_must_not_reveal_this";
   const { app } = await createApp(new Store(":memory:"));
   try {
     assert.equal((await app.inject("/api/v1/scans")).statusCode, 401);
@@ -133,9 +134,11 @@ test("API bearer auth gates scans but health reveals no secrets", async () => {
     const health = await app.inject("/api/v1/health");
     assert.equal(health.json().authRequired, true);
     assert(!health.body.includes(process.env.API_TOKEN));
+    assert(!health.body.includes(process.env.GITHUB_TOKEN));
   } finally {
     await app.close();
     delete process.env.API_TOKEN;
+    delete process.env.GITHUB_TOKEN;
   }
 });
 test("SQLite persists scans, caches and delivery deduplication across reopen", async () => {

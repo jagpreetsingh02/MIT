@@ -387,6 +387,9 @@ export class GitHub {
         },
       );
       headers.Authorization = "Bearer " + data.token;
+    } else if (process.env.GITHUB_TOKEN) {
+      // Optional server-side token for public scans; lifts the shared-IP anonymous rate limit.
+      headers.Authorization = "Bearer " + process.env.GITHUB_TOKEN;
     }
     return headers;
   }
@@ -414,7 +417,7 @@ export class GitHub {
         message.includes("404")
           ? "Repository or ref was not found. Check the owner/name and branch; private repositories need a configured GitHub App."
           : message.includes("403") || message.includes("429")
-            ? "GitHub is rate limiting this connection. Try again later or configure the existing GitHub App."
+            ? "GitHub is rate limiting this connection. Try again later, or configure GITHUB_TOKEN or the existing GitHub App on the server."
             : message,
       );
     }
@@ -527,7 +530,12 @@ export class GitHub {
     const { data, provenance } = await this.http.get<string>(
       "GitHub",
       `https://raw.githubusercontent.com/${canonicalRepository(repository)}/${commit}/${path}`,
-      { interval: 30 },
+      {
+        interval: 30,
+        ...(process.env.GITHUB_TOKEN
+          ? { headers: { Authorization: "Bearer " + process.env.GITHUB_TOKEN } }
+          : {}),
+      },
     );
     return {
       filename: file.path,

@@ -655,7 +655,7 @@ export function Workspace() {
           </section>
         )}
 
-        <main className="mx-auto w-full max-w-[1400px] px-4 pb-16 pt-7 md:px-8">
+        <main className={cn("mx-auto w-full max-w-[1400px] px-4 pb-16 pt-7 md:px-8", otterAvailable && !otterOpen && "pb-28 md:pb-16")}>
           {error && (
             <div className="error-banner" role="alert">
               <AlertTriangle size={18} />
@@ -743,7 +743,7 @@ export function Workspace() {
           <button
             aria-label="Open OTTER"
             onClick={() => setOtterPanel("chat")}
-            className="otter-launcher fixed bottom-5 right-5 z-40 flex cursor-pointer items-center gap-2.5 rounded-full border border-border bg-card py-2 pl-2 pr-5 text-[15px] font-semibold md:gap-3 md:py-2.5 md:pl-2.5 md:pr-6 md:text-[16px] tracking-[0.6px] text-foreground shadow-lg transition-[box-shadow,border-color] duration-300 hover:border-rust/40 hover:shadow-xl"
+            className="otter-launcher fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] right-3 z-40 flex md:bottom-5 md:right-5 cursor-pointer items-center gap-2.5 rounded-full border border-border bg-card py-2 pl-2 pr-5 text-[15px] font-semibold md:gap-3 md:py-2.5 md:pl-2.5 md:pr-6 md:text-[16px] tracking-[0.6px] text-foreground shadow-lg transition-[box-shadow,border-color] duration-300 hover:border-rust/40 hover:shadow-xl"
           >
             <OtterMark
               active={Object.values(otter.pending).some(Boolean)}

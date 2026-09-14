@@ -253,6 +253,41 @@ test("Github discovery reads more than 20 manifests using commit-pinned public c
   assert.equal(result.map.commit, sha);
   assert.equal(requests.filter((u) => u.includes("/" + sha + "/apps/")).length, 26);
 });
+test("optional GITHUB_TOKEN authenticates GitHub API and raw content requests only when set", async () => {
+  const sha = "b".repeat(40);
+  const seen: { url: string; auth?: string }[] = [];
+  const github = new GitHub({
+    get: async (_name, url, options) => {
+      seen.push({ url, auth: options?.headers?.Authorization });
+      const data = url.includes("raw.githubusercontent.com")
+        ? JSON.stringify({ name: "app", dependencies: {} })
+        : url.endsWith("/o/r")
+          ? { default_branch: "main" }
+          : url.includes("/commits/")
+            ? { sha }
+            : { tree: [{ path: "package.json", type: "blob", sha: "1" }] };
+      return { data: data as any, provenance: origin };
+    },
+  });
+  const previous = process.env.GITHUB_TOKEN;
+  try {
+    process.env.GITHUB_TOKEN = "ghp_test_token_value";
+    const result = await github.discover("o/r", "HEAD");
+    assert.equal(result.map.projects.length, 1);
+    assert(seen.some((r) => r.url.startsWith("https://api.github.com/")));
+    assert(seen.some((r) => r.url.startsWith("https://raw.githubusercontent.com/")));
+    assert(seen.every((r) => r.auth === "Bearer ghp_test_token_value"));
+    assert(!JSON.stringify(result.map).includes("ghp_test_token_value"));
+
+    seen.length = 0;
+    delete process.env.GITHUB_TOKEN;
+    await github.discover("o/r", "HEAD");
+    assert(seen.length > 0 && seen.every((r) => r.auth === undefined));
+  } finally {
+    if (previous === undefined) delete process.env.GITHUB_TOKEN;
+    else process.env.GITHUB_TOKEN = previous;
+  }
+});
 test("large graphs are retained instead of failing at 2000 nodes", () => {
   const g = resolveProject(project(), [
     file("package-lock.json", {
