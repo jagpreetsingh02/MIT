@@ -1,3 +1,5 @@
+import { Transport } from "./transport.js";
+import { answerOtter, otterSchema } from "./otter.js";
 import Fastify from "fastify";
 import helmet from "@fastify/helmet";
 import rateLimit from "@fastify/rate-limit";
@@ -143,6 +145,11 @@ export async function createApp(store = new Store(), startJobs = true) {
       throw Object.assign(new Error("Scan is not complete."), { statusCode: 409 });
     return scan;
   }
+  app.get("/api/v1/otter/config",async()=>({configured:!!process.env.GROQ_API_KEY,model:process.env.GROQ_MODEL||"llama-3.3-70b-versatile"}));
+  app.post<{Params:{scanId:string}}>("/api/v1/scans/:scanId/otter",{config:{rateLimit:{max:20,timeWindow:"1 minute"}}},async req=>{
+    const input=otterSchema.parse(req.body);
+    return answerOtter(getScan(req.params.scanId,true),input,new Transport(store));
+  });
   app.post<{ Params: { scanId: string } }>("/api/v1/scans/:scanId/analyze", async (req, reply) => {
     const selection = z
       .object({

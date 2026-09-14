@@ -29,6 +29,8 @@ import { Button } from "./components/ui/Button";
 import { DependencyGraph } from "./components/DependencyGraph";
 import { RepositoryMap } from "./components/RepositoryMap";
 import { ScanProgress } from "./components/ScanProgress";
+import { Workspace } from "./components/Workspace";
+import "./workspace.css";
 import { PackageDetails } from "./components/PackageDetails";
 import type { Scan, ScanInput, Simulation, ProjectSelection } from "../shared/types";
 type View = "overview" | "inventory" | "scans" | "connectors" | "methodology" | "new";
@@ -260,12 +262,14 @@ function App() {
         ?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }
+  if(scan?.status === "completed" && !["new","scans","methodology","connectors"].includes(view) && !auth)
+    return <Workspace key={scan.id} scan={scan} api={api} onNew={()=>nav("new")} onHistory={()=>nav("scans")} onExport={()=>void exportSbom()}/>;
   return (
     <div className="journey-app">
       <header className="journey-header">
         <a className="brand" href="/">
           <Radio size={25} />
-          RippleGuard
+          RootLine
         </a>
         <nav aria-label="Main navigation">
           <button className={view === "overview" ? "active" : ""} onClick={() => nav("overview")}>
@@ -833,7 +837,7 @@ function App() {
         <footer className="page-footer">
           <span>
             <Radio size={14} />
-            RippleGuard · Source facts. Visible impact.
+            RootLine · Source facts. Visible impact.
           </span>
           <div>
             <button onClick={() => nav("methodology")}>How scoring works</button>

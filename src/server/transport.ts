@@ -12,6 +12,7 @@ const hosts = new Set([
   "ossindex.sonatype.org",
   "api.github.com",
   "api.osv.dev",
+  "api.groq.com",
   "raw.githubusercontent.com",
 ]);
 const meter = metrics.getMeter("rippleguard");

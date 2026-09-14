@@ -155,7 +155,7 @@ export default function HeroSection6() {
 
       {/* Navbar */}
       <nav className="w-full flex justify-between items-center py-4 px-4 sm:px-6 border-b border-black/10 dark:border-white/20 relative z-10">
-        <div className="font-bold text-md tracking-tight">RippleGuard</div>
+        <div className="font-bold text-md tracking-tight">RootLine</div>
 
         <div className="items-center gap-4 hidden md:flex">
           {navItems.map((item) => (
@@ -232,7 +232,7 @@ export default function HeroSection6() {
             >
               <img
                 src={heroDashboard}
-                alt="RippleGuard workspace showing a dependency graph and package inspector"
+                alt="RootLine workspace showing a dependency graph and package inspector"
                 width={800}
                 height={800}
                 loading="eager"
@@ -249,7 +249,7 @@ export default function HeroSection6() {
                 transition={{ duration: 0.8, delay: 0.7, ease: 'easeOut' }}
               >
                 <Iphone15Pro
-                  alt="RippleGuard workspace on mobile"
+                  alt="RootLine workspace on mobile"
                   src={heroMobile}
                   className="w-full h-[240px] md:h-[420px] lg:h-[480px] xl:h-[540px]"
                 />
