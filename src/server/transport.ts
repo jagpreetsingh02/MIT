@@ -86,7 +86,7 @@ export class Transport implements HttpSource {
           response = await this.fetcher(url, {
             method: options.method || "GET",
             headers: {
-              "User-Agent": "RippleGuard/1.0",
+              "User-Agent": "RootLine/1.0",
               Accept: "application/json",
               ...(options.body ? { "Content-Type": "application/json" } : {}),
               ...options.headers,

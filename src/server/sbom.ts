@@ -6,10 +6,10 @@ export function sbom(scan: Scan) {
     spdxVersion: "SPDX-2.3",
     dataLicense: "CC0-1.0",
     SPDXID: "SPDXRef-DOCUMENT",
-    name: "RippleGuard-" + scan.name.replace(/[^A-Za-z0-9.-]/g, "-"),
-    documentNamespace: `https://rippleguard.local/spdx/${scan.id}`,
+    name: "RootLine-" + scan.name.replace(/[^A-Za-z0-9.-]/g, "-"),
+    documentNamespace: `https://rootline.local/spdx/${scan.id}`,
     creationInfo: {
-      creators: ["Tool: RippleGuard-1.0.0"],
+      creators: ["Tool: RootLine-1.0.0"],
       created: scan.completedAt!.replace(/\.\d{3}Z$/, "Z"),
       comment:
         scan.mode === "demo"

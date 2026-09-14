@@ -1,4 +1,4 @@
-# RippleGuard visual system
+# RootLine visual system
 
 Light technical workspace for extended daytime investigations. Graph is the main analytical surface; supporting facts stay adjacent rather than competing with it.
 

@@ -1,6 +1,6 @@
-import { ArrowRight, Radio, ExternalLink, Box } from "lucide-react";
+import { ArrowRight, ExternalLink, Box } from "lucide-react";
 import type { Graph, PackageNode, Risk, Simulation } from "../../shared/types";
-import { Button } from "./ui/Button";
+import { InteractiveHoverButton } from "./ui/interactive-hover-button";
 export function PackageDetails({
   node,
   risk,
@@ -49,11 +49,14 @@ export function PackageDetails({
       </div>
       {node.kind === "package" && (
         <>
-          <Button className="ripple-button" disabled={busy} onClick={onTrace}>
-            <Radio size={17} />
-            {node.advisories.length ? "Trace Ripple" : "Trace what-if impact"}
-            <ArrowRight size={16} />
-          </Button>
+          <div className="px-[18px]">
+            <InteractiveHoverButton
+              className="w-full border-border py-2 pl-8 pr-5 text-xs text-foreground [&_svg]:size-4"
+              disabled={busy}
+              onClick={onTrace}
+              text={node.advisories.length ? "Trace Ripple" : "Trace what-if impact"}
+            />
+          </div>
           <p className="inspector-help">
             {node.advisories.length
               ? "Show applications that depend on this package."

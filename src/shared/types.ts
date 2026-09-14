@@ -163,3 +163,50 @@ export interface ScanProgress {
   total?: number;
   completed: string[];
 }
+
+export const OTTER_SECTIONS = [
+  "overview",
+  "risks",
+  "applications",
+  "dependencies",
+  "vulnerabilities",
+  "graph",
+  "coverage",
+  "evidence",
+] as const;
+export type OtterSection = (typeof OTTER_SECTIONS)[number];
+export type OtterMode = "auto" | "fast" | "deep";
+export type OtterScope =
+  | {
+      kind: "global";
+      view: OtterSection;
+      applicationId?: string;
+      nodeId?: string;
+      advisoryId?: string;
+      ripple?: boolean;
+    }
+  | { kind: "vulnerability"; advisoryId: string; nodeId: string };
+export interface OtterMessage {
+  role: "user" | "assistant";
+  content: string;
+}
+export type OtterAction =
+  | { type: "section"; view: OtterSection; label: string }
+  | { type: "application"; applicationId: string; label: string }
+  | { type: "package"; nodeId: string; label: string }
+  | { type: "trace"; nodeId: string; label: string }
+  | { type: "vulnerability"; advisoryId: string; nodeId: string; label: string }
+  | { type: "evidence"; advisoryId: string; label: string };
+export interface OtterReply {
+  answer: string;
+  actions: OtterAction[];
+  outOfScope: boolean;
+  demo: boolean;
+  withheld?: boolean;
+}
+export interface OtterStatus {
+  configured: boolean;
+  modes: Record<OtterMode, boolean>;
+  transcription: boolean;
+  message?: string;
+}

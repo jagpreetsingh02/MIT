@@ -2,7 +2,7 @@ import { node, finalize } from "./graph.js";
 import type { Graph } from "../shared/types.js";
 export function demoGraph(): Graph {
   const origin = {
-    source: "RippleGuard demo fixture",
+    source: "RootLine demo fixture",
     url: "",
     retrievedAt: "2026-09-10T00:00:00.000Z",
     fixture: true,
