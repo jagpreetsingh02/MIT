@@ -1,0 +1,900 @@
+{
+  "verifiedAt": "2026-09-13T15:54:27.391Z",
+  "projects": [
+    "apps/admin",
+    "apps/checkout",
+    "apps/storefront"
+  ],
+  "packageVersions": 53,
+  "checked": 53,
+  "findings": 8,
+  "top": {
+    "name": "axios",
+    "nodeId": "c9948ba25ba56398fe11",
+    "score": 69,
+    "level": "high",
+    "factors": {
+      "severity": 51.6,
+      "exploit": 0,
+      "exposure": 5,
+      "blastRadius": 12
+    },
+    "ancestors": 4,
+    "services": [
+      "service-25a618fd55fb09c6",
+      "service-73834da44199b6b9",
+      "service-fc948145bb665052"
+    ],
+    "advisories": 24,
+    "coverage": "checked",
+    "reasons": [
+      "High severity vulnerability",
+      "Hidden 2 levels deep",
+      "Used at runtime",
+      "Used by 3 of 3 projects"
+    ]
+  },
+  "ripple": {
+    "projects": 3,
+    "paths": 3
+  },
+  "warnings": [],
+  "advisories": [
+    {
+      "name": "axios",
+      "version": "0.21.1",
+      "advisories": [
+        {
+          "id": "GHSA-3g43-6gmg-66jw",
+          "aliases": [
+            "CVE-2026-44495"
+          ],
+          "summary": "axios Vulnerable to Credential Theft and Response Hijacking via Prototype Pollution Gadget in Config Merge",
+          "cvss": 7,
+          "cvssVector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:L/A:L",
+          "severity": "high",
+          "fixed": "0.31.1",
+          "affected": [
+            "From 1.0.0 to before 1.15.2",
+            "From 0.19.0 to before 0.31.1"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-3g43-6gmg-66jw",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-3p68-rc4w-qgx5",
+          "aliases": [
+            "CVE-2025-62718"
+          ],
+          "summary": "Axios has a NO_PROXY Hostname Normalization Bypass that Leads to SSRF",
+          "cvss": 6.3,
+          "cvssVector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:N/SC:L/SI:L/SA:N",
+          "fixed": "0.31.0",
+          "affected": [
+            "From 1.0.0 to before 1.15.0",
+            "Earlier versions to before 0.31.0"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-3p68-rc4w-qgx5",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-43fc-jf86-j433",
+          "aliases": [
+            "CVE-2026-25639"
+          ],
+          "summary": "Axios is Vulnerable to Denial of Service via __proto__ Key in mergeConfig",
+          "cvss": 7.5,
+          "cvssVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "severity": "high",
+          "fixed": "0.30.3",
+          "affected": [
+            "From 1.0.0 to before 1.13.5",
+            "Earlier versions to before 0.30.3"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-43fc-jf86-j433",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-5c9x-8gcm-mpgx",
+          "aliases": [
+            "CVE-2026-42034"
+          ],
+          "summary": "Axios' HTTP adapter-streamed uploads bypass maxBodyLength when maxRedirects: 0",
+          "cvss": 5.3,
+          "cvssVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+          "fixed": "0.31.1",
+          "affected": [
+            "From 1.0.0 to before 1.15.1",
+            "Earlier versions to before 0.31.1"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-5c9x-8gcm-mpgx",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-62hf-57xw-28j9",
+          "aliases": [
+            "CVE-2026-42039"
+          ],
+          "summary": "Axios: unbounded recursion in toFormData causes DoS via deeply nested request data",
+          "cvss": 7.5,
+          "cvssVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "fixed": "0.31.1",
+          "affected": [
+            "From 1.0.0 to before 1.15.1",
+            "Earlier versions to before 0.31.1"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-62hf-57xw-28j9",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-6chq-wfr3-2hj9",
+          "aliases": [
+            "CVE-2026-42035"
+          ],
+          "summary": "Axios: Header Injection via Prototype Pollution",
+          "cvss": 7.4,
+          "cvssVector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+          "severity": "high",
+          "fixed": "0.31.1",
+          "affected": [
+            "From 1.0.0 to before 1.15.1",
+            "Earlier versions to before 0.31.1"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-6chq-wfr3-2hj9",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-7q8q-rj6j-mhjq",
+          "aliases": [
+            "CVE-2026-67319"
+          ],
+          "summary": "Axios: Nested axios option objects can consume polluted prototype values",
+          "cvss": 6.3,
+          "cvssVector": "CVSS:4.0/AV:N/AC:H/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:L/SA:N",
+          "fixed": "0.33.0",
+          "affected": [
+            "From 0.8.0 to before 0.33.0",
+            "From 1.0.0 to before 1.18.0"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-7q8q-rj6j-mhjq",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-898c-q2cr-xwhg",
+          "aliases": [
+            "CVE-2026-44490"
+          ],
+          "summary": "axios has DoS & Header Injection via Prototype Pollution Read-Side Gadgets in axios merge functions",
+          "cvss": 4.8,
+          "cvssVector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:L",
+          "fixed": "0.32.0",
+          "affected": [
+            "From 1.0.0 to before 1.16.0",
+            "Earlier versions to before 0.32.0"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-898c-q2cr-xwhg",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-cph5-m8f7-6c5x",
+          "aliases": [
+            "CVE-2021-3749"
+          ],
+          "summary": "axios Inefficient Regular Expression Complexity vulnerability",
+          "cvss": 7.5,
+          "cvssVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "severity": "high",
+          "fixed": "0.21.2",
+          "affected": [
+            "Earlier versions to before 0.21.2"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-cph5-m8f7-6c5x",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-fvcv-3m26-pcqx",
+          "aliases": [
+            "CVE-2026-40175"
+          ],
+          "summary": "Axios has Unrestricted Cloud Metadata Exfiltration via Header Injection Chain",
+          "cvss": 4.8,
+          "cvssVector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N",
+          "fixed": "0.31.0",
+          "affected": [
+            "From 1.0.0 to before 1.15.0",
+            "Earlier versions to before 0.31.0"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-fvcv-3m26-pcqx",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-hfxv-24rg-xrqf",
+          "aliases": [
+            "CVE-2026-44496"
+          ],
+          "summary": "Axios: Regular Expression Denial of Service (ReDoS) via Cookie Name Injection",
+          "cvss": 7.5,
+          "cvssVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "severity": "high",
+          "fixed": "0.32.0",
+          "affected": [
+            "From 1.0.0 to before 1.16.0",
+            "Earlier versions to before 0.32.0"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-hfxv-24rg-xrqf",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-j5f8-grm9-p9fc",
+          "aliases": [
+            "CVE-2026-44486"
+          ],
+          "summary": "Axios: Proxy-Authorization header leaks to redirect target when proxy is re-evaluated to direct connection",
+          "cvss": 7.5,
+          "cvssVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+          "severity": "high",
+          "fixed": "0.32.0",
+          "affected": [
+            "From 1.0.0 to before 1.16.0",
+            "Earlier versions to before 0.32.0"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-j5f8-grm9-p9fc",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-jr5f-v2jv-69x6",
+          "aliases": [
+            "CVE-2025-27152"
+          ],
+          "summary": "axios Requests Vulnerable To Possible SSRF and Credential Leakage via Absolute URL",
+          "cvss": 7.7,
+          "cvssVector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N/E:P",
+          "severity": "high",
+          "fixed": "0.30.0",
+          "affected": [
+            "From 1.0.0 to before 1.8.2",
+            "Earlier versions to before 0.30.0"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-jr5f-v2jv-69x6",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-m7pr-hjqh-92cm",
+          "aliases": [
+            "CVE-2026-42038"
+          ],
+          "summary": "Axios: no_proxy bypass via IP alias allows SSRF",
+          "cvss": 6.8,
+          "cvssVector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:N/A:N",
+          "fixed": "0.31.1",
+          "affected": [
+            "From 1.0.0 to before 1.15.1",
+            "Earlier versions to before 0.31.1"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-m7pr-hjqh-92cm",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-mmx7-hfxf-jppx",
+          "aliases": [
+            "CVE-2026-67316"
+          ],
+          "summary": "Axios: Prototype pollution gadgets can alter axios request construction",
+          "cvss": 6.3,
+          "cvssVector": "CVSS:4.0/AV:N/AC:H/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N",
+          "fixed": "0.33.0",
+          "affected": [
+            "From 1.0.0 to before 1.18.0",
+            "Earlier versions to before 0.33.0"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-mmx7-hfxf-jppx",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-p92q-9vqr-4j8v",
+          "aliases": [
+            "CVE-2026-44487"
+          ],
+          "summary": "Axios: Proxy-Authorization Credential Leak to Origin Server Across HTTP-to-HTTPS Redirect in Axios Node.js HTTP Adapter",
+          "cvss": 8.2,
+          "cvssVector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N",
+          "severity": "high",
+          "fixed": "0.32.0",
+          "affected": [
+            "From 1.0.0 to before 1.16.0",
+            "Earlier versions to before 0.32.0"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-p92q-9vqr-4j8v",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-pf86-5x62-jrwf",
+          "aliases": [
+            "CVE-2026-42033"
+          ],
+          "summary": "Axios: Prototype Pollution Gadgets - Response Tampering, Data Exfiltration, and Request Hijacking",
+          "cvss": 7.4,
+          "cvssVector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+          "severity": "high",
+          "fixed": "0.31.1",
+          "affected": [
+            "From 1.0.0 to before 1.15.1",
+            "Earlier versions to before 0.31.1"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-pf86-5x62-jrwf",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-pjwm-pj3p-43mv",
+          "aliases": [
+            "CVE-2026-44492"
+          ],
+          "summary": "axios's shouldBypassProxy does not recognize IPv4-mapped IPv6 addresses, allowing NO_PROXY bypass (incomplete fix for CVE-2025-62718)",
+          "cvss": 8.6,
+          "cvssVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N",
+          "severity": "high",
+          "fixed": "0.32.0",
+          "affected": [
+            "From 1.15.0 to before 1.16.0",
+            "Earlier versions to before 0.32.0"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-pjwm-pj3p-43mv",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-pmwg-cvhr-8vh7",
+          "aliases": [
+            "CVE-2026-42043"
+          ],
+          "summary": "Axios: Incomplete Fix for CVE-2025-62718 — NO_PROXY Protection Bypassed via RFC 1122 Loopback Subnet (127.0.0.0/8) in Axios 1.15.0",
+          "cvss": 7.2,
+          "cvssVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N",
+          "severity": "high",
+          "fixed": "0.31.1",
+          "affected": [
+            "From 1.0.0 to before 1.15.1",
+            "Earlier versions to before 0.31.1"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-pmwg-cvhr-8vh7",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-vf2m-468p-8v99",
+          "aliases": [
+            "CVE-2026-42036"
+          ],
+          "summary": "Axios: HTTP adapter streamed responses bypass maxContentLength",
+          "cvss": 5.3,
+          "cvssVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+          "fixed": "0.31.1",
+          "affected": [
+            "From 1.0.0 to before 1.15.1",
+            "Earlier versions to before 0.31.1"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-vf2m-468p-8v99",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-w9j2-pvgh-6h63",
+          "aliases": [
+            "CVE-2026-42041"
+          ],
+          "summary": "Axios: Authentication Bypass via Prototype Pollution Gadget in `validateStatus` Merge Strategy",
+          "cvss": 4.8,
+          "cvssVector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N",
+          "fixed": "0.31.1",
+          "affected": [
+            "From 1.0.0 to before 1.15.1",
+            "Earlier versions to before 0.31.1"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-w9j2-pvgh-6h63",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-wf5p-g6vw-rhxx",
+          "aliases": [
+            "CVE-2023-45857"
+          ],
+          "summary": "Axios Cross-Site Request Forgery Vulnerability",
+          "cvss": 6.5,
+          "cvssVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N",
+          "fixed": "0.28.0",
+          "affected": [
+            "From 1.0.0 to before 1.6.0",
+            "From 0.8.1 to before 0.28.0"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-wf5p-g6vw-rhxx",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-xhjh-pmcv-23jw",
+          "aliases": [
+            "CVE-2026-42040"
+          ],
+          "summary": "Axios: Null Byte Injection via Reverse-Encoding in AxiosURLSearchParams",
+          "cvss": 3.7,
+          "cvssVector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N",
+          "severity": "low",
+          "fixed": "0.31.1",
+          "affected": [
+            "From 1.0.0 to before 1.15.1",
+            "Earlier versions to before 0.31.1"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-xhjh-pmcv-23jw",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-xx6v-rp6x-q39c",
+          "aliases": [
+            "CVE-2026-42042"
+          ],
+          "summary": "Axios: XSRF Token Cross-Origin Leakage via Prototype Pollution Gadget in `withXSRFToken` Boolean Coercion",
+          "cvss": 5.4,
+          "cvssVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:L/A:N",
+          "fixed": "0.31.1",
+          "affected": [
+            "From 1.0.0 to before 1.15.1",
+            "Earlier versions to before 0.31.1"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-xx6v-rp6x-q39c",
+              "retrievedAt": "2026-09-13T15:54:19.888Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "express",
+      "version": "4.17.1",
+      "advisories": [
+        {
+          "id": "GHSA-qw6h-vgh9-j6wx",
+          "aliases": [
+            "CVE-2024-43796"
+          ],
+          "summary": "express vulnerable to XSS via response.redirect()",
+          "cvss": 5,
+          "cvssVector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:L",
+          "severity": "low",
+          "fixed": "4.20.0",
+          "affected": [
+            "Earlier versions to before 4.20.0",
+            "From 5.0.0-alpha.1 to before 5.0.0"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-qw6h-vgh9-j6wx",
+              "retrievedAt": "2026-09-13T15:54:19.438Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-rv95-896h-c2vc",
+          "aliases": [
+            "CVE-2024-29041"
+          ],
+          "summary": "Express.js Open Redirect in malformed URLs",
+          "cvss": 6.1,
+          "cvssVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+          "fixed": "4.19.2",
+          "affected": [
+            "Earlier versions to before 4.19.2",
+            "From 5.0.0-alpha.1 to before 5.0.0-beta.3"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-rv95-896h-c2vc",
+              "retrievedAt": "2026-09-13T15:54:19.438Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "body-parser",
+      "version": "1.19.0",
+      "advisories": [
+        {
+          "id": "GHSA-qwcr-r2fm-qrc7",
+          "aliases": [
+            "CVE-2024-45590"
+          ],
+          "summary": "body-parser vulnerable to denial of service when url encoding is enabled",
+          "cvss": 8.7,
+          "cvssVector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+          "severity": "high",
+          "fixed": "1.20.3",
+          "affected": [
+            "Earlier versions to before 1.20.3"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-qwcr-r2fm-qrc7",
+              "retrievedAt": "2026-09-13T15:54:19.788Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-v422-hmwv-36x6",
+          "aliases": [
+            "CVE-2026-12590"
+          ],
+          "summary": "body-parser vulnerable to denial of service when invalid limit value silently disables size enforcement",
+          "cvss": 3.7,
+          "cvssVector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L",
+          "severity": "low",
+          "fixed": "1.20.6",
+          "affected": [
+            "Earlier versions to before 1.20.6",
+            "From 2.0.0 to before 2.3.0"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-v422-hmwv-36x6",
+              "retrievedAt": "2026-09-13T15:54:19.788Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cookie",
+      "version": "0.4.0",
+      "advisories": [
+        {
+          "id": "GHSA-pxg6-pf52-xh8x",
+          "aliases": [
+            "CVE-2024-47764"
+          ],
+          "summary": "cookie accepts cookie name, path, and domain with out of bounds characters",
+          "cvss": 6.9,
+          "severity": "low",
+          "fixed": "0.7.0",
+          "affected": [
+            "Earlier versions to before 0.7.0"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-pxg6-pf52-xh8x",
+              "retrievedAt": "2026-09-13T15:54:19.907Z"
+            },
+            {
+              "source": "NVD",
+              "url": "https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=CVE-2024-47764",
+              "retrievedAt": "2026-09-13T15:54:27.369Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "path-to-regexp",
+      "version": "0.1.7",
+      "advisories": [
+        {
+          "id": "GHSA-37ch-88jc-xwx2",
+          "aliases": [
+            "CVE-2024-45296",
+            "CVE-2026-4867",
+            "GHSA-9wv6-86v2-598j"
+          ],
+          "summary": "path-to-regexp vulnerable to Regular Expression Denial of Service via multiple route parameters",
+          "cvss": 7.7,
+          "cvssVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "severity": "high",
+          "fixed": "0.1.13",
+          "affected": [
+            "Earlier versions to before 0.1.13"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-37ch-88jc-xwx2",
+              "retrievedAt": "2026-09-13T15:54:20.755Z"
+            },
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-9wv6-86v2-598j",
+              "retrievedAt": "2026-09-13T15:54:20.755Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-rhx6-c78j-4q9w",
+          "aliases": [
+            "CVE-2024-52798"
+          ],
+          "summary": "path-to-regexp contains a ReDoS",
+          "cvss": 7.7,
+          "cvssVector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:P",
+          "severity": "high",
+          "fixed": "0.1.12",
+          "affected": [
+            "Earlier versions to before 0.1.12"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-rhx6-c78j-4q9w",
+              "retrievedAt": "2026-09-13T15:54:20.755Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "qs",
+      "version": "6.7.0",
+      "advisories": [
+        {
+          "id": "GHSA-4mjr-xmp4-gh2g",
+          "aliases": [
+            "CVE-2026-82417"
+          ],
+          "summary": "qs: Denial of Service via Attacker Controlled isBuffer",
+          "cvss": 6.3,
+          "cvssVector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+          "fixed": "6.16.0",
+          "affected": [
+            "From 2.2.5 to before 6.16.0"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-4mjr-xmp4-gh2g",
+              "retrievedAt": "2026-09-13T15:54:21.055Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-6rw7-vpxm-498p",
+          "aliases": [
+            "CVE-2025-15284"
+          ],
+          "summary": "qs's arrayLimit bypass in its bracket notation allows DoS via memory exhaustion",
+          "cvss": 6.3,
+          "cvssVector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:L",
+          "fixed": "6.14.1",
+          "affected": [
+            "Earlier versions to before 6.14.1"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-6rw7-vpxm-498p",
+              "retrievedAt": "2026-09-13T15:54:21.055Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-hrpp-h998-j3pp",
+          "aliases": [
+            "CVE-2022-24999"
+          ],
+          "summary": "qs vulnerable to Prototype Pollution",
+          "cvss": 7.5,
+          "cvssVector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+          "severity": "high",
+          "fixed": "6.7.3",
+          "affected": [
+            "From 6.10.0 to before 6.10.3",
+            "From 6.9.0 to before 6.9.7",
+            "From 6.8.0 to before 6.8.3",
+            "From 6.7.0 to before 6.7.3",
+            "From 6.6.0 to before 6.6.1",
+            "From 6.5.0 to before 6.5.3",
+            "From 6.4.0 to before 6.4.1",
+            "From 6.3.0 to before 6.3.3",
+            "Earlier versions to before 6.2.4"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-hrpp-h998-j3pp",
+              "retrievedAt": "2026-09-13T15:54:21.055Z"
+            }
+          ]
+        },
+        {
+          "id": "GHSA-w7fw-mjwx-w883",
+          "aliases": [
+            "CVE-2026-2391"
+          ],
+          "summary": "qs's arrayLimit bypass in comma parsing allows denial of service",
+          "cvss": 3.7,
+          "cvssVector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L",
+          "severity": "low",
+          "fixed": "6.14.2",
+          "affected": [
+            "From 6.7.0 to before 6.14.2"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-w7fw-mjwx-w883",
+              "retrievedAt": "2026-09-13T15:54:21.055Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "send",
+      "version": "0.17.1",
+      "advisories": [
+        {
+          "id": "GHSA-m6fv-jmcg-4jfg",
+          "aliases": [
+            "CVE-2024-43799"
+          ],
+          "summary": "send vulnerable to template injection that can lead to XSS",
+          "cvss": 5,
+          "cvssVector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:L",
+          "severity": "low",
+          "fixed": "0.19.0",
+          "affected": [
+            "Earlier versions to before 0.19.0"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-m6fv-jmcg-4jfg",
+              "retrievedAt": "2026-09-13T15:54:21.120Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "serve-static",
+      "version": "1.14.1",
+      "advisories": [
+        {
+          "id": "GHSA-cm22-4g7w-348p",
+          "aliases": [
+            "CVE-2024-43800"
+          ],
+          "summary": "serve-static vulnerable to template injection that can lead to XSS",
+          "cvss": 5,
+          "cvssVector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:L",
+          "severity": "low",
+          "fixed": "1.16.0",
+          "affected": [
+            "Earlier versions to before 1.16.0",
+            "From 2.0.0 to before 2.1.0"
+          ],
+          "provenance": [
+            {
+              "source": "OSV",
+              "url": "https://osv.dev/vulnerability/GHSA-cm22-4g7w-348p",
+              "retrievedAt": "2026-09-13T15:54:21.174Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

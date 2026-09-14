@@ -1,0 +1,38 @@
+{
+  "files": {
+    "includes": [
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "tests/**/*.ts",
+      "scripts/**/*.mjs",
+      "scripts/**/*.ts",
+      "playwright.config.ts",
+      "!src/web/components/ui/hero-section-6.tsx",
+      "!src/web/components/ui/animated-group.tsx"
+    ]
+  },
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": false,
+      "correctness": {
+        "noUnreachable": "error",
+        "noInvalidUseBeforeDeclaration": "error",
+        "noConstantCondition": "error"
+      },
+      "suspicious": {
+        "noDuplicateObjectKeys": "error",
+        "noDuplicateParameters": "error",
+        "useIsArray": "error"
+      },
+      "a11y": {
+        "useKeyWithClickEvents": "error"
+      }
+    }
+  }
+}

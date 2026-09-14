@@ -131,13 +131,7 @@ const Iphone15Pro: React.FC<Iphone15ProProps> = ({
   );
 };
 
-const navItems = [
-  { name: 'Product', href: '/app' },
-  { name: 'Dependencies', href: '/app#inventory' },
-  { name: 'Scan history', href: '/app#scans' },
-  { name: 'Connectors', href: '/app#connectors' },
-  { name: 'Methodology', href: '/app#methodology' },
-];
+const navItems = [{ name: 'Scan repository', href: '/app#new' }, { name: 'Explore demo', href: '/app#demo' }];
 
 export default function HeroSection6() {
   const textVariants: Variants = {
@@ -179,7 +173,7 @@ export default function HeroSection6() {
               Docs
             </button>
           </a>
-          <a href="/app">
+          <a href="/app#new">
             <button className="px-3 py-1 text-sm font-medium bg-(--color-primary) text-white hover:bg-black/90 transition-colors rounded-sm">
               Open app
             </button>
@@ -212,7 +206,7 @@ export default function HeroSection6() {
             every service you ship
           </p>
           <div className="flex flex-row sm:flex-row items-center justify-center gap-4 w-[300px] md:w-full mb-16 mx-auto">
-            <a href="/app" className="w-full sm:w-auto">
+            <a href="/app#demo" className="w-full sm:w-auto">
               <button className="px-1 py-1 md:px-4 md:py-2 text-lg rounded-md bg-(--color-primary) hover:bg-(--color-primary)/90 text-white w-full sm:w-auto shadow-lg shadow-(--color-primary)/20 transition-all hover:shadow-(--color-primary)/40 rounded-sm cursor-pointer">
                 Explore the demo
               </button>
