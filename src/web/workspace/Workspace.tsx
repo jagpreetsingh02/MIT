@@ -743,11 +743,11 @@ export function Workspace() {
           <button
             aria-label="Open OTTER"
             onClick={() => setOtterPanel("chat")}
-            className="otter-launcher fixed bottom-5 right-5 z-40 flex cursor-pointer items-center gap-2 rounded-full border border-border bg-card py-2 pl-2 pr-4 text-[13px] font-semibold tracking-[0.6px] text-foreground shadow-lg transition-[box-shadow,border-color] duration-300 hover:border-rust/40 hover:shadow-xl"
+            className="otter-launcher fixed bottom-5 right-5 z-40 flex cursor-pointer items-center gap-2.5 rounded-full border border-border bg-card py-2 pl-2 pr-5 text-[15px] font-semibold md:gap-3 md:py-2.5 md:pl-2.5 md:pr-6 md:text-[16px] tracking-[0.6px] text-foreground shadow-lg transition-[box-shadow,border-color] duration-300 hover:border-rust/40 hover:shadow-xl"
           >
             <OtterMark
               active={Object.values(otter.pending).some(Boolean)}
-              className="size-7 text-rust"
+              className="size-9 text-rust md:size-11"
             />
             OTTER
           </button>
