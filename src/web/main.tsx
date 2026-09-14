@@ -600,7 +600,15 @@ function App() {
               <>
                 <section className="result-summary" aria-label="Analysis summary">
                   <span>
-                    <strong>{checked}</strong> of {exactCount} exact package versions checked
+                    {exactCount === 0 && unresolved > 0 ? (
+                      <>
+                        <strong>{packages.length}</strong> dependencies discovered
+                      </>
+                    ) : (
+                      <>
+                        <strong>{checked}</strong> of {exactCount} exact package versions checked
+                      </>
+                    )}
                   </span>
                   <span>
                     <strong>{findingCount}</strong> known {scan.mode === "demo" ? "demo " : ""}

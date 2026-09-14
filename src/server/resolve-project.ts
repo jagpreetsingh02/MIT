@@ -169,6 +169,7 @@ function resolveExact(project: Project, files: SourceFile[]): Graph {
 }
 function npmLock(p: Project, file: SourceFile, manifest?: SourceFile): Graph {
   let data = JSON.parse(file.content);
+  const legacyWithoutManifest = data.lockfileVersion === 1 && !manifest;
   let info: any = {};
   let manifestError = "";
   try {
@@ -315,6 +316,12 @@ function npmLock(p: Project, file: SourceFile, manifest?: SourceFile): Graph {
     }
   }
   connect(root, entry, { ...entries[entry], ...info }, true);
+  if (legacyWithoutManifest) {
+    for (const edge of graph.edges.filter((e) => e.from === root.id)) edge.relationship = "listed";
+    graph.warnings.push(
+      "Legacy npm lockfile without package.json: installed entries are retained, but root direct dependencies are not known.",
+    );
+  }
   if (
     !graph.nodes.some((n) => n.kind === "package") &&
     entry === "" &&
@@ -358,7 +365,7 @@ function npmManifest(p: Project, file?: SourceFile): Graph {
     nodes: [root],
     edges: [],
     warnings: [
-      "No supported resolved lockfile is available. Only exact direct pins are shown; indirect relationships are unknown.",
+      "No supported resolved lockfile is available. Exact direct pins can be checked; other declarations remain unresolved and indirect relationships are unknown.",
     ],
   };
   for (const [name, version] of Object.entries({

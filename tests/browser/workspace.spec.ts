@@ -63,3 +63,22 @@ test("invalid repository can be corrected without losing the form", async ({ pag
   await expect(page.getByRole("alert")).toContainText("canonical GitHub");
   await expect(page.getByLabel("Repository URL")).toHaveValue("https://localhost/private");
 });
+test("unresolved declarations remain visible in map, graph and inventory", async ({ page }) => {
+  await page.goto("/app#new");
+  await page.getByRole("button", { name: "Dependency file", exact: true }).click();
+  await page.getByLabel("Filename", { exact: true }).fill("pyproject.toml");
+  await page.getByLabel("File content").fill('[project]\ndependencies=["requests>=2.31","numpy"]');
+  await page.getByRole("button", { name: "Map repository", exact: true }).click();
+  await expect(page.getByText("Detected dependencies: 2", { exact: false })).toBeVisible();
+  await expect(page.getByText("Coverage: DECLARED_ONLY", { exact: false })).toBeVisible();
+  await page.getByRole("button", { name: "Analyze repository", exact: true }).click();
+  await expect(page.getByRole("status")).toContainText("2 dependencies were discovered");
+  await expect(page.getByRole("region", { name: "Analysis summary" })).toContainText(
+    "2 dependencies discovered",
+  );
+  await page.getByRole("button", { name: "View all dependencies" }).click();
+  await page.getByRole("textbox", { name: "Search dependencies" }).fill("requests");
+  await expect(page.locator("tbody")).toContainText(">=2.31");
+  await expect(page.locator("tbody")).toContainText("Not checked");
+  await expect(page.locator("tbody")).toContainText("Not scored");
+});

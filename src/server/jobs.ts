@@ -118,6 +118,7 @@ export class Jobs {
     const github = new GitHub(http);
     const input = this.store.input(scan.id);
     const loaded = new Map<string, Promise<SourceFile>>();
+    let repositoryFiles: ReturnType<Store["files"]> | undefined;
     const extract = async (project: Project): Promise<Graph> => {
       const paths = [
         ...new Set(
@@ -144,7 +145,7 @@ export class Jobs {
                 : github.file(
                     input.repository!,
                     scan.commit!,
-                    this.store.files(scan.id).find((f) => f.path === path)!,
+                    (repositoryFiles ??= this.store.files(scan.id)).find((f) => f.path === path)!,
                     input.installationId,
                   ),
             );

@@ -107,7 +107,7 @@ export function parseManifest(filename: string, content: string, source?: Proven
       );
       if (!match) {
         graph.warnings.push(
-          `Unresolved requirement omitted: ${value.slice(0, 100)}. Supply an exact name==version pin.`,
+          `No exact version extracted for requirement: ${value.slice(0, 100)}. Supply an exact name==version pin for vulnerability matching.`,
         );
         continue;
       }
@@ -124,7 +124,9 @@ export function parseManifest(filename: string, content: string, source?: Proven
       for (const [name, raw] of Object.entries(data[group] || {})) {
         const info = raw as { version?: string };
         if (!info.version?.startsWith("==")) {
-          graph.warnings.push(`No exact installed version for ${name}; skipped.`);
+          graph.warnings.push(
+            `No exact installed version for ${name}; excluded from exact-version matching.`,
+          );
           continue;
         }
         const child = add("pypi", name, info.version.slice(2));

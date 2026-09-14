@@ -1,0 +1,4000 @@
+{
+  "verifiedAt": "2026-09-14T05:53:11.112Z",
+  "results": [
+    {
+      "repository": "google/osv-scanner",
+      "scanId": "6be7fac2-b3ee-4496-9369-272802d2c7a1",
+      "commit": "e840a6e8adb14b7777c78e26cfbf6e2abc1d1fc6",
+      "ref": "main",
+      "status": "completed",
+      "projects": 24,
+      "files": 30,
+      "allProjectPreview": {
+        "dependencies": 143,
+        "exact": 143,
+        "unresolved": 0
+      },
+      "selected": [
+        "cmd/osv-scanner/fix/testdata/in-place-npm",
+        "cmd/osv-scanner/fix/testdata/override-maven",
+        "cmd/osv-scanner/fix/testdata/relax-npm",
+        "cmd/osv-scanner/scan/image/testdata/java-fixture/app",
+        "cmd/osv-scanner/scan/image/testdata/python-fixture",
+        "cmd/osv-scanner/scan/source/testdata/exp-plugins-pkgdeprecate/deprecated-npm",
+        "cmd/osv-scanner/scan/source/testdata/locks-empty",
+        "cmd/osv-scanner/scan/source/testdata/locks-gitignore",
+        "cmd/osv-scanner/scan/source/testdata/locks-gitignore/ignored",
+        "cmd/osv-scanner/scan/source/testdata/locks-gitignore/subdir",
+        "cmd/osv-scanner/scan/source/testdata/locks-licenses",
+        "cmd/osv-scanner/scan/source/testdata/locks-many",
+        "cmd/osv-scanner/scan/source/testdata/locks-many-with-insecure",
+        "cmd/osv-scanner/scan/source/testdata/locks-many-with-invalid",
+        "cmd/osv-scanner/scan/source/testdata/locks-one-with-nested",
+        "cmd/osv-scanner/scan/source/testdata/locks-requirements",
+        "cmd/osv-scanner/scan/source/testdata/locks-scalibr",
+        "cmd/osv-scanner/scan/source/testdata/locks-test-ignore",
+        "cmd/osv-scanner/scan/source/testdata/maven-transitive",
+        "cmd/osv-scanner/scan/testdata/locks-many",
+        "cmd/osv-scanner/scan/testdata/locks-one-with-nested",
+        "cmd/osv-scanner/testdata/locks-many",
+        "cmd/osv-scanner/testdata/locks-one-with-nested",
+        "cmd/osv-scanner/update/testdata"
+      ],
+      "dependencies": 143,
+      "exactVersions": 137,
+      "unresolved": 0,
+      "graphNodes": 167,
+      "checked": 137,
+      "coverage": [
+        {
+          "path": "cmd/osv-scanner/fix/testdata/in-place-npm",
+          "status": "PARTIAL",
+          "detected": 106,
+          "exact": 106,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/fix/testdata/override-maven",
+          "status": "PARTIAL",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/fix/testdata/relax-npm",
+          "status": "PARTIAL",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/scan/image/testdata/java-fixture/app",
+          "status": "PARTIAL",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/scan/image/testdata/python-fixture",
+          "status": "PARTIAL",
+          "detected": 13,
+          "exact": 13,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/scan/source/testdata/exp-plugins-pkgdeprecate/deprecated-npm",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/scan/source/testdata/locks-empty",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/scan/source/testdata/locks-gitignore",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/scan/source/testdata/locks-gitignore/ignored",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/scan/source/testdata/locks-gitignore/subdir",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/scan/source/testdata/locks-licenses",
+          "status": "EXACT",
+          "detected": 4,
+          "exact": 4,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/scan/source/testdata/locks-many",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/scan/source/testdata/locks-many-with-insecure",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/scan/source/testdata/locks-many-with-invalid",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/scan/source/testdata/locks-one-with-nested",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/scan/source/testdata/locks-requirements",
+          "status": "PARTIAL",
+          "detected": 4,
+          "exact": 4,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/scan/source/testdata/locks-scalibr",
+          "status": "PARTIAL",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/scan/source/testdata/locks-test-ignore",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/scan/source/testdata/maven-transitive",
+          "status": "PARTIAL",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/scan/testdata/locks-many",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/scan/testdata/locks-one-with-nested",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/testdata/locks-many",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/testdata/locks-one-with-nested",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "cmd/osv-scanner/update/testdata",
+          "status": "PARTIAL",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        }
+      ],
+      "warnings": [
+        "in-place-npm: Lockfile version for readable-stream does not satisfy its declared range ~2.0.0; regenerate the lockfile.",
+        "override-maven: POM import includes exact direct dependencies only. Parent/BOM mediation, profiles and transitives require dependency-tree.json.",
+        "osv-fix: No supported resolved lockfile is available. Only exact direct pins are shown; indirect relationships are unknown.",
+        "app: POM import includes exact direct dependencies only. Parent/BOM mediation, profiles and transitives require dependency-tree.json.",
+        "python-fixture: Flat requirements snapshot: all pins are attached to the application. Transitive ancestry and environment markers are not resolved.",
+        "locks-empty: No supported resolved lockfile is available. Only exact direct pins are shown; indirect relationships are unknown.",
+        "locks-empty: No package declarations or exact installed entries were extracted from the readable files. See format-specific notes; a workspace root may require selecting its child projects.",
+        "locks-gitignore: No supported resolved lockfile is available. Only exact direct pins are shown; indirect relationships are unknown.",
+        "locks-gitignore: No package declarations or exact installed entries were extracted from the readable files. See format-specific notes; a workspace root may require selecting its child projects.",
+        "ignored: No supported resolved lockfile is available. Only exact direct pins are shown; indirect relationships are unknown.",
+        "ignored: No package declarations or exact installed entries were extracted from the readable files. See format-specific notes; a workspace root may require selecting its child projects.",
+        "subdir: No supported resolved lockfile is available. Only exact direct pins are shown; indirect relationships are unknown.",
+        "subdir: No package declarations or exact installed entries were extracted from the readable files. See format-specific notes; a workspace root may require selecting its child projects.",
+        "locks-many-with-invalid: No supported resolved lockfile is available. Only exact direct pins are shown; indirect relationships are unknown.",
+        "locks-many-with-invalid: No package declarations or exact installed entries were extracted from the readable files. See format-specific notes; a workspace root may require selecting its child projects.",
+        "locks-one-with-nested: No supported resolved lockfile is available. Only exact direct pins are shown; indirect relationships are unknown.",
+        "locks-one-with-nested: No package declarations or exact installed entries were extracted from the readable files. See format-specific notes; a workspace root may require selecting its child projects.",
+        "locks-requirements: Flat requirements snapshot: all pins are attached to the application. Transitive ancestry and environment markers are not resolved.",
+        "locks-scalibr: Python lockfile versions and recorded package edges are shown. Root membership, environment markers and optional groups are not fully resolved; dashed root links mean listed packages, not proven direct dependencies.",
+        "maven-transitive: POM import includes exact direct dependencies only. Parent/BOM mediation, profiles and transitives require dependency-tree.json.",
+        "testdata: POM import includes exact direct dependencies only. Parent/BOM mediation, profiles and transitives require dependency-tree.json.",
+        "Some advisories have no numeric CVSS in this snapshot. Their severity is shown as unscored; priority may be a lower bound."
+      ]
+    },
+    {
+      "repository": "jagpreetsingh02/SWASTRA-OCR",
+      "scanId": "c79a673a-78b8-4935-a752-2ccf360dc19d",
+      "commit": "840ded5663fe721607741e96270c81920704bd15",
+      "ref": "main",
+      "status": "completed",
+      "projects": 1,
+      "files": 1,
+      "allProjectPreview": {
+        "dependencies": 14,
+        "exact": 0,
+        "unresolved": 14
+      },
+      "selected": [
+        "."
+      ],
+      "dependencies": 14,
+      "exactVersions": 0,
+      "unresolved": 14,
+      "graphNodes": 15,
+      "checked": 0,
+      "coverage": [
+        {
+          "path": ".",
+          "status": "DECLARED_ONLY",
+          "detected": 14,
+          "exact": 0,
+          "unresolved": 14
+        }
+      ],
+      "warnings": [
+        "SWASTRA-OCR: No exact resolved Python snapshot is available. Unpinned dependencies are not checked; use uv.lock, poetry.lock, Pipfile.lock or pinned requirements.",
+        "SWASTRA-OCR: 14 dependency declarations have no exact installed version. They are retained but excluded from vulnerability matching."
+      ]
+    },
+    {
+      "repository": "expressjs/express",
+      "scanId": "837c0c29-4ddf-4a4e-8bd6-090a79c1bfa6",
+      "commit": "3ce6d0eb86e9d93529ff3191c6bb5db8ce6e72c8",
+      "ref": "master",
+      "status": "completed",
+      "projects": 1,
+      "files": 1,
+      "allProjectPreview": {
+        "dependencies": 44,
+        "exact": 8,
+        "unresolved": 36
+      },
+      "selected": [
+        "."
+      ],
+      "dependencies": 44,
+      "exactVersions": 8,
+      "unresolved": 36,
+      "graphNodes": 45,
+      "checked": 8,
+      "coverage": [
+        {
+          "path": ".",
+          "status": "PARTIAL",
+          "detected": 44,
+          "exact": 8,
+          "unresolved": 36
+        }
+      ],
+      "warnings": [
+        "express: No supported resolved lockfile is available. Only exact direct pins are shown; indirect relationships are unknown.",
+        "express: accepts: ^2.0.0 is not an exact installed version; omitted from vulnerability checks.",
+        "express: body-parser: ^2.3.0 is not an exact installed version; omitted from vulnerability checks.",
+        "express: content-disposition: ^2.0.1 is not an exact installed version; omitted from vulnerability checks.",
+        "express: content-type: ^2.0.0 is not an exact installed version; omitted from vulnerability checks.",
+        "express: cookie: ^0.7.1 is not an exact installed version; omitted from vulnerability checks.",
+        "express: cookie-signature: ^1.2.1 is not an exact installed version; omitted from vulnerability checks.",
+        "express: debug: ^4.4.0 is not an exact installed version; omitted from vulnerability checks.",
+        "express: depd: ^2.0.0 is not an exact installed version; omitted from vulnerability checks.",
+        "express: encodeurl: ^2.0.0 is not an exact installed version; omitted from vulnerability checks.",
+        "express: escape-html: ^1.0.3 is not an exact installed version; omitted from vulnerability checks.",
+        "express: etag: ^1.8.1 is not an exact installed version; omitted from vulnerability checks.",
+        "express: finalhandler: ^2.1.0 is not an exact installed version; omitted from vulnerability checks.",
+        "express: fresh: ^2.0.0 is not an exact installed version; omitted from vulnerability checks.",
+        "express: http-errors: ^2.0.0 is not an exact installed version; omitted from vulnerability checks.",
+        "express: merge-descriptors: ^2.0.0 is not an exact installed version; omitted from vulnerability checks.",
+        "express: mime-types: ^3.0.0 is not an exact installed version; omitted from vulnerability checks.",
+        "express: on-finished: ^2.4.1 is not an exact installed version; omitted from vulnerability checks.",
+        "express: once: ^1.4.0 is not an exact installed version; omitted from vulnerability checks.",
+        "express: parseurl: ^1.3.3 is not an exact installed version; omitted from vulnerability checks.",
+        "express: proxy-addr: ^2.0.7 is not an exact installed version; omitted from vulnerability checks.",
+        "express: qs: ^6.15.2 is not an exact installed version; omitted from vulnerability checks.",
+        "express: range-parser: ^1.2.1 is not an exact installed version; omitted from vulnerability checks.",
+        "express: router: ^2.2.0 is not an exact installed version; omitted from vulnerability checks.",
+        "express: send: ^1.1.0 is not an exact installed version; omitted from vulnerability checks.",
+        "express: serve-static: ^2.2.0 is not an exact installed version; omitted from vulnerability checks.",
+        "express: statuses: ^2.0.1 is not an exact installed version; omitted from vulnerability checks.",
+        "express: type-is: ^2.1.0 is not an exact installed version; omitted from vulnerability checks.",
+        "express: vary: ^1.1.2 is not an exact installed version; omitted from vulnerability checks.",
+        "express: connect-redis: ^8.0.1 is not an exact installed version; omitted from vulnerability checks.",
+        "express: ejs: ^3.1.10 is not an exact installed version; omitted from vulnerability checks.",
+        "express: express-session: ^1.18.1 is not an exact installed version; omitted from vulnerability checks.",
+        "express: marked: ^15.0.3 is not an exact installed version; omitted from vulnerability checks.",
+        "express: mocha: ^11.7.5 is not an exact installed version; omitted from vulnerability checks.",
+        "express: nyc: ^17.1.0 is not an exact installed version; omitted from vulnerability checks.",
+        "express: supertest: ^6.3.0 is not an exact installed version; omitted from vulnerability checks.",
+        "express: vhost: ~3.0.2 is not an exact installed version; omitted from vulnerability checks.",
+        "express: 36 dependency declarations have no exact installed version. They are retained but excluded from vulnerability matching."
+      ]
+    },
+    {
+      "repository": "jagpreetsingh02/MIT",
+      "scanId": "51974380-385c-4bfe-9d84-2f2af8ec95d2",
+      "commit": "c75031ca7546706d042c585852d18b29c8f9015e",
+      "ref": "main",
+      "status": "completed",
+      "projects": 1,
+      "files": 2,
+      "allProjectPreview": {
+        "dependencies": 427,
+        "exact": 412,
+        "unresolved": 15
+      },
+      "selected": [
+        "."
+      ],
+      "dependencies": 427,
+      "exactVersions": 409,
+      "unresolved": 15,
+      "graphNodes": 428,
+      "checked": 409,
+      "coverage": [
+        {
+          "path": ".",
+          "status": "PARTIAL",
+          "detected": 427,
+          "exact": 412,
+          "unresolved": 15
+        }
+      ],
+      "warnings": [
+        "rippleguard: Could not determine the installed dependency @rolldown/plugin-babel used by @vitejs/plugin-react.",
+        "rippleguard: Could not determine the installed dependency babel-plugin-react-compiler used by @vitejs/plugin-react.",
+        "rippleguard: Could not determine the installed dependency oxc-transform-react used by @vitejs/plugin-react.",
+        "rippleguard: Could not determine the installed dependency @vitejs/devtools used by vite.",
+        "rippleguard: Could not determine the installed dependency less used by vite.",
+        "rippleguard: Could not determine the installed dependency sass used by vite.",
+        "rippleguard: Could not determine the installed dependency sass-embedded used by vite.",
+        "rippleguard: Could not determine the installed dependency stylus used by vite.",
+        "rippleguard: Could not determine the installed dependency sugarss used by vite.",
+        "rippleguard: Could not determine the installed dependency terser used by vite.",
+        "rippleguard: Could not determine the installed dependency @emnapi/core used by @tailwindcss/oxide-wasm32-wasi.",
+        "rippleguard: Could not determine the installed dependency @emnapi/runtime used by @tailwindcss/oxide-wasm32-wasi.",
+        "rippleguard: Could not determine the installed dependency @emnapi/wasi-threads used by @tailwindcss/oxide-wasm32-wasi.",
+        "rippleguard: Could not determine the installed dependency @napi-rs/wasm-runtime used by @tailwindcss/oxide-wasm32-wasi.",
+        "rippleguard: Could not determine the installed dependency @tybys/wasm-util used by @tailwindcss/oxide-wasm32-wasi.",
+        "rippleguard: 15 dependency declarations have no exact installed version. They are retained but excluded from vulnerability matching."
+      ]
+    },
+    {
+      "repository": "npm/cli",
+      "scanId": "661ba1e8-e137-48fb-9420-2c34bf1f5031",
+      "commit": "c9876d7ea7150b0702e4151210b9fa1a8dbc7fbf",
+      "ref": "latest",
+      "status": "completed",
+      "projects": 478,
+      "files": 575,
+      "allProjectPreview": {
+        "dependencies": 23330,
+        "exact": 22485,
+        "unresolved": 845
+      },
+      "selected": [
+        "mock-globals"
+      ],
+      "dependencies": 964,
+      "exactVersions": 797,
+      "unresolved": 7,
+      "graphNodes": 965,
+      "checked": 797,
+      "coverage": [
+        {
+          "path": ".",
+          "status": "PARTIAL",
+          "detected": 1102,
+          "exact": 1085,
+          "unresolved": 17
+        },
+        {
+          "path": "docs",
+          "status": "PARTIAL",
+          "detected": 1099,
+          "exact": 1089,
+          "unresolved": 10
+        },
+        {
+          "path": "mock-globals",
+          "status": "PARTIAL",
+          "detected": 964,
+          "exact": 957,
+          "unresolved": 7
+        },
+        {
+          "path": "mock-registry",
+          "status": "PARTIAL",
+          "detected": 973,
+          "exact": 966,
+          "unresolved": 7
+        },
+        {
+          "path": "smoke-tests",
+          "status": "PARTIAL",
+          "detected": 980,
+          "exact": 973,
+          "unresolved": 7
+        },
+        {
+          "path": "smoke-tests/test/fixtures/large-install",
+          "status": "PARTIAL",
+          "detected": 1324,
+          "exact": 1306,
+          "unresolved": 18
+        },
+        {
+          "path": "workspaces/arborist",
+          "status": "PARTIAL",
+          "detected": 995,
+          "exact": 983,
+          "unresolved": 12
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/accept-dependencies",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/accept-dependencies/dep",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/accept-dependencies/with-newer",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/ancient-lockfile-invalid",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/audit-all-severities",
+          "status": "PARTIAL",
+          "detected": 474,
+          "exact": 473,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/audit-dep-vuln-with-own-advisory",
+          "status": "EXACT",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/audit-fix-old-tap",
+          "status": "EXACT",
+          "detected": 571,
+          "exact": 571,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/audit-linked-package",
+          "status": "EXACT",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/audit-missing-packument",
+          "status": "EXACT",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/audit-mkdirp",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/audit-mkdirp/mkdirp-unfixable",
+          "status": "EXACT",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/audit-nyc-mkdirp",
+          "status": "EXACT",
+          "detected": 329,
+          "exact": 329,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/audit-omit",
+          "status": "EXACT",
+          "detected": 751,
+          "exact": 751,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/audit-one-vuln",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/bad",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/bundle",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/bundle-metadep-duplication/a-latest",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/bundle-metadep-duplication/a-old",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/bundle-metadep-duplication/bundle-metadep-duplication",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/bundle-metadep-duplication/x",
+          "status": "PARTIAL",
+          "detected": 4,
+          "exact": 3,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/bundle-metadep-duplication/y",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/bundle-metadep-duplication/z",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/carbonium",
+          "status": "EXACT",
+          "detected": 126,
+          "exact": 126,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/cli-750",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/cli-750-fresh",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/cli-750-fresh/app",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/cli-750-fresh/lib",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/cli-750/app",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/cli-750/lib",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/conflict-bundle-file-dep",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/conflict-bundle-file-dep/fixtures-has-package-exports",
+          "status": "PARTIAL",
+          "detected": 2,
+          "exact": 1,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/conflict-package-lock",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/conflicted-peer-optional-from-dev-dep/b",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/conflicted-peer-optional-from-dev-dep/peer/1",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/conflicted-peer-optional-from-dev-dep/peer/2",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/dedupe-actual",
+          "status": "PARTIAL",
+          "detected": 2,
+          "exact": 1,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/dedupe-lockfile",
+          "status": "EXACT",
+          "detected": 3,
+          "exact": 3,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/dedupe-tests",
+          "status": "PARTIAL",
+          "detected": 2,
+          "exact": 1,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/dedupe-tests-2",
+          "status": "PARTIAL",
+          "detected": 2,
+          "exact": 1,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/deepmixedloop",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/dep-installed-without-bin-link",
+          "status": "EXACT",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/dep-missing-resolved",
+          "status": "EXACT",
+          "detected": 233,
+          "exact": 233,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/deprecated-dep",
+          "status": "EXACT",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/dev-deps",
+          "status": "EXACT",
+          "detected": 5,
+          "exact": 5,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/devloop",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/edit-package-json/changed",
+          "status": "EXACT",
+          "detected": 7,
+          "exact": 7,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/edit-package-json/ok",
+          "status": "EXACT",
+          "detected": 7,
+          "exact": 7,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/edit-package-json/removed",
+          "status": "EXACT",
+          "detected": 6,
+          "exact": 6,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/edit-package-json/workspaces-changed",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/edit-package-json/workspaces-changed/a",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/edit-package-json/workspaces-changed/b",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/edit-package-json/workspaces-changed/c",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/empty-with-shrinkwrap",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/empty-with-shrinkwrap-no-pj",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/engine-omit-test",
+          "status": "PARTIAL",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/engine-specification",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/eslintme",
+          "status": "EXACT",
+          "detected": 156,
+          "exact": 156,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/external-dep/root",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/external-link-cached-dummy-dep/a/t/u/v/w/x/y/z",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/external-link-cached-dummy-dep/root",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/external-link-dep",
+          "status": "DECLARED_ONLY",
+          "detected": 4,
+          "exact": 0,
+          "unresolved": 4
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/external-link/a",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/external-link/i",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/external-link/i/j",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/external-link/m",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/external-link/root",
+          "status": "PARTIAL",
+          "detected": 12,
+          "exact": 7,
+          "unresolved": 5
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/fail-allinstall",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/fail-install",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/fail-postinstall",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/fail-preinstall",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/flow-outdated",
+          "status": "EXACT",
+          "detected": 5,
+          "exact": 5,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/fs-parent-dots/x",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/fs-parent-dots/x/a",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/fs-parent-dots/x/y",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/fs-parent-dots/x/y/b",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/fs-parent-dots/x/y/z",
+          "status": "DECLARED_ONLY",
+          "detected": 4,
+          "exact": 0,
+          "unresolved": 4
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/hidden-lockfile",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/install-types",
+          "status": "PARTIAL",
+          "detected": 13,
+          "exact": 5,
+          "unresolved": 8
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/install-types-sw-only",
+          "status": "PARTIAL",
+          "detected": 32,
+          "exact": 15,
+          "unresolved": 17
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/install-types/abbrev-link-target",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/link-dep",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/link-dep-cycle",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/link-dep-cycle/a",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/link-dep-cycle/b",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/link-dep-empty",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/link-dep-empty/target",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/link-dep-has-dep-with-optional-dep",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/link-dep-has-dep-with-optional-dep/a",
+          "status": "PARTIAL",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/link-dep-lifecycle-scripts",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/link-dep-lifecycle-scripts/a",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/link-dep-nested",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/link-dep-nested/once",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/link-dep-nested/root",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/link-dep/target",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/link-dev-dep",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/link-dev-dep/target",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/link-meta-deps",
+          "status": "PARTIAL",
+          "detected": 3,
+          "exact": 2,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/link-meta-deps-empty",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/links-all-over",
+          "status": "DECLARED_ONLY",
+          "detected": 4,
+          "exact": 0,
+          "unresolved": 4
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/links-all-over/real",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/malformed-json",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/minimist-git-dep",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/minimist-git-metadep",
+          "status": "EXACT",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/mixedloop",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/mixedmidway",
+          "status": "DECLARED_ONLY",
+          "detected": 9,
+          "exact": 0,
+          "unresolved": 9
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/mkdirp-pinned",
+          "status": "EXACT",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/old-lock-with-link",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/old-lock-with-link/link-dep",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/old-package-lock",
+          "status": "EXACT",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/old-package-lock-with-bins",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/once-outdated",
+          "status": "EXACT",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/optional-dep-allinstall-fail",
+          "status": "PARTIAL",
+          "detected": 2,
+          "exact": 1,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/optional-dep-enotarget",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/optional-dep-install-fail",
+          "status": "PARTIAL",
+          "detected": 2,
+          "exact": 1,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/optional-dep-missing",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/optional-dep-postinstall-fail",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/optional-dep-preinstall-fail",
+          "status": "PARTIAL",
+          "detected": 2,
+          "exact": 1,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/optional-dep-tgz-missing",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/optional-engine-omit-test",
+          "status": "PARTIAL",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/optional-engine-specification",
+          "status": "PARTIAL",
+          "detected": 3,
+          "exact": 2,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/optional-metadep-allinstall-fail",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/optional-metadep-enotarget",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/optional-metadep-install-fail",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/optional-metadep-missing",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/optional-metadep-postinstall-fail",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/optional-metadep-preinstall-fail",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/optional-metadep-tgz-missing",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/optional-ok",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/optional-platform-specification",
+          "status": "PARTIAL",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/optionalloop",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/optofdev",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/outdated-no-lockfile",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/package-json-shorthands",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/pathological-dep-nesting-cycle",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/pathological-dep-nesting-cycle/a1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/pathological-dep-nesting-cycle/a2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/pathological-dep-nesting-cycle/b1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/pathological-dep-nesting-cycle/b2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-dep-conflict-infinite-loop/a/1",
+          "status": "DECLARED_ONLY",
+          "detected": 3,
+          "exact": 0,
+          "unresolved": 3
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-dep-conflict-infinite-loop/a/2",
+          "status": "DECLARED_ONLY",
+          "detected": 3,
+          "exact": 0,
+          "unresolved": 3
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-dep-conflict-infinite-loop/a/3",
+          "status": "DECLARED_ONLY",
+          "detected": 3,
+          "exact": 0,
+          "unresolved": 3
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-dep-conflict-infinite-loop/a/4",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-dep-conflict-infinite-loop/j/1",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-dep-conflict-infinite-loop/j/2",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-dep-conflict-infinite-loop/x",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-dep-conflict-infinite-loop/y",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-dep-cycle",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-dep-cycle-nested",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-dep-cycle-nested-with-sw",
+          "status": "EXACT",
+          "detected": 4,
+          "exact": 4,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-dep-cycle-with-sw",
+          "status": "EXACT",
+          "detected": 3,
+          "exact": 3,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-engine-omit-test",
+          "status": "PARTIAL",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/a",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/a/x",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/a/y/1",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/a/y/2",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/a/z",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/b",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/b/x",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/b/y/1",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/b/y/2",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/c",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/c/x",
+          "status": "PARTIAL",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/c/y/1",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/c/y/2",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/c/z",
+          "status": "PARTIAL",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/d",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/d/x",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/d/y",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/d/z/1",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/d/z/2",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/e",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/e/x",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/e/y",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/e/z/1",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/e/z/2",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/f",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/f/w",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/f/x",
+          "status": "DECLARED_ONLY",
+          "detected": 3,
+          "exact": 0,
+          "unresolved": 3
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/f/y",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/f/z/1",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-eresolve/f/z/2",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/peer-optional-installs",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/platform-specification",
+          "status": "PARTIAL",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/pnpm",
+          "status": "EXACT",
+          "detected": 4,
+          "exact": 4,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/prod-dep-allinstall-fail",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/prod-dep-enotarget",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/prod-dep-install-fail",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/prod-dep-missing",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/prod-dep-postinstall-fail",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/prod-dep-preinstall-fail",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/prod-dep-tgz-missing",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/prune-actual",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/prune-actual-omit-dev",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/prune-dev-bins",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/prune-dev-dep-duplicate",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/prune-lockfile",
+          "status": "PARTIAL",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/prune-lockfile-omit-dev",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/prune-lockfile-optional-peer",
+          "status": "EXACT",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/rebuild-foreground-scripts",
+          "status": "EXACT",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/root",
+          "status": "DECLARED_ONLY",
+          "detected": 4,
+          "exact": 0,
+          "unresolved": 4
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/root-bundler",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/root-bundler/child",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/sax",
+          "status": "PARTIAL",
+          "detected": 213,
+          "exact": 9,
+          "unresolved": 204
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/selflink",
+          "status": "DECLARED_ONLY",
+          "detected": 3,
+          "exact": 0,
+          "unresolved": 3
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/semver-installed-with-old-package-lock",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/sequental-peer-dep-tree-shuffling",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/sequental-peer-dep-tree-shuffling/a",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/sequental-peer-dep-tree-shuffling/b1",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/sequental-peer-dep-tree-shuffling/b2",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/sequental-peer-dep-tree-shuffling/c",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/simple",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/symlinked-node-modules/bar",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/symlinked-node-modules/example",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/symlinked-node-modules/linked-node-modules/foo",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/tab-indented-package-json",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/tap-and-flow",
+          "status": "EXACT",
+          "detected": 471,
+          "exact": 471,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/tap-old-lockfile",
+          "status": "EXACT",
+          "detected": 413,
+          "exact": 413,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/tap-react15-collision",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/tap-react15-collision-legacy-sw",
+          "status": "EXACT",
+          "detected": 385,
+          "exact": 385,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/tap-with-yarn-lock",
+          "status": "DECLARED_ONLY",
+          "detected": 42,
+          "exact": 0,
+          "unresolved": 42
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/tarball-dependencies",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/tarball-dependencies/testing-file-transitive-a",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/tarball-dependencies/testing-file-transitive-a/c",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/tarball-dependencies/testing-file-transitive-b",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/test-conflicted-optional-peer-dep/has-peer",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/test-conflicted-optional-peer-dep/has-peer-optional",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/test-conflicted-optional-peer-dep/meta-peer",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/test-conflicted-optional-peer-dep/meta-peer-optional",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/test-conflicted-optional-peer-dep/nest-peer-optional",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/test-conflicted-optional-peer-dep/omit-peer-optional",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/test-conflicted-optional-peer-dep/peer/1",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/test-conflicted-optional-peer-dep/peer/2",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/test-package-with-shrinkwrap",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/test-peer-looser-than-dev",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/test-peer-looser-than-dev/a-peer-dep/1",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/test-peer-looser-than-dev/a-peer-dep/2",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/test-peer-looser-than-dev/devdep",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/test-root-matches-metadep",
+          "status": "PARTIAL",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/test-root-matches-metadep/x",
+          "status": "PARTIAL",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/test-root-matches-metadep/y",
+          "status": "PARTIAL",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-asymmetrical-bin-no-lock",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-asymmetrical-bin-no-lock/a",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-asymmetrical-bin-no-lock/b",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-asymmetrical-bin-with-lock",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-asymmetrical-bin-with-lock/a",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-asymmetrical-bin-with-lock/b",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-bundle-dupes/a/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-bundle-dupes/a/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-bundle-dupes/b/1",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-bundle-dupes/b/2.0",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-bundle-dupes/b/2.1",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-bundledeps",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-bundledeps-2",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-bundledeps-3",
+          "status": "EXACT",
+          "detected": 5,
+          "exact": 5,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-bundledeps-empty",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-bundledeps-legacy-bundling",
+          "status": "EXACT",
+          "detected": 4,
+          "exact": 4,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-bundledeps-parent",
+          "status": "EXACT",
+          "detected": 4,
+          "exact": 4,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-bundledeps-sw",
+          "status": "EXACT",
+          "detected": 5,
+          "exact": 5,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-dev-optional-flags",
+          "status": "DECLARED_ONLY",
+          "detected": 4,
+          "exact": 0,
+          "unresolved": 4
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-dev-optional-flags-2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-missing-tgz",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain",
+          "status": "EXACT",
+          "detected": 6,
+          "exact": 6,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/a/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/a/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/a/3",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/b/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/b/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/b/3",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/c/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/c/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/c/3",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/d/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/d/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/d/3",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/e/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/e/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/i/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/i/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/ii/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/ii/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/j/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/j/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/jj/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/jj/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/k/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/k/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/kk/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/kk/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/l/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/l/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/ll/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/ll/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/m/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/m/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/mm/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/mm/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/override",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/override-dep",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/override-peer",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/override-peer-dep",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/p/1",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/p/2",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/q/1",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/q/2",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/r/1",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/r/2",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/s/1",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/s/2",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/single-a/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/single-a/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/single-b/1",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/single-b/2",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/t/1",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/t/2",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/v/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/v/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/v/3",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/v/4",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/vv/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/vv/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/w/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/w/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/w/3",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/w/4",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/x/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/x/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/x/3",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/x/4",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/y/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/y/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/y/3",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/y/4",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/z/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/z/2",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/z/3",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-conflict-chain/z/4",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-nesting/multi",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-nesting/p/1",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-nesting/p/2",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-nesting/q",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-nesting/s/1",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-nesting/s/2",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-nesting/simple",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-nesting/x",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-nesting/y",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-dep-nesting/z",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-deps",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-deps-nested",
+          "status": "EXACT",
+          "detected": 8,
+          "exact": 8,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-deps-overlap",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-peer-deps-unresolvable",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-rebuild-bundle",
+          "status": "EXACT",
+          "detected": 3,
+          "exact": 3,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-rebuild-bundle-reified",
+          "status": "EXACT",
+          "detected": 3,
+          "exact": 3,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-rebuild-bundle/a",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-rebuild-bundle/b",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-rebuild-bundle/parent",
+          "status": "EXACT",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-rebuild-script-env-flags",
+          "status": "EXACT",
+          "detected": 4,
+          "exact": 4,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-transitive-conflicted-peer/a",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-transitive-conflicted-peer/b/1",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-transitive-conflicted-peer/b/2",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-transitive-conflicted-peer/c",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/testing-transitive-conflicted-peer/root",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/two-bundled-deps",
+          "status": "EXACT",
+          "detected": 421,
+          "exact": 421,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/update-exact-version",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspace",
+          "status": "DECLARED_ONLY",
+          "detected": 3,
+          "exact": 0,
+          "unresolved": 3
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspace/packages/a",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspace/packages/b",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspace/packages/c",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspace2",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspace2/x",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspace3",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspace3/app",
+          "status": "DECLARED_ONLY",
+          "detected": 4,
+          "exact": 0,
+          "unresolved": 4
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspace3/packages/a",
+          "status": "DECLARED_ONLY",
+          "detected": 3,
+          "exact": 0,
+          "unresolved": 3
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspace3/packages/b",
+          "status": "DECLARED_ONLY",
+          "detected": 3,
+          "exact": 0,
+          "unresolved": 3
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspace3/packages/c",
+          "status": "DECLARED_ONLY",
+          "detected": 3,
+          "exact": 0,
+          "unresolved": 3
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspace4",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspace4/packages/bar",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspace4/packages/foo",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-add-new-dep",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-add-new-dep/a",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-conflicting-versions",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-conflicting-versions-virtual",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-conflicting-versions-virtual/packages/a",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-conflicting-versions-virtual/packages/b",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-conflicting-versions/packages/a",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-conflicting-versions/packages/b",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-duplicate",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-duplicate/packages/a",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-duplicate/packages/b",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-ignore-nm",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-ignore-nm-virtual",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-ignore-nm-virtual/packages/a",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-ignore-nm/packages/a",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-link-bin",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-link-bin/packages/a",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-link-bin/packages/b",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-need-update",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-need-update/a",
+          "status": "EXACT",
+          "detected": 3,
+          "exact": 3,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-need-update/b",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-non-simplistic",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-non-simplistic/a",
+          "status": "EXACT",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-not-root",
+          "status": "EXACT",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-not-root/packages/a",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-not-root/packages/b",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-not-root/packages/c",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-peer-ranges",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-peer-ranges/packages/a",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-peer-ranges/packages/b",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-prefer-linking",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-prefer-linking-virtual",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-prefer-linking-virtual/packages/a",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-prefer-linking-virtual/packages/abbrev",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-prefer-linking/packages/a",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-prefer-linking/packages/abbrev",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-root-linked",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-root-linked/a",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-root-linked/b",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-scoped-pkg",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-scoped-pkg/packages/a",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-scoped-pkg/packages/b",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-shared-deps",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-shared-deps-virtual",
+          "status": "EXACT",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-shared-deps-virtual/packages/a",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-shared-deps-virtual/packages/b",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-shared-deps-virtual/packages/c",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-shared-deps/packages/a",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-shared-deps/packages/b",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-shared-deps/packages/c",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-simple",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-simple-virtual",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-simple-virtual/a",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-simple-virtual/b",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-simple/a",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-simple/b",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-top-level-link",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-top-level-link-virtual",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-top-level-link-virtual/packages/a",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-top-level-link/packages/a",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-transitive-deps",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-transitive-deps-virtual",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-transitive-deps-virtual/packages/a",
+          "status": "EXACT",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-transitive-deps/packages/a",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-version-unsatisfied",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-version-unsatisfied-virtual",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-version-unsatisfied-virtual/packages/a",
+          "status": "EXACT",
+          "detected": 1,
+          "exact": 1,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-version-unsatisfied-virtual/packages/abbrev",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-version-unsatisfied/packages/a",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-version-unsatisfied/packages/abbrev",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-with-files-spec",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-with-files-spec/d",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-with-files-spec/packages/a",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-with-files-spec/packages/b",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-with-files-spec/packages/c",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-with-overrides",
+          "status": "UNSUPPORTED",
+          "detected": 0,
+          "exact": 0,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/workspaces-with-overrides/ws",
+          "status": "PARTIAL",
+          "detected": 2,
+          "exact": 2,
+          "unresolved": 0
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/yargs",
+          "status": "PARTIAL",
+          "detected": 28,
+          "exact": 1,
+          "unresolved": 27
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/yarn-lock-mkdirp",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/yarn-lock-mkdirp-file-dep",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/yarn-lock-mkdirp-file-dep/mkdirp",
+          "status": "DECLARED_ONLY",
+          "detected": 2,
+          "exact": 0,
+          "unresolved": 2
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/yarn-lock-mkdirp-no-resolved",
+          "status": "DECLARED_ONLY",
+          "detected": 1,
+          "exact": 0,
+          "unresolved": 1
+        },
+        {
+          "path": "workspaces/arborist/test/fixtures/yarn-stuff",
+          "status": "DECLARED_ONLY",
+          "detected": 9,
+          "exact": 0,
+          "unresolved": 9
+        },
+        {
+          "path": "workspaces/config",
+          "status": "PARTIAL",
+          "detected": 966,
+          "exact": 959,
+          "unresolved": 7
+        },
+        {
+          "path": "workspaces/libnpmaccess",
+          "status": "PARTIAL",
+          "detected": 965,
+          "exact": 958,
+          "unresolved": 7
+        },
+        {
+          "path": "workspaces/libnpmdiff",
+          "status": "PARTIAL",
+          "detected": 965,
+          "exact": 958,
+          "unresolved": 7
+        },
+        {
+          "path": "workspaces/libnpmexec",
+          "status": "PARTIAL",
+          "detected": 971,
+          "exact": 964,
+          "unresolved": 7
+        },
+        {
+          "path": "workspaces/libnpmfund",
+          "status": "PARTIAL",
+          "detected": 964,
+          "exact": 957,
+          "unresolved": 7
+        },
+        {
+          "path": "workspaces/libnpmorg",
+          "status": "PARTIAL",
+          "detected": 974,
+          "exact": 967,
+          "unresolved": 7
+        },
+        {
+          "path": "workspaces/libnpmpack",
+          "status": "PARTIAL",
+          "detected": 974,
+          "exact": 967,
+          "unresolved": 7
+        },
+        {
+          "path": "workspaces/libnpmpublish",
+          "status": "PARTIAL",
+          "detected": 967,
+          "exact": 960,
+          "unresolved": 7
+        },
+        {
+          "path": "workspaces/libnpmsearch",
+          "status": "PARTIAL",
+          "detected": 973,
+          "exact": 966,
+          "unresolved": 7
+        },
+        {
+          "path": "workspaces/libnpmteam",
+          "status": "PARTIAL",
+          "detected": 974,
+          "exact": 967,
+          "unresolved": 7
+        },
+        {
+          "path": "workspaces/libnpmversion",
+          "status": "PARTIAL",
+          "detected": 966,
+          "exact": 959,
+          "unresolved": 7
+        }
+      ],
+      "warnings": [
+        "@npmcli/mock-globals: Could not determine the installed dependency coveralls used by tap.",
+        "@npmcli/mock-globals: Could not determine the installed dependency flow-remove-types used by tap.",
+        "@npmcli/mock-globals: Could not determine the installed dependency ts-node used by tap.",
+        "@npmcli/mock-globals: Could not determine the installed dependency babel-plugin-macros used by dedent.",
+        "@npmcli/mock-globals: Could not determine the installed dependency bufferutil used by ws.",
+        "@npmcli/mock-globals: Could not determine the installed dependency utf-8-validate used by ws.",
+        "@npmcli/mock-globals: Lockfile version for conventional-commits-filter does not satisfy its declared range ^5.0.0; regenerate the lockfile.",
+        "@npmcli/mock-globals: Could not determine the installed dependency kerberos used by proxy-agent-negotiate.",
+        "@npmcli/mock-globals: 7 dependency declarations have no exact installed version. They are retained but excluded from vulnerability matching."
+      ]
+    },
+    {
+      "repository": "pallets/flask",
+      "scanId": "0408f72a-ccc5-462e-a04f-f83f9ac4852c",
+      "commit": "d73fa1cdcbd8b1465c151db8924ba58b1dd14e35",
+      "ref": "main",
+      "status": "completed",
+      "projects": 4,
+      "files": 6,
+      "allProjectPreview": {
+        "dependencies": 114,
+        "exact": 104,
+        "unresolved": 10
+      },
+      "selected": [
+        "."
+      ],
+      "dependencies": 84,
+      "exactVersions": 83,
+      "unresolved": 1,
+      "graphNodes": 85,
+      "checked": 83,
+      "coverage": [
+        {
+          "path": ".",
+          "status": "PARTIAL",
+          "detected": 84,
+          "exact": 83,
+          "unresolved": 1
+        },
+        {
+          "path": "examples/celery",
+          "status": "PARTIAL",
+          "detected": 24,
+          "exact": 21,
+          "unresolved": 3
+        },
+        {
+          "path": "examples/javascript",
+          "status": "DECLARED_ONLY",
+          "detected": 3,
+          "exact": 0,
+          "unresolved": 3
+        },
+        {
+          "path": "examples/tutorial",
+          "status": "DECLARED_ONLY",
+          "detected": 3,
+          "exact": 0,
+          "unresolved": 3
+        }
+      ],
+      "warnings": [
+        "flask: Python lockfile versions and recorded package edges are shown. Root membership, environment markers and optional groups are not fully resolved; dashed root links mean listed packages, not proven direct dependencies.",
+        "flask: 1 dependency declarations have no exact installed version. They are retained but excluded from vulnerability matching."
+      ]
+    },
+    {
+      "repository": "spring-projects/spring-petclinic",
+      "scanId": "100058f2-d987-444e-a327-c12a6de34a11",
+      "commit": "818c4136ea971c21674525f9053de0d9c7ad8cfe",
+      "ref": "main",
+      "status": "completed",
+      "projects": 1,
+      "files": 1,
+      "allProjectPreview": {
+        "dependencies": 28,
+        "exact": 3,
+        "unresolved": 25
+      },
+      "selected": [
+        "."
+      ],
+      "dependencies": 28,
+      "exactVersions": 3,
+      "unresolved": 25,
+      "graphNodes": 29,
+      "checked": 3,
+      "coverage": [
+        {
+          "path": ".",
+          "status": "PARTIAL",
+          "detected": 28,
+          "exact": 3,
+          "unresolved": 25
+        }
+      ],
+      "warnings": [
+        "spring-petclinic: Unresolved managed version: org.springframework.boot:spring-boot-starter-actuator. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: org.springframework.boot:spring-boot-starter-cache. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: org.springframework.boot:spring-boot-starter-data-jpa. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: org.springframework.boot:spring-boot-starter-thymeleaf. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: org.springframework.boot:spring-boot-starter-validation. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: org.springframework.boot:spring-boot-starter-webmvc. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: javax.cache:cache-api. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: jakarta.xml.bind:jakarta.xml.bind-api. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: com.h2database:h2. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: com.github.ben-manes.caffeine:caffeine. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: com.mysql:mysql-connector-j. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: org.postgresql:postgresql. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: org.springframework.boot:spring-boot-devtools. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: org.springframework.boot:spring-boot-starter-data-jpa-test. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: org.springframework.boot:spring-boot-starter-restclient. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: org.springframework.boot:spring-boot-starter-restclient-test. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: org.springframework.boot:spring-boot-starter-thymeleaf-test. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: org.springframework.boot:spring-boot-starter-validation-test. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: org.springframework.boot:spring-boot-starter-webmvc-test. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: org.springframework.boot:spring-boot-starter-actuator-test. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: org.springframework.boot:spring-boot-testcontainers. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: org.springframework.boot:spring-boot-docker-compose. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: org.springframework.boot:spring-boot-starter-cache-test. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: org.testcontainers:testcontainers-junit-jupiter. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: Unresolved managed version: org.testcontainers:testcontainers-mysql. Export dependency-tree.json for full resolution.",
+        "spring-petclinic: POM import includes exact direct dependencies only. Parent/BOM mediation, profiles and transitives require dependency-tree.json.",
+        "spring-petclinic: 25 dependency declarations have no exact installed version. They are retained but excluded from vulnerability matching."
+      ]
+    },
+    {
+      "repository": "GoogleCloudPlatform/microservices-demo",
+      "scanId": "305a680f-64eb-431b-a03c-6d026be14b1e",
+      "commit": "b9a978db9e01f4ad3dca9494a22cb9edc17548fe",
+      "ref": "main",
+      "status": "completed",
+      "projects": 6,
+      "files": 8,
+      "allProjectPreview": {
+        "dependencies": 725,
+        "exact": 723,
+        "unresolved": 2
+      },
+      "selected": [
+        "src/currencyservice",
+        "src/emailservice",
+        "src/loadgenerator",
+        "src/paymentservice",
+        "src/recommendationservice",
+        "src/shoppingassistantservice"
+      ],
+      "dependencies": 725,
+      "exactVersions": 394,
+      "unresolved": 2,
+      "graphNodes": 731,
+      "checked": 394,
+      "coverage": [
+        {
+          "path": "src/currencyservice",
+          "status": "PARTIAL",
+          "detected": 285,
+          "exact": 284,
+          "unresolved": 1
+        },
+        {
+          "path": "src/emailservice",
+          "status": "PARTIAL",
+          "detected": 35,
+          "exact": 35,
+          "unresolved": 0
+        },
+        {
+          "path": "src/loadgenerator",
+          "status": "PARTIAL",
+          "detected": 39,
+          "exact": 39,
+          "unresolved": 0
+        },
+        {
+          "path": "src/paymentservice",
+          "status": "PARTIAL",
+          "detected": 256,
+          "exact": 255,
+          "unresolved": 1
+        },
+        {
+          "path": "src/recommendationservice",
+          "status": "PARTIAL",
+          "detected": 31,
+          "exact": 31,
+          "unresolved": 0
+        },
+        {
+          "path": "src/shoppingassistantservice",
+          "status": "PARTIAL",
+          "detected": 79,
+          "exact": 79,
+          "unresolved": 0
+        }
+      ],
+      "warnings": [
+        "grpc-currency-service: Could not determine the installed dependency encoding used by node-fetch.",
+        "grpc-currency-service: 1 dependency declarations have no exact installed version. They are retained but excluded from vulnerability matching.",
+        "emailservice: Flat requirements snapshot: all pins are attached to the application. Transitive ancestry and environment markers are not resolved.",
+        "loadgenerator: Flat requirements snapshot: all pins are attached to the application. Transitive ancestry and environment markers are not resolved.",
+        "paymentservice: Could not determine the installed dependency encoding used by node-fetch.",
+        "paymentservice: 1 dependency declarations have no exact installed version. They are retained but excluded from vulnerability matching.",
+        "recommendationservice: Flat requirements snapshot: all pins are attached to the application. Transitive ancestry and environment markers are not resolved.",
+        "shoppingassistantservice: Flat requirements snapshot: all pins are attached to the application. Transitive ancestry and environment markers are not resolved.",
+        "Some advisories have no numeric CVSS in this snapshot. Their severity is shown as unscored; priority may be a lower bound."
+      ]
+    },
+    {
+      "repository": "octocat/Hello-World",
+      "scanId": "96295882-c914-4f2a-87e5-e2b626abb5a7",
+      "commit": "7fd1a60b01f91b314f59955a4e4d4e80d8edf11d",
+      "ref": "master",
+      "status": "mapped",
+      "projects": 0,
+      "files": 0,
+      "allProjectPreview": {
+        "dependencies": 0,
+        "exact": 0,
+        "unresolved": 0
+      },
+      "selected": [],
+      "dependencies": 0,
+      "exactVersions": 0,
+      "unresolved": 0,
+      "graphNodes": 0,
+      "checked": 0,
+      "coverage": [],
+      "warnings": []
+    }
+  ]
+}

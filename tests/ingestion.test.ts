@@ -87,6 +87,7 @@ test("declared-only repository produces nodes and makes no source requests", asy
 });
 test("npm v1 lock creates exact direct and indirect nodes", () => {
   const { packages, graph } = ingest({
+    "package.json": JSON.stringify({ dependencies: { a: "1.0.0" } }),
     "package-lock.json": JSON.stringify({
       lockfileVersion: 1,
       name: "app",
@@ -159,4 +160,58 @@ test("invalid manifest does not hide a valid lock and missing lock entries are n
     "package-lock.json": lock,
   });
   assert.equal(valid.packages.length, 2);
+});
+test("one unsupported project cannot fail repository discovery or analysis", async () => {
+  const { Store } = await import("../src/server/store.js");
+  const { Jobs } = await import("../src/server/jobs.js");
+  const { Transport } = await import("../src/server/transport.js");
+  const store = new Store(":memory:");
+  const files: Record<string, string> = {
+    "good/pyproject.toml": '[project]\ndependencies=["requests>=2.31"]',
+    "unsupported/setup.py": "raise RuntimeError('must never execute')",
+    "broken/package.json": "invalid",
+  };
+  const sha = "a".repeat(40);
+  const fetcher: typeof fetch = async (input) => {
+    const url = String(input);
+    let body: unknown = url.includes("/commits/")
+      ? { sha }
+      : url.includes("/trees/")
+        ? { tree: Object.keys(files).map((path) => ({ path, type: "blob", sha: "b".repeat(40) })) }
+        : { default_branch: "main" };
+    if (url.includes("raw.githubusercontent.com"))
+      return new Response(files[url.split(sha + "/")[1]], {
+        headers: { "content-type": "text/plain" },
+      });
+    return new Response(JSON.stringify(body), { headers: { "content-type": "application/json" } });
+  };
+  const jobs = new Jobs(store, () => new Transport(store, fetcher));
+  try {
+    const created = jobs.create({ mode: "github", repository: "example/mixed", ref: "main" });
+    async function until(status: string) {
+      for (let i = 0; i < 1000; i++) {
+        const s = store.get(created.id)!;
+        if (s.status === status) return s;
+        assert.notEqual(s.status, "failed", s.error);
+        await new Promise((r) => setTimeout(r, 2));
+      }
+      throw new Error("Job timeout");
+    }
+    const mapped = await until("mapped");
+    assert.equal(mapped.repositoryMap!.projects.length, 3);
+    assert.equal(mapped.repositoryMap!.projects.find((p) => p.path === "good")?.unresolvedCount, 1);
+    jobs.analyze(
+      created.id,
+      mapped.repositoryMap!.projects.map((p) => ({ id: p.id, name: p.name })),
+    );
+    const completed = await until("completed");
+    assert.equal(completed.graph!.nodes.filter((n) => n.kind === "package").length, 1);
+    assert.equal(
+      completed.repositoryMap!.projects.filter((p) => p.ingestionStatus === "UNSUPPORTED").length,
+      2,
+    );
+  } finally {
+    await jobs.close();
+    store.close();
+  }
 });

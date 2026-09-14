@@ -30,13 +30,13 @@ For a recording using real source-backed findings, publish the prepared [control
 | npm package-lock/shrinkwrap v2/v3 | Installed paths, nearest dependency resolution, workspace links, direct/indirect depth, and runtime/development scope. Independent installations remain distinct. |
 | npm older lockfiles | Supported by the existing parser; less workspace context than v2/v3. |
 | pnpm locks | Importer dependencies and recorded snapshot relationships; unsupported local workspace links remain explicit warnings. |
-| package.json without usable lock / Yarn | Exact manifest pins only; ranges and unavailable indirect relationships are reported as partial. Yarn lock resolution is not implemented. |
-| Python requirements / Pipfile.lock | Exact pinned packages; flat files do not establish indirect ancestry. Ranges, includes, and commands are not executed. |
+| package.json without usable lock / Yarn | Exact manifest pins are checked; ranges and other declarations remain visible as unresolved. Yarn lock resolution is not implemented. |
+| Python requirements / Pipfile.lock | Exact pins are checked; unpinned declarations are retained with their constraints. Flat files do not establish indirect ancestry. Includes and commands are not executed. |
 | uv / Poetry locks | Recorded packages and reconstructable edges; environment selection and application membership may remain unknown. Root links labeled “listed” do not establish direct depth. |
 | Maven dependency tree | Recorded resolved dependency relationships. |
 | Maven pom.xml | Literal versions only; parent properties, BOM-managed versions, profiles, and indirect dependencies may be unresolved. Maven is never executed. |
 
-Related files are grouped by path and ecosystem. Repository discovery has no manifest-count cutoff. Truncated GitHub trees use bounded directory traversal and disclose remaining gaps. File/transport limits, unsupported formats, and individual parser failures produce project-level coverage notes; they do not turn unchecked packages into safe ones.
+Related files are grouped by path and ecosystem. Repository Map reads declarations and reports detected, exact and unresolved counts before analysis. Project coverage is EXACT, PARTIAL, DECLARED_ONLY or UNSUPPORTED. Unresolved nodes retain an unversioned identity, their declared specifier and partial coverage; they are not vulnerability-checked or priority-scored. Repository discovery has no manifest-count cutoff. Truncated GitHub trees use bounded directory traversal and disclose remaining gaps. File/transport limits, unsupported formats, and individual parser failures produce project-level coverage notes; they do not turn unchecked packages into safe ones.
 
 OSV provides package/version findings; CVSS vectors are scored deterministically. Registry sources can supplement findings; NVD enriches already-mapped CVEs only. CISA KEV adds positive known-exploitation evidence by exact CVE. Missing signals remain unknown. Fixed versions come only from matching affected-package evidence. No exploitation probability is invented.
 
@@ -55,6 +55,7 @@ npm run test:e2e
 node --import tsx scripts/verify-real-repos.ts
 node --import tsx scripts/verify-controlled-demo.ts
 node --import tsx scripts/verify-live-browser.ts
+VERIFY_BROWSER=1 node --import tsx scripts/verify-ingestion.ts
 ```
 
 Browser tests require Playwright Chromium (`npx playwright install chromium`), or set `PW_CHROME=1` to use installed Chrome. Tests use a separate local server and database on port 3100.

@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-09-13T15:57:28.559Z",
+  "testedAt": "2026-09-13T21:38:00.584Z",
   "results": [
     {
       "repository": "expressjs/express",
@@ -315,6 +315,73 @@
       "checked": 0,
       "advisories": [],
       "warnings": [],
+      "durationSeconds": 2
+    },
+    {
+      "repository": "google/osv-scanner",
+      "ref": "main",
+      "commit": "1f87b5cb9781a03a9b8b50dfc1eac1b2056c79d5",
+      "scanId": "367ba078-45f5-4504-a848-aeb8ebceb9b8",
+      "projects": 24,
+      "files": 30,
+      "selected": [
+        {
+          "name": "in-place-npm",
+          "path": "cmd/osv-scanner/fix/testdata/in-place-npm",
+          "ecosystem": "npm"
+        }
+      ],
+      "status": "completed",
+      "packageVersions": 106,
+      "checked": 106,
+      "advisories": [
+        "GHSA-c6rq-rjc2-86v2",
+        "GHSA-g74r-ffvr-5q9f",
+        "GHSA-p8p7-x288-28g6",
+        "GHSA-c2qf-rxjj-qqgw",
+        "GHSA-43f8-2h32-f4cj",
+        "GHSA-fjxv-7rqg-78g4",
+        "GHSA-hmw2-7cc7-3qxx",
+        "GHSA-4mjr-xmp4-gh2g",
+        "GHSA-6rw7-vpxm-498p",
+        "GHSA-72xf-g2v4-qvf3",
+        "GHSA-w5hq-g745-h8pq",
+        "GHSA-2g4f-4pwh-qvx6",
+        "GHSA-23c5-xmqv-rm74",
+        "GHSA-3ppc-4f35-3m26",
+        "GHSA-7r86-cg39-jmmj",
+        "GHSA-3jxr-9vmj-r5cp",
+        "GHSA-f886-m6hf-6m8v",
+        "GHSA-mh99-v99m-4gvg",
+        "GHSA-rgw5-rvv9-x895",
+        "GHSA-v6h2-p8h4-qcjw"
+      ],
+      "warnings": [
+        "in-place-npm: Lockfile version for readable-stream does not satisfy its declared range ~2.0.0; regenerate the lockfile."
+      ],
+      "durationSeconds": 14
+    },
+    {
+      "repository": "jagpreetsingh02/SWASTRA-OCR",
+      "ref": "main",
+      "commit": "9665f4579de5afe728ced1aaa92fdcf5f0c6428c",
+      "scanId": "8c7a4336-5b04-481e-9064-370b862fa29c",
+      "projects": 1,
+      "files": 1,
+      "selected": [
+        {
+          "name": "SWASTRA-OCR",
+          "path": ".",
+          "ecosystem": "pypi"
+        }
+      ],
+      "status": "completed",
+      "packageVersions": 0,
+      "checked": 0,
+      "advisories": [],
+      "warnings": [
+        "SWASTRA-OCR: No exact resolved Python snapshot is available. Unpinned dependencies are not checked; use uv.lock, poetry.lock, Pipfile.lock or pinned requirements."
+      ],
       "durationSeconds": 2
     }
   ]
