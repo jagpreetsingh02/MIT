@@ -10,17 +10,24 @@ interface ModelChoice {
 
 // Ordered preferences; only models the key can currently use are ever selected.
 const CHAT_MODELS: Record<Tier, ModelChoice[]> = {
-  fast: [{ id: "openai/gpt-oss-20b", reasoning: "low", strict: true }, { id: "llama-3.1-8b-instant" }],
+  fast: [
+    { id: "openai/gpt-oss-20b", reasoning: "low", strict: true },
+    { id: "llama-3.1-8b-instant" },
+  ],
   balanced: [
     { id: "openai/gpt-oss-120b", reasoning: "low", strict: true },
     { id: "llama-3.3-70b-versatile" },
     { id: "openai/gpt-oss-20b", reasoning: "medium", strict: true },
   ],
-  deep: [{ id: "openai/gpt-oss-120b", reasoning: "high", strict: true }, { id: "llama-3.3-70b-versatile" }],
+  deep: [
+    { id: "openai/gpt-oss-120b", reasoning: "high", strict: true },
+    { id: "llama-3.3-70b-versatile" },
+  ],
 };
 const TRANSCRIPTION_MODELS = ["whisper-large-v3-turbo", "whisper-large-v3"];
 const MODEL_TTL = 10 * 60_000;
 const MAX_CHAT_ATTEMPTS = 3;
+const MAX_RATE_LIMIT_WAIT_MS = 6_000;
 
 export class OtterError extends Error {
   constructor(
@@ -28,6 +35,10 @@ export class OtterError extends Error {
     public statusCode = 502,
     /** A different model (or one more try) may succeed: malformed JSON, rate limit, upstream 5xx. */
     public retryable = false,
+    /** Groq's suggested wait before retrying a rate-limited request. */
+    public retryAfterMs?: number,
+    /** Model output Groq rejected as invalid JSON. Used only to salvage a reply; never logged. */
+    public failedGeneration?: string,
   ) {
     super(message);
   }
@@ -47,6 +58,9 @@ export interface UpstreamDiagnostic {
   type?: string;
   code?: string;
   message?: string;
+  retryAfterMs?: number;
+  /** For json_validate_failed: whether the rejected output still contained a usable reply. */
+  salvageable?: boolean;
   model?: string;
   tier?: Tier;
   what: string;
@@ -68,17 +82,43 @@ export function sanitizeUpstreamMessage(message: unknown) {
     .slice(0, 300);
 }
 
+function retryAfter(response: Response, message?: string) {
+  const header = Number(response.headers.get("retry-after"));
+  if (Number.isFinite(header) && header > 0) return Math.ceil(header * 1000);
+  const hinted = message?.match(/try again in ([\d.]+)(ms|s)\b/i);
+  if (hinted) return Math.ceil(Number(hinted[1]) * (hinted[2].toLowerCase() === "ms" ? 1 : 1000));
+  return undefined;
+}
+
 async function readUpstreamError(response: Response) {
+  let error: any;
   try {
-    const text = (await response.text()).slice(0, 20_000);
-    const error = JSON.parse(text)?.error;
-    return {
+    error = JSON.parse((await response.text()).slice(0, 100_000))?.error;
+  } catch {}
+  const message = sanitizeUpstreamMessage(error?.message);
+  return {
+    detail: {
       type: typeof error?.type === "string" ? error.type.slice(0, 80) : undefined,
       code: typeof error?.code === "string" ? error.code.slice(0, 80) : undefined,
-      message: sanitizeUpstreamMessage(error?.message),
-    };
+      message,
+      retryAfterMs: response.status === 429 ? retryAfter(response, message) : undefined,
+    },
+    failedGeneration:
+      typeof error?.failed_generation === "string" ? error.failed_generation : undefined,
+  };
+}
+
+/** Recovers a reply object from output Groq rejected, when it is complete, valid JSON with an answer. */
+function salvageReply(failedGeneration?: string) {
+  const match = failedGeneration?.match(/\{[\s\S]*\}/);
+  if (!match) return undefined;
+  try {
+    const parsed = JSON.parse(match[0]);
+    return typeof parsed?.answer === "string" && parsed.answer.trim()
+      ? JSON.stringify(parsed)
+      : undefined;
   } catch {
-    return {};
+    return undefined;
   }
 }
 
@@ -152,7 +192,10 @@ export class GroqClient {
       });
     } catch (error) {
       const timedOut = (error as Error)?.name === "TimeoutError";
-      this.log({ status: 0, code: timedOut ? "timeout" : "network_error", what, ...meta }, "Groq request failed");
+      this.log(
+        { status: 0, code: timedOut ? "timeout" : "network_error", what, ...meta },
+        "Groq request failed",
+      );
       throw new OtterError(
         timedOut
           ? "Groq took too long to answer. Try again shortly."
@@ -161,9 +204,19 @@ export class GroqClient {
       );
     }
     if (!response.ok) {
-      const detail = await readUpstreamError(response);
-      this.log({ status: response.status, ...detail, what, ...meta }, "Groq request failed");
-      throw upstreamError(response.status, what, detail.code);
+      const { detail, failedGeneration } = await readUpstreamError(response);
+      const error = upstreamError(response.status, what, detail.code);
+      error.retryAfterMs = detail.retryAfterMs;
+      error.failedGeneration = failedGeneration;
+      const salvageable =
+        detail.code === "json_validate_failed"
+          ? { salvageable: Boolean(salvageReply(failedGeneration)) }
+          : {};
+      this.log(
+        { status: response.status, ...detail, ...salvageable, what, ...meta },
+        "Groq request failed",
+      );
+      throw error;
     }
     return readJson(response);
   }
@@ -214,17 +267,26 @@ export class GroqClient {
     const candidates = await this.chatCandidates(tier);
     if (!candidates.length)
       throw new OtterError("No supported Groq chat model is available to this key.", 503);
-    // Bounded fallback: try the next available model on a retryable failure; with a single
-    // model, allow one more try unless Groq rate-limited it (an immediate retry would fail too).
-    const plan = candidates.length > 1 ? candidates : [candidates[0], candidates[0]];
+    // Bounded fallback (at most MAX_CHAT_ATTEMPTS calls): on a retryable failure try the next
+    // available model, then the first again. A rate-limited retry waits only when Groq says the
+    // limit clears within MAX_RATE_LIMIT_WAIT_MS.
+    const plan = [...candidates, candidates[0]].slice(0, MAX_CHAT_ATTEMPTS);
     let lastError: OtterError | undefined;
-    for (const [attempt, model] of plan.slice(0, MAX_CHAT_ATTEMPTS).entries()) {
-      if (attempt > 0 && lastError?.statusCode === 429 && model.id === plan[attempt - 1].id) break;
+    for (const [attempt, model] of plan.entries()) {
+      if (attempt === plan.length - 1 && attempt > 0 && lastError?.statusCode === 429) {
+        const wait = lastError.retryAfterMs;
+        if (!wait || wait > MAX_RATE_LIMIT_WAIT_MS) break;
+        await new Promise((resolve) => setTimeout(resolve, wait));
+      }
       try {
         return await this.chatOnce(tier, model, messages, schema);
       } catch (error) {
         if (!(error instanceof OtterError) || !error.retryable) throw error;
         lastError = error;
+        // A rejected generation that is still a complete reply is used as-is (it goes through the
+        // same server-side validation), which avoids spending another call against Groq's limits.
+        const salvaged = salvageReply(error.failedGeneration);
+        if (salvaged) return salvaged;
       }
     }
     throw lastError!;
@@ -250,7 +312,10 @@ export class GroqClient {
           // json_validate_failed errors seen with JSON Object Mode on gpt-oss models.
           response_format:
             schema && model.strict
-              ? { type: "json_schema", json_schema: { name: schema.name, strict: true, schema: schema.schema } }
+              ? {
+                  type: "json_schema",
+                  json_schema: { name: schema.name, strict: true, schema: schema.schema },
+                }
               : { type: "json_object" },
           ...(model.reasoning ? { reasoning_effort: model.reasoning } : {}),
         }),

@@ -331,12 +331,13 @@ test("Groq chat failures are logged safely and fall back to another available mo
     assert.equal(second.model, "openai/gpt-oss-20b");
     assert.equal(first.response_format.type, "json_schema");
     assert.equal(first.response_format.json_schema.strict, true);
-    assert.deepEqual(logs, [
+    assert.deepEqual(JSON.parse(JSON.stringify(logs)), [
       {
         status: 400,
         type: "invalid_request_error",
         code: "json_validate_failed",
         message: "Failed to generate JSON with [redacted] in org_[redacted]",
+        salvageable: false,
         what: "chat",
         model: "openai/gpt-oss-120b",
         tier: "balanced",
@@ -345,12 +346,51 @@ test("Groq chat failures are logged safely and fall back to another available mo
     const logged = JSON.stringify(logs);
     assert(!logged.includes(KEY) && !logged.includes("SECRET_CONTEXT") && !logged.includes("Explain it"));
 
-    const limited = () =>
-      groqError(429, { type: "tokens", code: "rate_limit_exceeded", message: "Rate limit reached" });
-    failures.push(limited(), limited());
+    // Output Groq rejected but that is still a complete reply is reused without another call.
+    const salvageBefore = calls.length;
+    failures.push(
+      new Response(
+        JSON.stringify({
+          error: {
+            type: "invalid_request_error",
+            code: "json_validate_failed",
+            message: "Failed to generate JSON.",
+            failed_generation: 'Here you go: {"answer":"Salvaged answer.","actions":[],"outOfScope":false}',
+          },
+        }),
+        { status: 400 },
+      ),
+    );
+    const salvaged = await ask();
+    assert.equal(salvaged.statusCode, 200);
+    assert.equal(salvaged.json().answer, "Salvaged answer.");
+    assert.equal(calls.length, salvageBefore + 1);
+    assert.equal((logs.at(-1) as any).salvageable, true);
+    assert(!JSON.stringify(logs).includes("Salvaged answer"));
+
+    const limited = (retryAfter?: string) =>
+      new Response(
+        JSON.stringify({ error: { type: "tokens", code: "rate_limit_exceeded", message: "Rate limit reached" } }),
+        { status: 429, headers: retryAfter ? { "retry-after": retryAfter } : {} },
+      );
+    failures.push(limited(), limited(), limited());
     const rateLimited = await ask();
     assert.equal(rateLimited.statusCode, 429);
     assert.equal(rateLimited.json().error, "Groq's rate limit was reached. Try again shortly.");
+
+    // A short Groq-suggested wait is honoured once, then the request succeeds.
+    failures.length = 0;
+    failures.push(limited("1"), limited("1"));
+    const started = Date.now();
+    const waited = await ask();
+    assert.equal(waited.statusCode, 200);
+    assert(Date.now() - started >= 900);
+
+    // Long waits are not held open.
+    failures.push(limited("60"), limited("60"));
+    const longWait = Date.now();
+    assert.equal((await ask()).statusCode, 429);
+    assert(Date.now() - longWait < 900);
 
     failures.push(groqError(401, { type: "invalid_request_error", code: "invalid_api_key", message: "bad" }));
     const before = calls.length;
