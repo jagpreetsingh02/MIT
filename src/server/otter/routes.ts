@@ -44,7 +44,7 @@ const AUDIO_HEADER = /^audio\/(webm|ogg|mp4|m4a|x-m4a|wav|x-wav|mpeg|mp3)(\s*;.*
 export async function otterRoutes(
   app: FastifyInstance,
   getScan: (id: string, ready?: boolean) => Scan,
-  client = new GroqClient(),
+  client = new GroqClient(fetch, (diagnostic, msg) => app.log.warn({ groq: diagnostic }, msg)),
 ) {
   function fail(reply: any, error: unknown) {
     if (error instanceof OtterError) return reply.code(error.statusCode).send({ error: error.message });

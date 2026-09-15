@@ -71,6 +71,34 @@ function systemPrompt(scope: OtterScope, ctx: OtterContext, demo: boolean) {
     .join("\n");
 }
 
+const REPLY_SCHEMA = {
+  name: "otter_reply",
+  schema: {
+    type: "object",
+    additionalProperties: false,
+    required: ["answer", "actions", "outOfScope"],
+    properties: {
+      answer: { type: "string" },
+      actions: {
+        type: "array",
+        items: {
+          type: "object",
+          additionalProperties: false,
+          required: ["type", "target"],
+          properties: {
+            type: {
+              type: "string",
+              enum: ["section", "application", "package", "trace", "vulnerability", "evidence"],
+            },
+            target: { type: "string" },
+          },
+        },
+      },
+      outOfScope: { type: "boolean" },
+    },
+  },
+};
+
 export function validateScope(scan: Scan, scope: OtterScope) {
   if (scope.kind !== "vulnerability") return;
   const node = scan.graph?.nodes.find((n) => n.id === scope.nodeId);
@@ -139,6 +167,6 @@ export async function askOtter(
   const raw = await client.chat(tier, [
     { role: "system", content: systemPrompt(request.scope, ctx, demo) },
     ...request.messages.slice(-12).map((m) => ({ role: m.role, content: m.content.slice(0, 4000) })),
-  ]);
+  ], REPLY_SCHEMA);
   return parseReply(raw, ctx, request.scope, demo);
 }

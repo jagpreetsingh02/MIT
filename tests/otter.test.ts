@@ -290,3 +290,75 @@ test("auto mode routes navigation to the fast tier", () => {
   assert.equal(autoTier("Where can I see unresolved dependencies?"), "fast");
   assert.equal(autoTier("Why is lodash ranked first?"), "balanced");
 });
+
+test("Groq chat failures are logged safely and fall back to another available model", async () => {
+  process.env.GROQ_API_KEY = KEY;
+  const failedGeneration = "SECRET_CONTEXT lodash@4.17.20 user question";
+  const failures: Response[] = [];
+  const { client, calls } = mockGroq(() =>
+    failures.shift() ?? { answer: "Recovered answer.", actions: [], outOfScope: false },
+  );
+  const logs: unknown[] = [];
+  client.log = (diagnostic) => logs.push(diagnostic);
+  const { app, lodash, url } = await demoApp(client);
+  const ask = () =>
+    app.inject({
+      method: "POST",
+      url,
+      payload: {
+        scope: { kind: "vulnerability", advisoryId: "DEMO-001", nodeId: lodash.id },
+        messages: [{ role: "user", content: "Explain it simply" }],
+      },
+    });
+  const groqError = (status: number, error: Record<string, string>) =>
+    new Response(JSON.stringify({ error: { ...error, failed_generation: failedGeneration } }), {
+      status,
+    });
+  try {
+    failures.push(
+      groqError(400, {
+        type: "invalid_request_error",
+        code: "json_validate_failed",
+        message: `Failed to generate JSON with ${KEY} in org_abc123`,
+      }),
+    );
+    const recovered = await ask();
+    assert.equal(recovered.statusCode, 200);
+    assert.equal(recovered.json().answer, "Recovered answer.");
+    const chats = calls.filter((c) => c.url.endsWith("/chat/completions"));
+    const [first, second] = chats.slice(-2).map((c) => JSON.parse(String(c.init.body)));
+    assert.equal(first.model, "openai/gpt-oss-120b");
+    assert.equal(second.model, "openai/gpt-oss-20b");
+    assert.equal(first.response_format.type, "json_schema");
+    assert.equal(first.response_format.json_schema.strict, true);
+    assert.deepEqual(logs, [
+      {
+        status: 400,
+        type: "invalid_request_error",
+        code: "json_validate_failed",
+        message: "Failed to generate JSON with [redacted] in org_[redacted]",
+        what: "chat",
+        model: "openai/gpt-oss-120b",
+        tier: "balanced",
+      },
+    ]);
+    const logged = JSON.stringify(logs);
+    assert(!logged.includes(KEY) && !logged.includes("SECRET_CONTEXT") && !logged.includes("Explain it"));
+
+    const limited = () =>
+      groqError(429, { type: "tokens", code: "rate_limit_exceeded", message: "Rate limit reached" });
+    failures.push(limited(), limited());
+    const rateLimited = await ask();
+    assert.equal(rateLimited.statusCode, 429);
+    assert.equal(rateLimited.json().error, "Groq's rate limit was reached. Try again shortly.");
+
+    failures.push(groqError(401, { type: "invalid_request_error", code: "invalid_api_key", message: "bad" }));
+    const before = calls.length;
+    const rejected = await ask();
+    assert.equal(rejected.statusCode, 502);
+    assert.equal(calls.length, before + 1, "credential failures are not retried");
+    assert(!rejected.body.includes(KEY) && !rejected.body.includes("SECRET_CONTEXT"));
+  } finally {
+    await app.close();
+  }
+});
