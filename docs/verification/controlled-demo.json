@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-09-13T15:54:27.391Z",
+  "verifiedAt": "2026-09-15T16:55:36.469Z",
   "projects": [
     "apps/admin",
     "apps/checkout",
@@ -62,7 +62,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-3g43-6gmg-66jw",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -83,7 +83,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-3p68-rc4w-qgx5",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -105,7 +105,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-43fc-jf86-j433",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -126,7 +126,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-5c9x-8gcm-mpgx",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -147,7 +147,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-62hf-57xw-28j9",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -169,7 +169,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-6chq-wfr3-2hj9",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -190,7 +190,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-7q8q-rj6j-mhjq",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -211,7 +211,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-898c-q2cr-xwhg",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -232,7 +232,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-cph5-m8f7-6c5x",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -253,7 +253,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-fvcv-3m26-pcqx",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -275,7 +275,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-hfxv-24rg-xrqf",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -297,7 +297,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-j5f8-grm9-p9fc",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -319,7 +319,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-jr5f-v2jv-69x6",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -340,7 +340,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-m7pr-hjqh-92cm",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -361,7 +361,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-mmx7-hfxf-jppx",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -383,7 +383,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-p92q-9vqr-4j8v",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -405,7 +405,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-pf86-5x62-jrwf",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -427,7 +427,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-pjwm-pj3p-43mv",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -449,7 +449,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-pmwg-cvhr-8vh7",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -470,7 +470,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-vf2m-468p-8v99",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -491,7 +491,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-w9j2-pvgh-6h63",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -512,7 +512,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-wf5p-g6vw-rhxx",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -534,7 +534,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-xhjh-pmcv-23jw",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         },
@@ -555,7 +555,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-xx6v-rp6x-q39c",
-              "retrievedAt": "2026-09-13T15:54:19.888Z"
+              "retrievedAt": "2026-09-15T16:55:29.261Z"
             }
           ]
         }
@@ -583,7 +583,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-qw6h-vgh9-j6wx",
-              "retrievedAt": "2026-09-13T15:54:19.438Z"
+              "retrievedAt": "2026-09-15T16:55:29.184Z"
             }
           ]
         },
@@ -604,7 +604,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-rv95-896h-c2vc",
-              "retrievedAt": "2026-09-13T15:54:19.438Z"
+              "retrievedAt": "2026-09-15T16:55:29.184Z"
             }
           ]
         }
@@ -631,7 +631,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-qwcr-r2fm-qrc7",
-              "retrievedAt": "2026-09-13T15:54:19.788Z"
+              "retrievedAt": "2026-09-15T16:55:29.575Z"
             }
           ]
         },
@@ -653,7 +653,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-v422-hmwv-36x6",
-              "retrievedAt": "2026-09-13T15:54:19.788Z"
+              "retrievedAt": "2026-09-15T16:55:29.575Z"
             }
           ]
         }
@@ -679,12 +679,12 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-pxg6-pf52-xh8x",
-              "retrievedAt": "2026-09-13T15:54:19.907Z"
+              "retrievedAt": "2026-09-15T16:55:29.648Z"
             },
             {
               "source": "NVD",
               "url": "https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=CVE-2024-47764",
-              "retrievedAt": "2026-09-13T15:54:27.369Z"
+              "retrievedAt": "2026-09-15T16:55:36.464Z"
             }
           ]
         }
@@ -713,12 +713,12 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-37ch-88jc-xwx2",
-              "retrievedAt": "2026-09-13T15:54:20.755Z"
+              "retrievedAt": "2026-09-15T16:55:30.418Z"
             },
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-9wv6-86v2-598j",
-              "retrievedAt": "2026-09-13T15:54:20.755Z"
+              "retrievedAt": "2026-09-15T16:55:30.418Z"
             }
           ]
         },
@@ -739,7 +739,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-rhx6-c78j-4q9w",
-              "retrievedAt": "2026-09-13T15:54:20.755Z"
+              "retrievedAt": "2026-09-15T16:55:30.418Z"
             }
           ]
         }
@@ -765,7 +765,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-4mjr-xmp4-gh2g",
-              "retrievedAt": "2026-09-13T15:54:21.055Z"
+              "retrievedAt": "2026-09-15T16:55:30.702Z"
             }
           ]
         },
@@ -785,7 +785,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-6rw7-vpxm-498p",
-              "retrievedAt": "2026-09-13T15:54:21.055Z"
+              "retrievedAt": "2026-09-15T16:55:30.702Z"
             }
           ]
         },
@@ -814,7 +814,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-hrpp-h998-j3pp",
-              "retrievedAt": "2026-09-13T15:54:21.055Z"
+              "retrievedAt": "2026-09-15T16:55:30.702Z"
             }
           ]
         },
@@ -835,7 +835,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-w7fw-mjwx-w883",
-              "retrievedAt": "2026-09-13T15:54:21.055Z"
+              "retrievedAt": "2026-09-15T16:55:30.702Z"
             }
           ]
         }
@@ -862,7 +862,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-m6fv-jmcg-4jfg",
-              "retrievedAt": "2026-09-13T15:54:21.120Z"
+              "retrievedAt": "2026-09-15T16:55:30.728Z"
             }
           ]
         }
@@ -890,7 +890,7 @@
             {
               "source": "OSV",
               "url": "https://osv.dev/vulnerability/GHSA-cm22-4g7w-348p",
-              "retrievedAt": "2026-09-13T15:54:21.174Z"
+              "retrievedAt": "2026-09-15T16:55:30.776Z"
             }
           ]
         }

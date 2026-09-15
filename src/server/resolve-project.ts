@@ -6,7 +6,7 @@ import semver from "semver";
 import { node, finalize } from "./graph.js";
 import { parseManifest } from "./parsers.js";
 import { declarations } from "./declarations.js";
-import type { Graph, PackageNode, Project, Provenance } from "../shared/types.js";
+import type { Graph, PackageNode, Project } from "../shared/types.js";
 import type { SourceFile } from "./discovery.js";
 const hash = (s: string) => createHash("sha256").update(s).digest("hex").slice(0, 20);
 const exact = (s: unknown): s is string =>
@@ -26,7 +26,6 @@ function rootFor(p: Project, version = "0.0.0") {
 }
 export function resolveProject(project: Project, files: SourceFile[]): Graph {
   const declared = declarations(
-    project,
     files.filter(
       (f) =>
         project.files.includes(f.filename) ||

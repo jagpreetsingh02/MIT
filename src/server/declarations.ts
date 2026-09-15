@@ -1,11 +1,11 @@
 import { parse as toml } from "smol-toml";
 import { XMLParser } from "fast-xml-parser";
 import semver from "semver";
-import type { DependencyDeclaration, Project } from "../shared/types.js";
+import type { DependencyDeclaration } from "../shared/types.js";
 import type { SourceFile } from "./discovery.js";
 
 /** Static declarations only. Never resolve a range against the latest registry release. */
-export function declarations(project: Project, files: SourceFile[]) {
+export function declarations(files: SourceFile[]) {
   const found: DependencyDeclaration[] = [];
   const warnings: string[] = [];
   for (const file of files) {

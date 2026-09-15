@@ -4,8 +4,8 @@ data
 .git
 .env
 .env.*
-.codex
 .impeccable
 test-results
+output
 playwright-report
 *.pem

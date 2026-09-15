@@ -69,7 +69,7 @@ export type DiagnosticLogger = (diagnostic: UpstreamDiagnostic, msg: string) => 
 
 // Only Groq's own error type/code and a scrubbed, truncated message are kept. Groq's
 // `failed_generation` (model output that may echo scan data or user content) is never read.
-export function sanitizeUpstreamMessage(message: unknown) {
+function sanitizeUpstreamMessage(message: unknown) {
   if (typeof message !== "string") return undefined;
   const key = process.env.GROQ_API_KEY;
   return (key ? message.split(key).join("[redacted]") : message)

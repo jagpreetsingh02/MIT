@@ -16,7 +16,7 @@ import {
   type Scan,
 } from "../../shared/types.js";
 
-export const SECTION_LABELS: Record<OtterSection, string> = {
+const SECTION_LABELS: Record<OtterSection, string> = {
   overview: "Overview",
   risks: "Risks",
   applications: "Applications",
@@ -46,7 +46,7 @@ const SECTION_PURPOSE: Record<OtterSection, string> = {
 const METHODOLOGY =
   "Ripple Priority (0-100) = CVSS x 6 (max 60) + 15 if a source reports known exploitation + exposure (10 / shortest known depth, halved for development-only use) + application reach (up to 12 for share of mapped projects affected, up to 3 for affected ancestors). It is computed per package version from all of that version's advisories. Deterministic ranking, not an exploitation probability. Missing evidence can lower a score.";
 
-export const ADVISORY_ID =
+const ADVISORY_ID =
   /\b(?:CVE-\d{4}-\d{4,7}|GHSA(?:-[0-9a-z]{4}){3}|DEMO-\d{3,}|PYSEC-\d{4}-\d+|GO-\d{4}-\d+|RUSTSEC-\d{4}-\d{4}|OSV-\d{4}-\d+)\b/gi;
 
 export function advisoryIds(text: string) {

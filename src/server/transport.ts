@@ -14,7 +14,7 @@ const hosts = new Set([
   "api.osv.dev",
   "raw.githubusercontent.com",
 ]);
-const meter = metrics.getMeter("rippleguard");
+const meter = metrics.getMeter("rootline");
 const latency = meter.createHistogram("connector_latency", { unit: "ms" });
 const failures = meter.createCounter("connector_errors");
 export interface SourceResponse<T> {
@@ -75,7 +75,7 @@ export class Transport implements HttpSource {
       return JSON.parse(cached);
     }
     const started = Date.now();
-    const span = trace.getTracer("rippleguard").startSpan("connector." + source);
+    const span = trace.getTracer("rootline").startSpan("connector." + source);
     try {
       for (let attempt = 0; attempt < 3; attempt++) {
         const slot = Math.max(Date.now(), this.next.get(parsed.hostname) || 0);

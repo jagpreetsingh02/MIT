@@ -1,6 +1,23 @@
 # RootLine
 
-Understand a repository, check its dependencies, and trace how a package connects to applications. The existing React/Fastify app now follows **Scan → Repository Map → Analyze → Priority → Trace Ripple**.
+Understand a repository, check its dependencies, and trace how a package connects to applications. The React/Fastify app follows **Scan → Repository Map → Analyze → Priority → Trace Ripple**.
+
+**Live:** [rootline-two.vercel.app](https://rootline-two.vercel.app) — open it and scan a public GitHub repository, or choose **Explore demo**. No sign-in or API key.
+
+## Repository layout
+
+| Path | Contents |
+| --- | --- |
+| `src/shared/` | Domain types and the scan facts shared by server and browser |
+| `src/server/` | Fastify API, discovery, parsers, dependency resolution, graph, advisories, SBOM, persistence |
+| `src/server/otter/` | OTTER assistant: Groq client, server-built context, reply validation, routes |
+| `src/web/` | React workspace (`workspace/`), OTTER panel (`otter/`), landing page and shared UI |
+| `tests/` | Node unit and API tests, plus Playwright browser tests in `tests/browser/` |
+| `scripts/` | Verification runs that record evidence into `docs/verification/` |
+| `demo-repository/` | Dependency-only fixture repository used for real, source-backed demonstrations |
+| `docs/` | [Design notes](docs/design.md), [product notes](docs/product.md), SPDX schema, recorded verification |
+
+Engineering rules that the code follows are in [AGENTS.md](AGENTS.md).
 
 ## Run locally
 
@@ -84,4 +101,4 @@ Recorded results: [public repository matrix](docs/verification/live-repositories
 
 The matrix covers expressjs/express (small npm), this repository (lockfile), npm/cli (478 projects / 575 files), pallets/flask (Python), spring-projects/spring-petclinic (Maven), GoogleCloudPlatform/microservices-demo (mixed language), and octocat/Hello-World (empty supported-manifest state). Coverage warnings are preserved in the report.
 
-Main implementation: `src/server/discovery.ts`, `resolve-project.ts`, `advisories.ts`, `connectors.ts`, `jobs.ts`, and `graph.ts`; OTTER in `src/server/otter/` and `src/web/otter/`; shared types and scan facts in `src/shared/`; workspace sections in `src/web/workspace/`. Existing authenticated APIs, export, and webhook boundaries remain in place without expanding enterprise features.
+The analysis path runs through `src/server/discovery.ts` → `resolve-project.ts` → `connectors.ts`/`advisories.ts` → `graph.ts`, driven by `jobs.ts`. Public API endpoints are open but rate limited; the GitHub webhook still verifies its HMAC signature, and export and connector boundaries are unchanged.

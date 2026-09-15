@@ -23,7 +23,10 @@
       "correctness": {
         "noUnreachable": "error",
         "noInvalidUseBeforeDeclaration": "error",
-        "noConstantCondition": "error"
+        "noConstantCondition": "error",
+        "noUnusedImports": "error",
+        "noUnusedVariables": "error",
+        "noUnusedFunctionParameters": "error"
       },
       "suspicious": {
         "noDuplicateObjectKeys": "error",

@@ -232,7 +232,7 @@ export async function createApp(
       if (!secret) return reply.code(503).send({ error: "Webhook is not configured." });
       const raw = req.body as Buffer;
       if (!verifySignature(raw, String(req.headers["x-hub-signature-256"] || ""), secret)) {
-        metrics.getMeter("rippleguard").createCounter("webhook_validation_failures").add(1);
+        metrics.getMeter("rootline").createCounter("webhook_validation_failures").add(1);
         return reply.code(401).send({ error: "Invalid webhook signature." });
       }
       const id = z.string().min(1).max(100).parse(req.headers["x-github-delivery"]);

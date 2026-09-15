@@ -27,8 +27,6 @@ const ecosystemFiles: Record<Ecosystem, string[]> = {
   ],
   maven: ["pom.xml", "dependency-tree.json"],
 };
-export const relevantFile = (path: string) =>
-  Object.values(ecosystemFiles).flat().includes(posix.basename(path));
 export const projectId = (ecosystem: Ecosystem, path: string) =>
   createHash("sha256")
     .update(ecosystem + ":" + path)

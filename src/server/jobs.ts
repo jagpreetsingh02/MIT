@@ -351,7 +351,7 @@ export class Jobs {
     } catch (error) {
       scan.status = "failed";
       scan.error = (error as Error).message;
-      metrics.getMeter("rippleguard").createCounter("scan_failures").add(1);
+      metrics.getMeter("rootline").createCounter("scan_failures").add(1);
     } finally {
       this.store.save(scan);
     }

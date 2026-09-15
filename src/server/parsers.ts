@@ -4,7 +4,7 @@ import type { Ecosystem, Graph, PackageNode, Provenance } from "../shared/types.
 const MAX_FILE = 8_000_000;
 const exact = (v: unknown): v is string =>
   typeof v === "string" && /^[0-9][0-9A-Za-z.!+_\-]*$/.test(v);
-export const supportedFiles = [
+const supportedFiles = [
   "npm-shrinkwrap.json",
   "package-lock.json",
   "Pipfile.lock",

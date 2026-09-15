@@ -6,7 +6,7 @@ import { discoverProjects, type RepositoryFile, type SourceFile } from "./discov
 import type { HttpSource } from "./transport.js";
 import { osvAdvisory } from "./advisories.js";
 const encode = encodeURIComponent;
-export class Registries {
+class Registries {
   constructor(private http: HttpSource) {}
   async enrich(n: PackageNode) {
     if (n.ecosystem === "npm") {

@@ -4,7 +4,7 @@ import { dirname } from "node:path";
 import type { Scan, ScanInput } from "../shared/types.js";
 export class Store {
   db: DatabaseSync;
-  constructor(path = process.env.DB_PATH || "data/rippleguard.sqlite") {
+  constructor(path = process.env.DB_PATH || "data/rootline.sqlite") {
     if (path !== ":memory:") mkdirSync(dirname(path), { recursive: true });
     this.db = new DatabaseSync(path);
     this.db.exec(`PRAGMA journal_mode=WAL; PRAGMA busy_timeout=5000;

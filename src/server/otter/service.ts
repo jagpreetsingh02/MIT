@@ -20,7 +20,7 @@ export function autoTier(question: string): Tier {
   return navigational ? "fast" : "balanced";
 }
 
-export function focusedOutOfScope(question: string, ctx: OtterContext) {
+function focusedOutOfScope(question: string, ctx: OtterContext) {
   if (!ctx.focus) return false;
   const allowed = new Set([ctx.focus.advisoryId, ...ctx.focus.aliases].map((i) => i.toUpperCase()));
   if ([...advisoryIds(question)].some((id) => !allowed.has(id))) return true;
@@ -99,14 +99,14 @@ const REPLY_SCHEMA = {
   },
 };
 
-export function validateScope(scan: Scan, scope: OtterScope) {
+function validateScope(scan: Scan, scope: OtterScope) {
   if (scope.kind !== "vulnerability") return;
   const node = scan.graph?.nodes.find((n) => n.id === scope.nodeId);
   if (!node?.advisories.some((a) => a.id === scope.advisoryId))
     throw new OtterError("That vulnerability is not part of this scan.", 404);
 }
 
-export function parseReply(raw: string, ctx: OtterContext, scope: OtterScope, demo: boolean): OtterReply {
+function parseReply(raw: string, ctx: OtterContext, scope: OtterScope, demo: boolean): OtterReply {
   let parsed: any;
   try {
     parsed = JSON.parse(raw);

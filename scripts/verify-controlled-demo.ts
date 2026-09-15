@@ -1,4 +1,4 @@
-import { readFile, readdir, writeFile, mkdir } from "node:fs/promises";
+import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { discoverProjects, type SourceFile } from "../src/server/discovery.js";
 import { resolveProject } from "../src/server/resolve-project.js";
 import { finalize, risks, simulate } from "../src/server/graph.js";
@@ -26,7 +26,7 @@ const files: SourceFile[] = await Promise.all(
 );
 const map = discoverProjects(
   names.map((path) => ({ path, sha: "" })),
-  "demo/rippleguard-recording",
+  "demo/rootline-recording",
   "main",
   "local-prepared",
 );

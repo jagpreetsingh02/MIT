@@ -1,1 +1,1 @@
-{"name":"rippleguard-recording-demo","version":"1.0.0","private":true,"workspaces":["apps/*","packages/*"],"description":"Dependency-only research fixture; do not deploy or execute vulnerable dependencies."}
+{"name":"rootline-recording-demo","version":"1.0.0","private":true,"workspaces":["apps/*","packages/*"],"description":"Dependency-only research fixture; do not deploy or execute vulnerable dependencies."}

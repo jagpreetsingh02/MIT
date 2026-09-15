@@ -1,8 +1,8 @@
 {
-  "name": "@rippleguard/checkout",
+  "name": "@rootline/checkout",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@rippleguard/shared-http": "1.0.0"
+    "@rootline/shared-http": "1.0.0"
   }
 }

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-export interface Bar {
+interface Bar {
   key: string;
   label: string;
   value: number;

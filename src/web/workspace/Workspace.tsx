@@ -59,7 +59,7 @@ const NAV: { view: AnalysisView; label: string; Icon: typeof LayoutDashboard }[]
   { view: "evidence", label: "Evidence", Icon: FileCheck2 },
 ];
 
-export function RootLineMark({ className }: { className?: string }) {
+function RootLineMark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
       <path d="M12 3v7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
